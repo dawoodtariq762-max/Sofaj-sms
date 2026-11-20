@@ -206,7 +206,7 @@ body{font-family:Inter,Roboto,"Segoe UI",Arial,sans-serif!important;letter-spaci
 .main{margin-left:260px!important;}
 .content{padding:26px 22px!important;}
 .nav-item,.sub-item,.tab,.ritem,.rsubitem,.navtab{font-size:13.25px!important;letter-spacing:0!important;line-height:1.35!important;gap:12px!important;}
-.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:normal!important;word-break:normal!important;}
+.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:nowrap!important;word-break:normal!important;}
 .sb-brand h1,.sb-brand small{letter-spacing:0!important;}
 .sb-section,.sb-sec{letter-spacing:.07em!important;font-size:10.5px!important;}
 .topbar,.tb1{height:56px!important;padding-left:22px!important;padding-right:20px!important;}
@@ -235,7 +235,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 .content{padding:20px 14px!important;}}
 .sb-logo svg,.brand .logo svg,.rail .logo svg,.sb-brand .logo svg,.brand-logo .logo svg{stroke:#fff!important;}
 .sb-brand h1,.brand h1,.brand-text h1,.brand-logo h1{font-weight:700!important;letter-spacing:-.01em!important;}
-.sofaj-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
+.ams-sms-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
 .sb-logo,.brand .logo,.rail .logo,.sb-brand .logo,.brand-logo .logo{padding:0!important;overflow:hidden!important;border:1px solid #ddd!important;}
 .brand-logo .logo{width:92px!important;height:92px!important;border-radius:22px!important;margin-bottom:16px!important;}
 .sb-logo{width:44px!important;height:44px!important;border-radius:13px!important;}
@@ -311,14 +311,16 @@ html body.ams-panel:is(.ams-light,.ams-dark) .tb1 .tb-btn{flex:0 0 auto!importan
 <script src="/assets/number-copy.js?v=sofaj-20261026-fullrebrand-final"></script>
 <link rel="stylesheet" href="/assets/sofaj-sidebar-unify.css?v=sofaj-20261026-fullrebrand-final"/>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261110-ui-polish2"/></head>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard.js?v=sf-20261111b" defer></script>
+<link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
+</head>
 <body class="ams-light ams-panel ams-ui">
 <div class="layout">
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sb-brand">
-      <div class="logo"><img class="sofaj-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sofaj-20261009" alt="SOFAJ SMS" /></div>
-      <div><h1 data-brand="name">SOFAJ SMS</h1><small>Client Panel</small></div>
+      <div class="logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
+      <div><h1 data-brand="name">SOFAJ SMS</h1><small>SMS Panel</small></div>
     </div>
     <nav class="sb-nav" id="tabs">
       <div class="sb-sec">Menu</div>
@@ -346,15 +348,12 @@ html body.ams-panel:is(.ams-light,.ams-dark) .tb1 .tb-btn{flex:0 0 auto!importan
     <!-- DASHBOARD -->
     <!-- DASHBOARD -->
 <section class="page active" id="page-dashboard">
+      <!-- SOFAJ SMS dashboard hero: painted by assets/sofaj-dashboard.js from the
+           same /dashboard + /earnings-summary + /dashboard/daily + /sms/report data -->
+      <div id="sofajDash"></div>
       <div class="page-head"><div><h2>Dashboard</h2><div class="breadcrumb"><b>Home</b> » Dashboard</div></div></div>
-      <div class="ams-shortcuts ams-dashboard-shortcuts" aria-label="Dashboard shortcuts">
-        <button type="button" class="ams-shortcut ams-numbers-shortcut" title="Open SMS Numbers"
-          aria-label="Open SMS Numbers" onclick="document.querySelector('[data-page=numbers]')?.click()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6M9 14h4M10 18h4"/></svg>
-          <span>SMS Numbers</span>
-        </button>
-      </div>
-      <!-- SOFAJ-style dashboard top (client scope; money cards are this client's dashboard payout sums) -->
+      <div class="nx-legacy">
+      <!-- AMS-style dashboard top (client scope; money cards are this client's dashboard payout sums) -->
       <div class="ams-panel-dash-meta-row"><span class="ams-panel-meta" id="amsDashMeta" style="display:none"></span></div>
       <div id="amsKpis"></div>
       <div class="ams-panel-middle"><div id="amsVolume"></div><aside id="amsRail"></aside></div>
@@ -362,7 +361,8 @@ html body.ams-panel:is(.ams-light,.ams-dark) .tb1 .tb-btn{flex:0 0 auto!importan
       <div id="amsSmsChart"></div>
       <div class="card dash-note-card dashboard-recent"><div class="card-head"><div><h3>Recent Activity</h3></div></div><div class="muted" style="padding:18px">No recent activity yet</div></div>
       <div class="ams-metric-rankings"></div>
-    </section>
+          </div><!-- /nx-legacy -->
+</section>
 
     <!-- SMS NUMBERS (assigned, view only) -->
     <section class="page" id="page-numbers">
@@ -377,7 +377,7 @@ html body.ams-panel:is(.ams-light,.ams-dark) .tb1 .tb-btn{flex:0 0 auto!importan
         <div class="tc-left"><label>Show Records:</label><select id="numLen" onchange="renderNumbers()"><option>10</option><option selected>25</option><option>50</option><option>100</option><option>500</option><option value="All">All</option></select>
         <div class="exp-btns"><button type="button" class="ams-btn ams-blue" onclick="copyCurrentPageNumbers(this)" data-tip="Copy numbers" title="Copy numbers" aria-label="Copy numbers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><button type="button" class="ams-btn ams-blue"  data-tip="Download CSV" title="Download CSV" aria-label="Download CSV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><button type="button" class="ams-btn ams-green"  data-tip="Download Excel" title="Download Excel" aria-label="Download Excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button></div></div>
         <div class="tc-right"><label>Search:</label><input type="text" id="numSearch" oninput="renderNumbers()" placeholder="Search..."/></div></div></div>
-      <div class="table-wrap"><div class="tscroll ams-numbers-scroll" role="region" tabindex="0" aria-label="SMS Numbers table; scroll horizontally to view all columns"><table class="ams-numbers-table" aria-label="SMS Numbers">
+      <div class="table-wrap"><div class="tscroll"><table>
         <thead><tr><th class="sortable" onclick="sortNum('range')">Range <span class="sort">⇅</span></th><th class="sortable" onclick="sortNum('number')">Number <span class="sort" id="nSortHint">⇅</span></th><th>Payterm</th><th>Status</th><th>Payout</th><th>Last SMS Time</th><th>Limits</th></tr></thead>
         <tbody id="numBody"></tbody></table></div>
         <div class="table-foot"><div class="info" id="numInfo"></div><div class="pagination"><button>‹</button><button class="active">1</button><button>2</button><button>›</button></div></div></div>
@@ -460,7 +460,7 @@ html body.ams-panel:is(.ams-light,.ams-dark) .tb1 .tb-btn{flex:0 0 auto!importan
   </div>
 </div>
 
-<script src="/api.js?v=sofaj-20261110-mobile-nav1"></script>
+<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
 <script>
 if(window.API){ API.guard('client'); }
 /* NAV */
@@ -494,7 +494,7 @@ let recentTests=[];
 function maskCLI(cli){if(!cli)return '';if(cli.length<=2)return cli;return cli.slice(0,2)+'x'.repeat(cli.length-2);}
 
 /* fill selects */
-function fillSel(id,arr){const s=document.getElementById(id);if(!s)return;s.innerHTML=s.children[0].outerHTML+arr.map(x=>`<option>${x}</option>`).join('');}
+function fillSel(id,arr){const s=document.getElementById(id);if(!s)return;s.innerHTML=((s.children[0]||{}).outerHTML||'')+arr.map(x=>`<option>${x}</option>`).join('');}
 fillSel('numRange',rangeNames);fillSel('stRange',rangeNames);fillSel('testRange',rangeNames);
 
 /* NUMBERS */
@@ -688,10 +688,28 @@ async function loadDashboard(){
     ]);
   }
   void spark;
-  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#0a51cc',rows:d.daily7,valueKey:'count',ariaLabel:'Received OTP per day for the last seven UK reporting days'});
+  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#6d5df6',rows:d.daily7,valueKey:'count',ariaLabel:'Received OTP per day for the last seven UK reporting days'});
   window.AMSDashboardCore.refreshExtras('client');
+  sofajRenderDashboard(d, (typeof _es!=='undefined'?_es:null), (typeof _daily!=='undefined'?_daily:null));
   if(window.amsRenderClientRecent) amsRenderClientRecent((d&&d.recent)||[]);
 }
+/* SOFAJ SMS hero (presentation only): repaints the reference layout from the SAME
+   responses this panel's loadDashboard() already holds. No request here. */
+function sofajRenderDashboard(d, es, daily){
+  if(!window.SofajDashboard) return;
+  var cfg={ root:'sofajDash', role:'client', dashboard:d||{}, earnings:es||{}, dailyRows:(daily&&daily.rows)||null,
+    name:CLIENT, balanceLabel:'Payout', periodLabel:'This Month', totalLabel:'Total SMS' };
+  try{ window.SofajDashboard.render(cfg); }catch(e){ console.warn('sofaj dashboard',e); }
+  var root=document.getElementById('sofajDash'); if(!root||root.getAttribute('data-nx-monthly')==='1') return;
+  root.setAttribute('data-nx-monthly','1');
+  API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
+    cfg.monthly=(r&&r.rows)||[];
+    cfg.monthly.sort(function(a,b){ return String(a.dims.month||'')<String(b.dims.month||'')?-1:1; });
+    window.SofajDashboard.render(cfg);
+    if(!cfg.monthly.length) root.removeAttribute('data-nx-monthly');
+  }).catch(function(e){ console.warn('sofaj monthly',e); });
+}
+
 
 async function loadRanges(){
   try{
@@ -855,7 +873,7 @@ async function loadStats(){ await renderStats(); renderNumbers(); }
    A limit-1 probe detects a new top record, then the existing loader re-runs with a
    cache-bypassing GET. Columns, filters, pagination and scoping are untouched.
    ========================================================================== */
-const AMS_SMS_REFRESH_MS = 8000;
+const SOFAJ_SMS_REFRESH_MS = 8000;
 let amsSmsTopSeenId = null, amsSmsTotalSeen = null;
 function amsClientSmsPageVisible(){
   const vis=(id)=>{ const el=document.getElementById('page-'+id); return !!(el&&el.classList.contains('active')); };
@@ -893,7 +911,7 @@ async function amsSmsAutoRefresh(){
   if(page==='stats') return renderStats(true);              /* keeps the current page + filters */
   try{ const d=await API.get('/dashboard?_amsr='+Date.now()); amsRenderClientRecent(d.recent); }catch(e){}
 }
-setInterval(amsSmsAutoRefresh, AMS_SMS_REFRESH_MS);
+setInterval(amsSmsAutoRefresh, SOFAJ_SMS_REFRESH_MS);
 setTimeout(amsSmsAutoRefresh, 1500);                          /* establish the baseline early */
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) setTimeout(amsSmsAutoRefresh, 200); });
 

@@ -39,8 +39,8 @@ html body.ams-panel.ams-ui {
 }
 @supports (color: color-mix(in srgb, red 10%, blue)) {
   html body.ams-panel.ams-ui {
-    --ams-motion-ring: color-mix(in srgb, var(--ds-brand, #0a51cc) 40%, transparent);
-    --ams-motion-ring-soft: color-mix(in srgb, var(--ds-brand, #0a51cc) 24%, transparent);
+    --ams-motion-ring: color-mix(in srgb, var(--ds-brand, #1d4ed8) 40%, transparent);
+    --ams-motion-ring-soft: color-mix(in srgb, var(--ds-brand, #1d4ed8) 24%, transparent);
   }
 }
 
@@ -210,7 +210,7 @@ html body.ams-panel.ams-ui:is(.ams-light, .ams-dark) .card {
 }
 html body.ams-panel.ams-ui:is(.ams-light, .ams-dark) :is(.stat-card, .dash-metric, .ams-ui-card, .ams-ui-wcard):active { transform: translate3d(0, 0, 0) scale(.992); }
 html body.ams-panel.ams-ui:is(.ams-light, .ams-dark) :is(.stat-card, .dash-metric, .ams-ui-card, .ams-ui-wcard, [data-page]):focus-visible {
-  outline: 2px solid var(--ds-brand, #0a51cc);
+  outline: 2px solid var(--ds-brand, #1d4ed8);
   outline-offset: 3px;
   box-shadow: 0 0 0 6px var(--ams-motion-ring-soft) !important;
 }
@@ -230,7 +230,7 @@ html body.ams-panel.ams-ui:is(.ams-light, .ams-dark) :is(.btn, .tb-btn, .modal-c
   filter: brightness(.96);
 }
 html body.ams-panel.ams-ui:is(.ams-light, .ams-dark) :is(.btn, .tb-btn, .modal-close, .pagination button, .hamburger, .mgr-mobile-menu, .mgr-topbar-menu):focus-visible {
-  outline: 2px solid var(--ds-brand, #0a51cc);
+  outline: 2px solid var(--ds-brand, #1d4ed8);
   outline-offset: 2px;
   box-shadow: 0 0 0 5px var(--ams-motion-ring);
 }
@@ -321,7 +321,7 @@ html:not(.ds-lite).ams-motion-from body.ams-panel.ams-ui:is(.ams-light, .ams-dar
 }
 .ams-motion-bar {
   position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 2147483000;
-  background: var(--ds-brand, #0a51cc);
+  background: var(--ds-brand, #1d4ed8);
   transform: scaleX(0); transform-origin: left center; pointer-events: none;
 }
 .ams-motion-bar.go   { animation: ams-motion-bar-go 1.4s cubic-bezier(.1, .7, .2, 1) forwards; }

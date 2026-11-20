@@ -500,7 +500,7 @@
         'import os, requests',
         '',
         'API_URL  = "' + endpoint + '"',
-        'API_TOKEN = os.environ["AMS_API_TOKEN"]   # keep the token out of your code',
+        'API_TOKEN = os.environ["SOFAJ_API_TOKEN"]   # keep the token out of your code',
         '',
         'def sms(update, context):',
         '    r = requests.get(',
@@ -518,7 +518,7 @@
         '',
         '# Equivalent curl:',
         '# curl -X GET "' + endpoint + '?limit=10" \\',
-        '#      -H "Authorization: Bearer $AMS_API_TOKEN"',
+        '#      -H "Authorization: Bearer $SOFAJ_API_TOKEN"',
       ].join('\n');
 
       var ex = el('apiExample');

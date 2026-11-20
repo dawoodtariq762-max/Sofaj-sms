@@ -1,4 +1,4 @@
-/* SOFAJ SMS — SOFAJ-style CLI Search (shared by admin/manager/agent/client).
+/* SOFAJ SMS — AMS-style CLI Search (shared by admin/manager/agent/client).
  * "See which ranges a sender has been running on in the last 24 hours."
  * Presentation only: one read-only GET /api/cli-search/ranges-24h with the
  * full sender typed by the user (+ optional message text). The endpoint is

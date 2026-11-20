@@ -242,7 +242,7 @@ body{font-family:Inter,Roboto,"Segoe UI",Arial,sans-serif!important;letter-spaci
 .main{margin-left:260px!important;}
 .content{padding:26px 22px!important;}
 .nav-item,.sub-item,.tab,.ritem,.rsubitem,.navtab{font-size:13.25px!important;letter-spacing:0!important;line-height:1.35!important;gap:12px!important;}
-.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:normal!important;word-break:normal!important;}
+.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:nowrap!important;word-break:normal!important;}
 .sb-brand h1,.sb-brand small{letter-spacing:0!important;}
 .sb-section,.sb-sec{letter-spacing:.07em!important;font-size:10.5px!important;}
 .topbar,.tb1{height:56px!important;padding-left:22px!important;padding-right:20px!important;}
@@ -271,7 +271,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 .content{padding:20px 14px!important;}}
 .sb-logo svg,.brand .logo svg,.rail .logo svg,.sb-brand .logo svg,.brand-logo .logo svg{stroke:#fff!important;}
 .sb-brand h1,.brand h1,.brand-text h1,.brand-logo h1{font-weight:700!important;letter-spacing:-.01em!important;}
-.sofaj-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
+.ams-sms-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
 .sb-logo,.brand .logo,.rail .logo,.sb-brand .logo,.brand-logo .logo{padding:0!important;overflow:hidden!important;border:1px solid #ddd!important;}
 .brand-logo .logo{width:92px!important;height:92px!important;border-radius:22px!important;margin-bottom:16px!important;}
 .sb-logo{width:44px!important;height:44px!important;border-radius:13px!important;}
@@ -330,13 +330,15 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 
 <script src="/assets/number-copy.js?v=sofaj-20261026-fullrebrand-final"></script>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261110-ui-polish2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script></head>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard.js?v=sf-20261111b" defer></script>
+<link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
+</head>
 <body class="ams-light ams-panel ams-ui">
 <div class="layout">
   <!-- ===== ICON RAIL ===== -->
   <aside class="rail" id="rail">
-    <div class="logo"><img class="sofaj-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sofaj-20261009" alt="SOFAJ SMS" /></div>
-    <div class="brand-text"><h1 data-brand="name">SOFAJ SMS</h1><small>Agent Panel</small></div>
+    <div class="logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
+    <div class="brand-text"><h1 data-brand="name">SOFAJ SMS</h1><small>SMS Panel</small></div>
     <nav class="rail-nav sb-nav">
       <div class="ritem active nav-item" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg><span class="lbl">Dashboard</span></div>
       <div class="ritem nav-item" data-page="extapi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg><span class="lbl">REST API</span></div>
@@ -381,15 +383,12 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
       <section class="page" id="page-creditNotes"></section>
       <!-- DASHBOARD -->
 <section class="page active" id="page-dashboard">
+      <!-- SOFAJ SMS dashboard hero: painted by assets/sofaj-dashboard.js from the
+           same /dashboard + /earnings-summary + /dashboard/daily + /sms/report data -->
+      <div id="sofajDash"></div>
+      <div class="nx-legacy">
       <div class="page-head"><div><h2>Dashboard</h2><div class="breadcrumb"><b>Home</b> » Dashboard</div></div></div>
-      <div class="ams-shortcuts ams-dashboard-shortcuts" aria-label="Dashboard shortcuts">
-        <button type="button" class="ams-shortcut ams-numbers-shortcut" title="Open SMS Numbers"
-          aria-label="Open SMS Numbers" onclick="document.querySelector('[data-page=numbers]')?.click()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6M9 14h4M10 18h4"/></svg>
-          <span>SMS Numbers</span>
-        </button>
-      </div>
-      <!-- SOFAJ-style dashboard: meta pill, 4 KPI cards, Volume chart + right rail (real /dashboard + /earnings-summary data) -->
+      <!-- AMS-style dashboard: meta pill, 4 KPI cards, Volume chart + right rail (real /dashboard + /earnings-summary data) -->
       <div class="ams-panel-dash-meta-row"><span class="ams-panel-meta" id="amsDashMeta" style="display:none"></span></div>
       <div id="amsKpis"></div>
       <div class="ams-panel-middle"><div id="amsVolume"></div><aside id="amsRail"></aside></div>
@@ -401,7 +400,8 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
       </div>
       <div id="amsEarnings"></div>
       <div id="amsScope"></div>
-    </section>
+          </div><!-- /nx-legacy -->
+</section>
 
       <!-- RATE CARD -->
       <section class="page" id="page-rateCard">
@@ -429,11 +429,11 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
       </section>
 
 
-      <!-- SOFAJ-style CLI Search (ranges running a CLI, last 24h; separate from Test Panel masking) -->
+      <!-- AMS-style CLI Search (ranges running a CLI, last 24h; separate from Test Panel masking) -->
       <section class="page" id="page-cliRunning">
         <div class="page-head"><div><h2>CLI Search</h2><div class="breadcrumb"><b>SMS Numbers</b> › CLI Search</div></div></div>
         
-    <!-- SOFAJ-style CLI Search — ranges running this CLI in the last 24 hours (separate from CLI Analytics below and from Test Panel masking) -->
+    <!-- AMS-style CLI Search — ranges running this CLI in the last 24 hours (separate from CLI Analytics below and from Test Panel masking) -->
     <p class="muted" style="margin:2px 0 14px">See which ranges a sender has been running on in the last 24 hours. Type the sender in full, exactly as it appears. Capital letters do not matter.</p>
     <div class="toolbar"><div class="ams-panel-cli-fields">
       <div class="ams-panel-field"><label for="amsCliSender">Sender (CLI)</label><input type="text" id="amsCliSender" placeholder="The full sender, e.g. facebook" autocomplete="off" onkeydown="if(event.key==='Enter')searchAmsCli()"/></div>
@@ -474,7 +474,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
             <div class="tc-right"><label>Search:</label><input type="text" id="numSearch" oninput="renderNumbers()" placeholder="Search..."/></div></div>
           <div class="bulk-bar"><span class="info" id="selInfo">0 selected</span></div>
         </div>
-        <div class="table-wrap"><div class="tscroll ams-numbers-scroll" role="region" tabindex="0" aria-label="SMS Numbers table; scroll horizontally to view all columns"><table class="ams-numbers-table" aria-label="SMS Numbers">
+        <div class="table-wrap"><div class="tscroll"><table>
           <thead><tr><th><input type="checkbox" onclick="toggleAll(this)"/></th>
             <th class="sortable" onclick="sortNum('range')">Range <span class="sort">⇅</span></th>
             <th class="sortable" onclick="sortNum('number')">Number <span class="sort" id="nSortHint">⇅</span></th>
@@ -677,7 +677,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
   </div>
 </div>
 
-<script src="/api.js?v=sofaj-20261110-mobile-nav1"></script>
+<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
 <script>
 if(window.API){ API.guard('agent'); }
 /* P21: Security Lock for Chat and Payment */
@@ -888,7 +888,7 @@ function smsToCdr(r){return {client:r.client_name||'—',range:r.range_name||'�
 
 /* CLI masking */
 /* fill selects */
-function fillSel(id,arr,keep=true){const s=document.getElementById(id);if(!s)return;const f=keep?s.children[0].outerHTML:'';s.innerHTML=f+arr.map(x=>`<option>${x}</option>`).join('');}
+function fillSel(id,arr,keep=true){const s=document.getElementById(id);if(!s)return;const f=(keep&&s.children[0])?s.children[0].outerHTML:'';s.innerHTML=f+arr.map(x=>`<option>${x}</option>`).join('');}
 /* ===== SMS TEST PANEL (Agent) =================================================
    Reuses the SAME Test Panel endpoints as the Client/Manager/Admin panels:
      /api/test-numbers     -> active test numbers (Range | Test Number)
@@ -1448,14 +1448,32 @@ let _daily=null; try{ _daily=await API.get('/dashboard/daily?days=15'); }catch(e
       {label:'My Numbers', value:d.numbers, icon:'numbers'}
     ]);
   }
-  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#0a51cc',rows:d.daily7,valueKey:'count',ariaLabel:'Received SMS per day for the last seven UK reporting days'});
+  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#6d5df6',rows:d.daily7,valueKey:'count',ariaLabel:'Received SMS per day for the last seven UK reporting days'});
   window.AMSDashboard.statGroup('amsScope','Account',[
     {label:'Number of Clients', value:d.clients||0, icon:'clients'},
     {label:'My Numbers', value:d.numbers||0, icon:'numbers'}
   ]);
   window.AMSDashboardCore.refreshExtras('agent');
+  sofajRenderDashboard(d, (typeof _es!=='undefined'?_es:null), (typeof _daily!=='undefined'?_daily:null));
   loadEarningCards('agent');
 }
+/* SOFAJ SMS hero (presentation only): repaints the reference layout from the SAME
+   responses this panel's loadDashboard() already holds. No request here. */
+function sofajRenderDashboard(d, es, daily){
+  if(!window.SofajDashboard) return;
+  var cfg={ root:'sofajDash', role:'agent', dashboard:d||{}, earnings:es||{}, dailyRows:(daily&&daily.rows)||null,
+    name:sessionStorage.getItem('ams_name') || localStorage.getItem('ams_name') || 'Agent', balanceLabel:'Earnings', periodLabel:'This Month', totalLabel:'Total SMS' };
+  try{ window.SofajDashboard.render(cfg); }catch(e){ console.warn('sofaj dashboard',e); }
+  var root=document.getElementById('sofajDash'); if(!root||root.getAttribute('data-nx-monthly')==='1') return;
+  root.setAttribute('data-nx-monthly','1');
+  API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
+    cfg.monthly=(r&&r.rows)||[];
+    cfg.monthly.sort(function(a,b){ return String(a.dims.month||'')<String(b.dims.month||'')?-1:1; });
+    window.SofajDashboard.render(cfg);
+    if(!cfg.monthly.length) root.removeAttribute('data-nx-monthly');
+  }).catch(function(e){ console.warn('sofaj monthly',e); });
+}
+
 /* Earning cards + graph: the agent's own payment_ledger totals (existing endpoint). */
 async function loadEarningCards(role){
   try{
@@ -1863,7 +1881,7 @@ async function renderDrill(kind){
    panel's short GET cache. Columns, filters, sorting, pagination and role scoping are
    untouched.
    ========================================================================== */
-const AMS_SMS_REFRESH_MS = 8000;
+const SOFAJ_SMS_REFRESH_MS = 8000;
 let amsSmsTopSeenId = null, amsSmsTotalSeen = null;
 function amsAgentSmsPageVisible(){
   const vis=(id)=>{ const el=document.getElementById('page-'+id); return !!(el&&el.classList.contains('active')); };
@@ -1893,7 +1911,7 @@ async function amsSmsAutoRefresh(){
   if(!changed) return;
   else await renderSmsDetail(true);                         /* keeps the current page + filters */
 }
-setInterval(amsSmsAutoRefresh, AMS_SMS_REFRESH_MS);
+setInterval(amsSmsAutoRefresh, SOFAJ_SMS_REFRESH_MS);
 setTimeout(amsSmsAutoRefresh, 1500);                          /* establish the baseline early */
 document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) setTimeout(amsSmsAutoRefresh, 200); });
 

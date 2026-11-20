@@ -285,7 +285,7 @@
     const o = opts || {};
     const host = document.getElementById(containerId); if (!host) return;
     const fmt = o.money ? money : (typeof o.format === 'function' ? o.format : count);
-    const color = o.color || '#0a51cc';
+    const color = o.color || '#6d5df6';
     const rows = (Array.isArray(o.rows) ? o.rows : []).filter(r => r && /^\d{4}-\d{2}-\d{2}$/.test(String(r.date)));
     const vals = rows.map(r => Number(r[o.valueKey || 'count']) || 0);
     const valid = vals.every(v => Number.isFinite(v) && v >= 0);
@@ -336,7 +336,7 @@
     });
   }
 
-  /* ================= SOFAJ SMS · SOFAJ-style dashboard (added 2026-10-24) =================
+  /* ================= SOFAJ SMS · AMS-style dashboard (added 2026-10-24) =================
    * Presentation only, same rule as the rest of this file: every value is taken
    * verbatim from /api/dashboard (sms_daily_stats) or /api/earnings-summary
    * (payment_ledger). Nothing is recalculated, re-labelled or defaulted to 0 —
@@ -404,8 +404,8 @@
     const groupW = plotW / rows.length, barW = Math.min(18, groupW * 0.32);
     const Y = function (frac) { return top + plotH * (1 - frac); };
     let grid = '<rect x="' + left + '" y="' + top + '" width="' + plotW + '" height="' + plotH + '" rx="4" class="ams-panel-plot-bg" fill="#edf1fa"/>' +
-      '<text x="' + left + '" y="14" class="ams-panel-axis" fill="#0a51cc">SMS</text>' +
-      '<text x="' + (w - right) + '" y="14" text-anchor="end" class="ams-panel-axis" fill="#c58a24">' + esc(moneyName) + '</text>';
+      '<text x="' + left + '" y="14" class="ams-panel-axis" fill="#0066ff">SMS</text>' +
+      '<text x="' + (w - right) + '" y="14" text-anchor="end" class="ams-panel-axis" fill="#ff3d6e">' + esc(moneyName) + '</text>';
     for (let i = 0; i <= 4; i++) {
       const frac = i / 4, y = Y(frac);
       const smsV = smsAxis.max * frac;
@@ -425,8 +425,8 @@
       const tipText = r.date + ' · ' + count(r.sms) + ' SMS · ' + amsMoney(r.earn) + ' ' + moneyName.toLowerCase();
       const tipAttrs = ' data-tip="' + esc(tipText) + '" data-cx="' + cx.toFixed(2) + '" data-top="' + hitTop.toFixed(2) + '"';
       const day = String(r.date).slice(8).replace(/^0/, '');
-      return '<rect class="ams-panel-bar"' + tipAttrs + ' x="' + (cx - barW - 2).toFixed(2) + '" y="' + smsTop.toFixed(2) + '" width="' + barW.toFixed(2) + '" height="' + hs.toFixed(2) + '" rx="2" fill="#0a51cc"><title>' + esc(tipText) + '</title></rect>' +
-        '<rect class="ams-panel-bar"' + tipAttrs + ' x="' + (cx + 2).toFixed(2) + '" y="' + earnTop.toFixed(2) + '" width="' + barW.toFixed(2) + '" height="' + he.toFixed(2) + '" rx="2" fill="#c58a24"><title>' + esc(tipText) + '</title></rect>' +
+      return '<rect class="ams-panel-bar"' + tipAttrs + ' x="' + (cx - barW - 2).toFixed(2) + '" y="' + smsTop.toFixed(2) + '" width="' + barW.toFixed(2) + '" height="' + hs.toFixed(2) + '" rx="2" fill="#0066ff"><title>' + esc(tipText) + '</title></rect>' +
+        '<rect class="ams-panel-bar"' + tipAttrs + ' x="' + (cx + 2).toFixed(2) + '" y="' + earnTop.toFixed(2) + '" width="' + barW.toFixed(2) + '" height="' + he.toFixed(2) + '" rx="2" fill="#ff3d6e"><title>' + esc(tipText) + '</title></rect>' +
         '<rect class="ams-panel-bar-hit"' + tipAttrs + ' x="' + (left + groupW * i).toFixed(2) + '" y="' + top + '" width="' + groupW.toFixed(2) + '" height="' + plotH + '" fill="#000" fill-opacity="0" style="pointer-events:all" tabindex="0"><title>' + esc(tipText) + '</title></rect>' +
         '<text x="' + cx.toFixed(2) + '" y="' + (h - 10) + '" text-anchor="middle" class="ams-panel-axis">' + esc(day) + '</text>';
     }).join('');

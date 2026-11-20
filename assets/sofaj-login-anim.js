@@ -370,7 +370,7 @@
    *     Particles are short-lived WAAPI animations (compositor), capped, and
    *     removed on finish.
    * ---------------------------------------------------------------- */
-  var COLORS = ['#0a51cc', '#1675e5', '#32caed', '#06398f', '#c58a24', '#f1c654', '#e6eeff'];
+  var COLORS = ['#22d3ee', '#818cf8', '#c084fc', '#f472b6', '#fb923c', '#facc15', '#34d399'];
   function pick() { return COLORS[(Math.random() * COLORS.length) | 0]; }
 
   function funFx() {
@@ -490,9 +490,9 @@
    * ---------------------------------------------------------------- */
   var MARK = '<svg viewBox="0 0 64 64" role="img" aria-label="__AMSLABEL__" xmlns="http://www.w3.org/2000/svg">'
     + '<defs><linearGradient id="amsG1" x1="8" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">'
-    + '<stop offset="0" stop-color="#32caed"/><stop offset=".5" stop-color="#0a51cc"/><stop offset="1" stop-color="#f1c654"/></linearGradient>'
+    + '<stop offset="0" stop-color="#22d3ee"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ec4899"/></linearGradient>'
     + '<linearGradient id="amsG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#c7d2fe"/></linearGradient></defs>'
-    + '<circle cx="31" cy="30" r="21" fill="rgba(10,81,204,.12)" stroke="url(#amsG1)" stroke-width="5.5"/>'
+    + '<circle cx="31" cy="30" r="21" fill="rgba(99,102,241,.12)" stroke="url(#amsG1)" stroke-width="5.5"/>'
     + '<path d="M38 41 L53 56" stroke="url(#amsG1)" stroke-width="6.5" stroke-linecap="round"/>'
     + '<path d="M22 31 q4.5 -7 9 0 t9 0" fill="none" stroke="url(#amsG2)" stroke-width="3.2" stroke-linecap="round"/>'
     + '<circle cx="31" cy="39" r="2.2" fill="#fff"/></svg>';
@@ -515,7 +515,7 @@
     } catch (e) {}
     /* SOFAJ SMS: the supplied official logo is the default mark (2026-10-24).
        An owner-uploaded branding logo above still wins everywhere. */
-    return '/assets/sofaj-logo-trim.png?v=sofaj-20261024';
+    return '/assets/sofaj-logo-trim.png?v=sf-20261110';
   }
   var LOGO_SLOTS = '.m-brand img, .m-brand .ams-ui-mark, .logo img, .logo .ams-ui-mark';
   function restoreImg(span) {

@@ -76,7 +76,7 @@ to{opacity:1;transform:translateY(0);}}
 .si-purple svg{stroke:#a78bfa;}
 .si-green svg{stroke:#4ade80;}
 .si-amber svg{stroke:#fbbf24;}
-.si-cyan svg{stroke:#32caed;}
+.si-cyan svg{stroke:#22d3ee;}
 .si-red svg{stroke:#f87c8a;}
 .stat-info h3{font-size:25px;font-weight:700;line-height:1;}
 .stat-info p{font-size:12.5px;margin-top:6px;}
@@ -236,7 +236,7 @@ body{font-family:Inter,Roboto,"Segoe UI",Arial,sans-serif!important;letter-spaci
 .main{margin-left:260px!important;}
 .content{padding:26px 22px!important;}
 .nav-item,.sub-item,.tab,.ritem,.rsubitem,.navtab{font-size:13.25px!important;letter-spacing:0!important;line-height:1.35!important;gap:12px!important;}
-.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:normal!important;word-break:normal!important;}
+.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:nowrap!important;word-break:normal!important;}
 .sb-brand h1,.sb-brand small{letter-spacing:0!important;}
 .sb-section,.sb-sec{letter-spacing:.07em!important;font-size:10.5px!important;}
 .topbar,.tb1{height:56px!important;padding-left:22px!important;padding-right:20px!important;}
@@ -265,7 +265,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 .content{padding:20px 14px!important;}}
 .sb-logo svg,.brand .logo svg,.rail .logo svg,.sb-brand .logo svg,.brand-logo .logo svg{stroke:#fff!important;}
 .sb-brand h1,.brand h1,.brand-text h1,.brand-logo h1{font-weight:700!important;letter-spacing:-.01em!important;}
-.sofaj-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
+.ams-sms-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
 .sb-logo,.brand .logo,.rail .logo,.sb-brand .logo,.brand-logo .logo{padding:0!important;overflow:hidden!important;border:1px solid #ddd!important;}
 .brand-logo .logo{width:92px!important;height:92px!important;border-radius:22px!important;margin-bottom:16px!important;}
 .sb-logo{width:44px!important;height:44px!important;border-radius:13px!important;}
@@ -306,13 +306,16 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 
 <script src="/assets/number-copy.js?v=sofaj-20261026-fullrebrand-final"></script>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261101-admin-report-fixes1"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261110-ui-polish2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script></head>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261101-admin-report-fixes1"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard-admin.js?v=gx-20261112" defer></script><script src="/assets/sofaj-requests.js?v=sf-20261111b" defer></script>
+<link rel="stylesheet" href="/assets/sofaj-glass.css?v=gx-20261112"/>
+<link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
+</head>
 <body class="ams-light ams-panel ams-ui">
 <div class="layout">
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar" id="sidebar">
     <div class="sb-brand">
-      <div class="sb-logo"><img class="sofaj-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sofaj-20261009" alt="SOFAJ SMS" /></div>
+      <div class="sb-logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
       <div><h1 data-brand="name">SOFAJ SMS</h1><small>Admin Panel</small></div>
     </div>
     <nav class="sb-nav">
@@ -343,6 +346,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
         <div class="sub-item" data-page="clients"><span class="dot"></span> Clients</div>
         
       </div>
+      <div class="nav-item" data-page="requests"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6a2 2 0 0 1 2 2v0h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V5a2 2 0 0 1 2-2z"/><path d="M9 12h6M9 16h4"/></svg><span class="lbl">Request Panel</span><span class="nxr-nav-badge" id="nxrNavBadge" style="display:none;margin-left:auto;background:#d93a4e;color:#fff;font-size:10.5px;font-weight:800;border-radius:999px;padding:1px 7px;line-height:1.6"></span></div>
 
       <div class="sb-section">Reports</div>
       <div class="nav-item" id="cdrParent" onclick="toggleSub('cdrSub','cdrParent')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg><span>SMS CDR Stats</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
@@ -358,6 +362,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
       </div>
           <div class="nav-item" data-page="creditNotes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg><span class="lbl">Credit Notes</span></div>
 </nav>
+    <div class="sb-user"><div class="sb-av" id="sbAv">AD</div><div class="sb-uinfo"><b id="sbName">Administrator</b><small>Admin Panel</small></div><button type="button" class="sb-out" title="Logout" aria-label="Logout" onclick="logout()"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div>
   </aside>
   <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
@@ -382,19 +387,16 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
     <!-- ========== DASHBOARD ========== -->
 <section class="page active" id="page-dashboard">
       <div class="page-head"><div><h2>Dashboard</h2><div class="breadcrumb"><b>Home</b> » Dashboard</div></div></div>
-      <div class="ams-shortcuts ams-dashboard-shortcuts" aria-label="Dashboard shortcuts">
-        <button type="button" class="ams-shortcut ams-numbers-shortcut" title="Open SMS Numbers"
-          aria-label="Open SMS Numbers" onclick="document.querySelector('[data-page=numbers]')?.click()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6M9 14h4M10 18h4"/></svg>
-          <span>SMS Numbers</span>
-        </button>
-      </div>
-      <!-- SOFAJ-style dashboard top (ledger earnings = platform-wide agent earnings, admin scope) -->
+      <!-- SOFAJ SMS dashboard hero: painted by assets/sofaj-dashboard.js from the
+           same /dashboard + /earnings-summary + /dashboard/daily + /sms/report data -->
+      <div id="sofajDash"></div>
+      <div class="nx-legacy">
+      <!-- AMS-style dashboard top (ledger earnings = platform-wide agent earnings, admin scope) -->
       <div class="ams-panel-dash-meta-row"><span class="ams-panel-meta" id="amsDashMeta" style="display:none"></span></div>
       <div id="amsKpis"></div>
       <div class="ams-panel-middle"><div id="amsVolume"></div><aside id="amsRail"></aside></div>
       <div class="ams-metric-rankings"></div>
-      <!-- Preserved dashboard sections: inventory, provider cost and charts. -->
+      <!-- Preserved existing sections (inventory, payouts, provider cost, charts) -->
       <div id="amsSmsCards" style="display:none"></div>
       <div id="amsInventory"></div>
       <div class="ams-ui-charts">
@@ -402,8 +404,10 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
         <div id="amsEarnChart"></div>
       </div>
       <div id="amsEarnings"></div>
+      <div id="amsPayouts"></div>
       <div id="amsProvider"></div>
-    </section>
+          </div><!-- /nx-legacy -->
+</section>
 
 
       <!-- ========== RANGE ALLOCATION ========== -->
@@ -486,7 +490,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
           </div>
         </div>
         <div class="table-wrap">
-          <div class="tscroll ams-numbers-scroll" role="region" tabindex="0" aria-label="SMS Numbers table; scroll horizontally to view all columns"><table class="ams-numbers-table" aria-label="SMS Numbers">
+          <div class="tscroll"><table>
             <thead><tr>
               <th><input type="checkbox" onclick="toggleAll(this)"/></th>
               <th class="sortable" onclick="sortNumbers('range')">Range <span class="sort">⇅</span></th>
@@ -509,6 +513,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
       </section>
 
       <!-- USER PAGES (built via JS) -->
+      <section class="page" id="page-requests"></section>
       <section class="page" id="page-managers"></section>
       <section class="page" id="page-agents"></section>
       <section class="page" id="page-clients"></section>
@@ -518,7 +523,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 
       <section class="page" id="page-cliSearch">
         <div class="page-head"><div><h2>CLI Search</h2><div class="breadcrumb"><b>Reports</b> › CLI Search & Analytics</div></div></div>
-    <!-- SOFAJ-style CLI Search — ranges running this CLI in the last 24 hours (separate from CLI Analytics below and from Test Panel masking) -->
+    <!-- AMS-style CLI Search — ranges running this CLI in the last 24 hours (separate from CLI Analytics below and from Test Panel masking) -->
     <p class="muted" style="margin:2px 0 14px">See which ranges a sender has been running on in the last 24 hours. Type the sender in full, exactly as it appears. Capital letters do not matter.</p>
     <div class="toolbar"><div class="ams-panel-cli-fields">
       <div class="ams-panel-field"><label for="amsCliSender">Sender (CLI)</label><input type="text" id="amsCliSender" placeholder="The full sender, e.g. facebook" autocomplete="off" onkeydown="if(event.key==='Enter')searchAmsCli()"/></div>
@@ -764,12 +769,43 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 </div></div>
 
 
-<script src="/api.js?v=sofaj-20261110-mobile-nav1"></script>
+<!-- Mobile-only bottom bar: Dashboard / Numbers / CDR Stats / Chat (hidden above 900px by sofaj-glass.css) -->
+<nav class="gx-bnav" id="gxBnav" aria-label="Quick navigation">
+  <button type="button" data-gx-page="dashboard" data-gx-key="dashboard" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Dashboard</span></button>
+  <button type="button" data-gx-page="numbers" data-gx-key="numbers"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span>Numbers</span></button>
+  <button type="button" data-gx-page="smsDetail" data-gx-key="cdr"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 20v-7M12 20V6M17 20v-10"/></svg><span>CDR Stats</span></button>
+  <a href="/chat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Chat</span></a>
+</nav>
+<script>
+(function(){
+  var nav=document.getElementById('gxBnav'); if(!nav) return;
+  nav.addEventListener('click',function(e){
+    var b=e.target.closest('[data-gx-page]'); if(!b) return;
+    if(typeof showPageByName==='function') showPageByName(b.getAttribute('data-gx-page'));
+    window.scrollTo(0,0);
+  });
+  var CDR={smsDetail:1,cliSearch:1,clientStats:1,agentStats:1,managerStats:1,rangeStats:1,numberStats:1,providerSummary:1};
+  function sync(){
+    var p=document.querySelector('.page.active'), id=p?p.id.replace(/^page-/,''):'dashboard';
+    var key=id==='dashboard'?'dashboard':id==='numbers'?'numbers':CDR[id]?'cdr':'';
+    nav.querySelectorAll('[data-gx-page]').forEach(function(b){ b.classList.toggle('on',b.getAttribute('data-gx-key')===key); });
+  }
+  new MutationObserver(sync).observe(document.querySelector('.content')||document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+  sync();
+  try{
+    var n=sessionStorage.getItem('ams_name')||localStorage.getItem('ams_name')||'Administrator';
+    var nm=document.getElementById('sbName'), av=document.getElementById('sbAv');
+    if(nm) nm.textContent=n;
+    if(av) av.textContent=n.trim().split(/\s+/).slice(0,2).map(function(w){return w.charAt(0)}).join('').toUpperCase()||'AD';
+  }catch(e){}
+})();
+</script>
+<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
 <script>
 /* auth guard — admin only */
 if(window.API){ API.guard('admin'); }
 window.AMS_PANEL_MODE='admin_ops';
-const ADMIN_ALLOWED_PAGES=new Set(['creditNotes','dashboard','allocation','numbers','managers','agents','clients','smsReport','cliSearch','smsDetail','clientStats','agentStats','managerStats','rangeStats','numberStats','providerSummary','test','payMgmt','chatAccounts','failedSms','apiManagement']);
+const ADMIN_ALLOWED_PAGES=new Set(['creditNotes','dashboard','allocation','numbers','managers','agents','clients','requests','smsReport','cliSearch','smsDetail','clientStats','agentStats','managerStats','rangeStats','numberStats','providerSummary','test','payMgmt','chatAccounts','failedSms','apiManagement']);
 function normalizePanelPage(id){ id=String(id||'dashboard'); return ADMIN_ALLOWED_PAGES.has(id)?id:'dashboard'; }
 function applyPanelSplitUi(){
   if(window.AMS_PANEL_MODE!=='admin_light') return;
@@ -983,7 +1019,7 @@ function multiOptions(vals){return vals.map(v=>`<option value="${v}">${v}</optio
 
 
 /* fill selects */
-function fillSelect(id,arr,keepFirst=true){const s=document.getElementById(id);if(!s)return;const first=keepFirst?s.children[0].outerHTML:'';s.innerHTML=first+arr.map(x=>`<option>${x}</option>`).join('');}
+function fillSelect(id,arr,keepFirst=true){const s=document.getElementById(id);if(!s)return;const first=(keepFirst&&s.children[0])?s.children[0].outerHTML:'';s.innerHTML=first+arr.map(x=>`<option>${x}</option>`).join('');}
 fillSelect('allocRange',rangeNames); fillSelect('numRange',rangeNames); fillSelect('importRange',rangeNames); fillSelect('testRange',rangeNames); fillSelect('testNumRange',rangeNames);
 fillSelect('allocManager',managers.map(m=>m+' (Manager)'));
 /* numClient filter select — populated after users load in INIT */
@@ -2130,7 +2166,13 @@ async function loadDashboard(){
     {label:'Active Managers', value:d.active_managers||0, icon:'clients'},
     {label:'Total Agents', value:d.agents||0, icon:'clients'}
   ]);
-  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#0a51cc',rows:d.daily7,valueKey:'count',ariaLabel:'Received SMS per day for the last seven UK reporting days'});
+  window.AMSDashboard.areaChart('amsSmsChart',{title:'SMS Last 7 Days',series:'SMS',color:'#6d5df6',rows:d.daily7,valueKey:'count',ariaLabel:'Received SMS per day for the last seven UK reporting days'});
+  window.AMSDashboard.statGroup('amsPayouts','Payouts',[
+    {label:'Payout Today', value:d.payout_today||0, money:true, icon:'money'},
+    {label:'Payout This Week', value:d.payout_week||0, money:true, icon:'money'},
+    {label:'Payout Last 7 Days', value:d.payout_7d||0, money:true, icon:'money'},
+    {label:'Payout This Month', value:d.payout_month||0, money:true, icon:'money'}
+  ]);
   /* Real Provider Cost (admin-only): provider rate x eligible (paid) SMS — existing engine. */
   if(d.provider_cost_today!==undefined){
     window.AMSDashboard.statGroup('amsProvider','Provider Cost',[
@@ -2141,6 +2183,26 @@ async function loadDashboard(){
   }else{const pv=document.getElementById('amsProvider');if(pv)pv.innerHTML='';}
   window.AMSDashboardCore.refreshExtras('admin');
   loadEarningCards('admin');
+  sofajRenderDashboard(d, (typeof _es!=='undefined'?_es:null), (typeof _daily!=='undefined'?_daily:null));
+}
+
+/* SOFAJ SMS hero (presentation only): repaints the reference layout from the SAME
+   responses loadDashboard() already holds. No request here, nothing written. */
+function sofajRenderDashboard(d, es, daily){
+  if(!window.SofajDashboard) return;
+  var cfg={ root:'sofajDash', role:(sessionStorage.getItem('ams_role')||localStorage.getItem('ams_role')||'admin'),
+    dashboard:d||{}, earnings:es||{}, dailyRows:(daily&&daily.rows)||null,
+    name:(document.querySelector('.topbar .nm')||{}).textContent || sessionStorage.getItem('ams_name') || localStorage.getItem('ams_name') || 'Administrator' };
+  try{ window.SofajDashboard.render(cfg); }catch(e){ console.warn('sofaj dashboard',e); }
+  var root=document.getElementById('sofajDash'); if(!root) return;
+  if(root.getAttribute('data-nx-monthly')==='1') return;
+  root.setAttribute('data-nx-monthly','1');
+  API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
+    cfg.monthly=(r&&r.rows)||[];
+    cfg.monthly.sort(function(a,b){ return String(a.dims.month||'')<String(b.dims.month||'')?-1:1; });
+    window.SofajDashboard.render(cfg);
+    if(cfg.monthly.length) root.setAttribute('data-nx-monthly','1'); else root.removeAttribute('data-nx-monthly');
+  }).catch(function(e){ console.warn('sofaj monthly',e); });
 }
 
 /* Earning cards + graph: role-scoped /earnings-summary totals (Admin =
@@ -2460,7 +2522,7 @@ async function downloadLatestBackup(){
     const res=await fetch('/api/backups/latest/download',{headers:{Authorization:'Bearer '+token}});
     if(!res.ok) throw new Error((await res.json().catch(()=>({error:'Download failed'}))).error||'Download failed');
     const blob=await res.blob();
-    const name=(res.headers.get('content-disposition')||'').match(/filename="?([^";]+)"?/)?.[1]||'sofaj-sms-latest-backup.sqlite';
+    const name=(res.headers.get('content-disposition')||'').match(/filename="?([^";]+)"?/)?.[1]||'sofaj-latest-backup.sqlite';
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);
   }catch(e){alert('❌ '+e.message)}
 }
@@ -3259,7 +3321,12 @@ async function loadAdminPageData(page){
     if(page==='test'){ await ensureAdminRates(); await loadTestNumbers(); return renderTest(); }
     if(page==='payMgmt') return loadPayMgmt();
     if(page==='chatAccounts') return buildChatAccounts();
-        if(page==='managers') return buildUserPage('manager');
+        if(page==='requests'){ if(window.SofajRequests) return window.SofajRequests.mount(); return; }
+    /* keep the Request Panel counter fresh without opening the page */
+    if(window.SofajRequests && !window.__nxrBadgeTouched){ window.__nxrBadgeTouched=1;
+      window.SofajRequests.pendingCount().then(n=>{ const b=document.getElementById('nxrNavBadge');
+        if(b){ b.textContent=n||''; b.style.display=n?'inline-flex':'none'; } }); }
+    if(page==='managers') return buildUserPage('manager');
     if(page==='agents') return buildUserPage('agent');
     if(page==='clients') return buildUserPage('client');
     if(page==='import'){ await ensureAdminRates(); await loadImportBatches(); return refreshNumberDbTools(); }
