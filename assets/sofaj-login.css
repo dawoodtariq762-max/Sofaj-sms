@@ -18,9 +18,9 @@ html body:is(.ams-light,.ams-dark).ams-login .shell{display:grid!important;grid-
 /* ---- left brand panel ---- */
 html body:is(.ams-light,.ams-dark).ams-login .brand-panel{display:flex!important;flex-direction:column;justify-content:center;gap:34px;padding:56px 60px;position:relative;overflow:hidden;color:#fff;min-height:100vh;
   background:
-   radial-gradient(560px circle at 88% 8%,rgba(255,61,110,.38),transparent 60%),
-   radial-gradient(620px circle at 6% 92%,rgba(0,198,255,.32),transparent 60%),
-   linear-gradient(158deg,#051633 0%,#0a2a63 48%,#0b4fd6 115%)}
+   radial-gradient(560px circle at 88% 8%,rgba(241,198,84,.20),transparent 60%),
+   radial-gradient(620px circle at 6% 92%,rgba(50,202,237,.26),transparent 60%),
+   linear-gradient(158deg,#051633 0%,#0a2a63 48%,#0a51cc 115%)}
 html body:is(.ams-light,.ams-dark).ams-login .brand-panel::before{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(255,255,255,.10);border-radius:50%;right:-190px;top:-160px;box-shadow:0 0 0 60px rgba(255,255,255,.03),0 0 0 130px rgba(255,255,255,.02)}
 html body:is(.ams-light,.ams-dark).ams-login .brand-panel::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(70% 60% at 50% 40%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000 30%,transparent 100%)}
 html body:is(.ams-light,.ams-dark).ams-login .login-hero-logo{position:relative;z-index:1;width:min(290px,72%)!important;height:auto!important;max-width:none!important;object-fit:contain!important;background:#fff;border-radius:20px;padding:16px 20px;box-shadow:0 22px 48px rgba(2,10,35,.45);mix-blend-mode:normal!important;mask-image:none!important;-webkit-mask-image:none!important}
@@ -29,7 +29,7 @@ html body:is(.ams-light,.ams-dark).ams-login .ams-hero-title{font-size:clamp(30p
 html body:is(.ams-light,.ams-dark).ams-login .ams-hero-sub{font-size:15px;line-height:1.65;color:#c7d6f5;margin:0 0 26px}
 html body:is(.ams-light,.ams-dark).ams-login .ams-hero-feats{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 html body:is(.ams-light,.ams-dark).ams-login .ams-hero-feats li{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:600;color:#e6eefc}
-html body:is(.ams-light,.ams-dark).ams-login .ams-hero-feats li::before{content:"✓";flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#00c6ff,#0066ff);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,140,255,.45)}
+html body:is(.ams-light,.ams-dark).ams-login .ams-hero-feats li::before{content:"✓";flex:0 0 24px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#32caed,#0a51cc);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,140,255,.45)}
 html body:is(.ams-light,.ams-dark).ams-login .ams-hero-foot{position:relative;z-index:1;margin-top:auto;padding-top:26px;font-size:12px;color:#93a9d4}
 
 /* ---- right form panel ---- */
@@ -37,26 +37,26 @@ html body:is(.ams-light,.ams-dark).ams-login .login-panel{display:flex!important
 html body:is(.ams-light,.ams-dark).ams-login .login-card{width:100%;max-width:420px!important;position:relative}
 html body:is(.ams-light,.ams-dark).ams-login .m-brand{display:none!important}
 html body:is(.ams-light,.ams-dark).ams-login .ams-test-pill{position:absolute;top:-6px;right:0;border:1.5px solid #d7e0f2;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.8px;color:#42506b;text-decoration:none;text-transform:uppercase;background:#fff;transition:.15s}
-html body:is(.ams-light,.ams-dark).ams-login .ams-test-pill:hover{color:#0066ff;border-color:#0066ff;background:#eef4ff}
+html body:is(.ams-light,.ams-dark).ams-login .ams-test-pill:hover{color:#0a51cc;border-color:#0a51cc;background:#eef4ff}
 html body:is(.ams-light,.ams-dark).ams-login .login-head{text-align:left!important;margin:0 0 28px!important}
-html body:is(.ams-light,.ams-dark).ams-login .login-head .eyebrow{display:block!important;font-size:11px!important;font-weight:800!important;letter-spacing:2.2px;text-transform:uppercase;color:#0066ff!important;margin-bottom:8px}
+html body:is(.ams-light,.ams-dark).ams-login .login-head .eyebrow{display:block!important;font-size:11px!important;font-weight:800!important;letter-spacing:2.2px;text-transform:uppercase;color:#0a51cc!important;margin-bottom:8px}
 html body:is(.ams-light,.ams-dark).ams-login .login-head h2{font-size:30px!important;font-weight:800!important;letter-spacing:-.02em!important;color:#0b2447!important;margin:0!important}
 html body:is(.ams-light,.ams-dark).ams-login .login-head::after{content:"Sign in with your panel account to continue.";display:block;margin-top:8px;font-size:13.5px;color:#7186a8}
 html body:is(.ams-light,.ams-dark).ams-login .field{margin-bottom:16px!important}
 html body:is(.ams-light,.ams-dark).ams-login .field label{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;display:block;font-size:12.5px;font-weight:700;color:#33456a;margin-bottom:7px}
 html body:is(.ams-light,.ams-dark).ams-login .input-wrap{background:#fff!important;border:1.5px solid #d7e0f2!important;border-radius:12px!important;transition:border-color .15s,box-shadow .15s}
-html body:is(.ams-light,.ams-dark).ams-login .input-wrap:focus-within{border-color:#0066ff!important;box-shadow:0 0 0 4px rgba(0,102,255,.13)!important}
+html body:is(.ams-light,.ams-dark).ams-login .input-wrap:focus-within{border-color:#0a51cc!important;box-shadow:0 0 0 4px rgba(10,81,204,.14)!important}
 html body:is(.ams-light,.ams-dark).ams-login .input-wrap input{background:transparent!important;border:0!important;height:50px!important;min-height:50px!important;font-size:15px!important;color:#0b2447!important;border-radius:12px!important}
 html body:is(.ams-light,.ams-dark).ams-login .input-wrap svg{stroke:#8fa1c4!important;filter:none!important}
-html body:is(.ams-light,.ams-dark).ams-login .toggle-pass{background:#eef4ff!important;border:0!important;color:#0066ff!important;font-size:12px!important;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer}
+html body:is(.ams-light,.ams-dark).ams-login .toggle-pass{background:#eef4ff!important;border:0!important;color:#0a51cc!important;font-size:12px!important;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer}
 html body:is(.ams-light,.ams-dark).ams-login .captcha-row{gap:12px!important}
 html body:is(.ams-light,.ams-dark).ams-login .captcha-box{background:#eef2f9!important;border:1.5px dashed #b9c8e6!important;border-radius:12px!important;height:50px!important;color:#0b2447!important}
 html body:is(.ams-light,.ams-dark).ams-login #captchaText{color:#0b2447!important;font-weight:800;letter-spacing:1px}
-html body:is(.ams-light,.ams-dark).ams-login .refresh-btn{width:30px;height:30px;flex:0 0 30px;border:0;border-radius:50%;background:#0066ff!important;color:#fff!important;display:grid;place-items:center;cursor:pointer}
+html body:is(.ams-light,.ams-dark).ams-login .refresh-btn{width:30px;height:30px;flex:0 0 30px;border:0;border-radius:50%;background:#0a51cc!important;color:#fff!important;display:grid;place-items:center;cursor:pointer}
 html body:is(.ams-light,.ams-dark).ams-login .refresh-btn svg{width:15px;height:15px;stroke:currentColor}
 html body:is(.ams-light,.ams-dark).ams-login .row-between{font-size:13px!important;color:#7186a8!important;margin:4px 0 18px!important}
-html body:is(.ams-light,.ams-dark).ams-login .row-between a{color:#0066ff!important;font-weight:700;text-decoration:none}
-html body:is(.ams-light,.ams-dark).ams-login .btn,html body:is(.ams-light,.ams-dark).ams-login button[type="submit"]{width:100%;height:52px!important;border:0!important;border-radius:12px!important;background:#0066ff!important;background-image:linear-gradient(92deg,#0066ff 0%,#0090ff 60%,#00b4ff 100%)!important;color:#fff!important;font-size:15px!important;font-weight:800!important;letter-spacing:.5px;text-transform:none!important;box-shadow:0 12px 26px rgba(0,102,255,.35)!important;cursor:pointer;transition:transform .15s,box-shadow .15s}
+html body:is(.ams-light,.ams-dark).ams-login .row-between a{color:#0a51cc!important;font-weight:700;text-decoration:none}
+html body:is(.ams-light,.ams-dark).ams-login .btn,html body:is(.ams-light,.ams-dark).ams-login button[type="submit"]{width:100%;height:52px!important;border:0!important;border-radius:12px!important;background:#0a51cc!important;background-image:linear-gradient(92deg,#0a51cc 0%,#1675e5 60%,#32caed 100%)!important;color:#fff!important;font-size:15px!important;font-weight:800!important;letter-spacing:.5px;text-transform:none!important;box-shadow:0 12px 26px rgba(10,81,204,.28)!important;cursor:pointer;transition:transform .15s,box-shadow .15s}
 html body:is(.ams-light,.ams-dark).ams-login .btn:hover{transform:translateY(-1px);box-shadow:0 16px 32px rgba(0,102,255,.42)!important}
 html body:is(.ams-light,.ams-dark).ams-login .msg{border-radius:12px!important;font-size:13.5px!important}
 html body:is(.ams-light,.ams-dark).ams-login .msg.error{background:#fff1f2!important;border:1px solid #fecdd3!important;color:#be123c!important}
@@ -66,19 +66,19 @@ html body:is(.ams-light,.ams-dark).ams-login .footer{text-align:center!important
 /* ========================== PORTAL LOGINS ================================ */
 html body:is(.ams-light,.ams-dark).ams-portal-login{min-height:100vh;
   background:
-   radial-gradient(560px circle at 88% 8%,rgba(255,61,110,.38),transparent 60%),
-   radial-gradient(620px circle at 6% 92%,rgba(0,198,255,.32),transparent 60%),
-   linear-gradient(158deg,#051633 0%,#0a2a63 48%,#0b4fd6 115%)!important}
+   radial-gradient(560px circle at 88% 8%,rgba(241,198,84,.20),transparent 60%),
+   radial-gradient(620px circle at 6% 92%,rgba(50,202,237,.26),transparent 60%),
+   linear-gradient(158deg,#051633 0%,#0a2a63 48%,#0a51cc 115%)!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login>.card{width:min(460px,100%)!important;background:#fff!important;border:0!important;border-radius:20px!important;box-shadow:0 30px 70px rgba(2,10,35,.5)!important;padding:40px 38px 42px!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login .logo{width:auto!important;height:auto!important;border:0!important;border-radius:0!important;overflow:visible!important;display:flex;justify-content:center;margin-bottom:14px!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login .logo img{width:auto!important;height:82px!important;max-width:230px!important;object-fit:contain!important}
-html body:is(.ams-light,.ams-dark).ams-portal-login .eyebrow{display:block!important;text-align:center;font-size:11px!important;font-weight:800;letter-spacing:2.2px;color:#0066ff!important}
+html body:is(.ams-light,.ams-dark).ams-portal-login .eyebrow{display:block!important;text-align:center;font-size:11px!important;font-weight:800;letter-spacing:2.2px;color:#0a51cc!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login :is(.title,.card h1){font-size:24px!important;font-weight:800!important;color:#0b2447!important;text-align:center!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login .sub{color:#7186a8!important;font-size:13px!important;text-align:center!important}
 html body:is(.ams-light,.ams-dark).ams-portal-login .field label,html body:is(.ams-light,.ams-dark).ams-portal-login .card>form>label{position:static!important;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;display:block;font-size:12.5px;font-weight:700;color:#33456a;margin:12px 0 7px}
 html body:is(.ams-light,.ams-dark).ams-portal-login input:not([type=checkbox]){background:#fff!important;border:1.5px solid #d7e0f2!important;border-radius:12px!important;height:50px!important;min-height:50px!important;font-size:15px!important;color:#0b2447!important;padding:0 14px!important}
-html body:is(.ams-light,.ams-dark).ams-portal-login input:not([type=checkbox]):focus{border-color:#0066ff!important;box-shadow:0 0 0 4px rgba(0,102,255,.13)!important;outline:none}
-html body:is(.ams-light,.ams-dark).ams-portal-login :is(.btn,button[type="submit"],form button){width:100%;height:52px!important;margin-top:18px;border:0!important;border-radius:12px!important;background:#0066ff!important;background-image:linear-gradient(92deg,#0066ff 0%,#0090ff 60%,#00b4ff 100%)!important;color:#fff!important;font-size:15px!important;font-weight:800!important;letter-spacing:.5px;text-transform:none!important;box-shadow:0 12px 26px rgba(0,102,255,.35)!important;cursor:pointer}
+html body:is(.ams-light,.ams-dark).ams-portal-login input:not([type=checkbox]):focus{border-color:#0a51cc!important;box-shadow:0 0 0 4px rgba(10,81,204,.14)!important;outline:none}
+html body:is(.ams-light,.ams-dark).ams-portal-login :is(.btn,button[type="submit"],form button){width:100%;height:52px!important;margin-top:18px;border:0!important;border-radius:12px!important;background:#0a51cc!important;background-image:linear-gradient(92deg,#0a51cc 0%,#1675e5 60%,#32caed 100%)!important;color:#fff!important;font-size:15px!important;font-weight:800!important;letter-spacing:.5px;text-transform:none!important;box-shadow:0 12px 26px rgba(10,81,204,.28)!important;cursor:pointer}
 html body:is(.ams-light,.ams-dark).ams-portal-login :is(.hint,.footer){color:#7186a8!important;text-align:center}
 
 /* ============ wins over the animated theme when it is switched on ======== */
@@ -88,8 +88,8 @@ html.ams-anim-on body.ams-light:is(.ams-login,.ams-portal-login) :is(.login-head
 html.ams-anim-on body.ams-light.ams-login .ams-hero-title{-webkit-text-fill-color:#fff!important;color:#fff!important}
 html.ams-anim-on body.ams-light.ams-login .input-wrap input{background:transparent!important;border:0!important;border-radius:12px!important;height:50px!important}
 html.ams-anim-on body.ams-light.ams-portal-login input:not([type=checkbox]){background:#fff!important;border:1.5px solid #d7e0f2!important;border-radius:12px!important;height:50px!important}
-html.ams-anim-on body.ams-light:is(.ams-login,.ams-portal-login) :is(.btn,button[type="submit"],.card button,form button){background:#0066ff!important;background-image:linear-gradient(92deg,#0066ff 0%,#0090ff 60%,#00b4ff 100%)!important;color:#fff!important}
-html.ams-anim-on body.ams-light.ams-login .toggle-pass{background:#eef4ff!important;color:#0066ff!important}
+html.ams-anim-on body.ams-light:is(.ams-login,.ams-portal-login) :is(.btn,button[type="submit"],.card button,form button){background:#0a51cc!important;background-image:linear-gradient(92deg,#0a51cc 0%,#1675e5 60%,#32caed 100%)!important;color:#fff!important}
+html.ams-anim-on body.ams-light.ams-login .toggle-pass{background:#eef4ff!important;color:#0a51cc!important}
 html.ams-anim-on body.ams-light.ams-login .m-brand img{mix-blend-mode:normal!important;mask-image:none!important;-webkit-mask-image:none!important}
 
 /* ============ typed / autofilled text stays readable (2026-10-25) ======== */
@@ -116,7 +116,7 @@ html body:is(.ams-light,.ams-dark).ams-login .login-hero-logo{filter:none!import
 
 /* Portal-label contrast + remove the animated theme's violet button glow. */
 html.ams-anim-on body.ams-light.ams-portal-login :is(.field label,.card>form>label),html body:is(.ams-light,.ams-dark).ams-portal-login :is(.field label,.card>form>label){color:#33456a!important;-webkit-text-fill-color:#33456a!important;opacity:1!important}
-html.ams-anim-on body.ams-light:is(.ams-login,.ams-portal-login) :is(.btn,button[type="submit"],.card button,form button){box-shadow:0 12px 26px rgba(0,102,255,.35)!important;filter:none!important}
+html.ams-anim-on body.ams-light:is(.ams-login,.ams-portal-login) :is(.btn,button[type="submit"],.card button,form button){box-shadow:0 12px 26px rgba(10,81,204,.28)!important;filter:none!important}
 
 /* ================= MOBILE LOGIN v3 (2026-10-26, owner reference) ==========
    Clean single-column white login: no navy banner, logo on top, filled

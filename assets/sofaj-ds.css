@@ -1,10 +1,10 @@
 /* SOFAJ SMS design system v1 (admin first). Opt-in: only applies to html body.ams-panel.ams-ui:is(.ams-light,.ams-dark).
    Login is untouched. Load AFTER sofaj.css / sofaj-light.css / sofaj-chrome.css / sofaj-layout.css. */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark){
-  --ds-bg:#f4f6fa;--ds-surface:#fff;--ds-ink:#0f1b2d;--ds-text:#1e293b;--ds-muted:#64748b;
-  --ds-line:#e3e8f0;--ds-line2:#cfd7e3;--ds-brand:#1d4ed8;--ds-brand-d:#1e40af;--ds-brand-t:#eaf1ff;
-  --ds-side:#0c1730;--ds-side-hi:#16264a;--ds-ok:#0f9d6b;--ds-warn:#c77d0a;--ds-bad:#d6364a;
-  --ds-r:12px;--ds-icon:#1d4ed8;--ds-side2:#0a1226;--ds-s2:#f8fafc;--ds-hov:#f3f6fb;--ds-row2:#eef1f6;--ds-gbg:#e3f6ee;--ds-gfg:#0a7a54;--ds-rbg:#fde8eb;--ds-rfg:#b72a3c;--ds-abg:#fdf1dc;--ds-afg:#9a5f05;--ds-pbg:#efeafd;--ds-cbg:#e0f4f8;color-scheme:light;--ds-r-lg:16px;--ds-sh:0 1px 2px rgba(15,27,45,.05),0 4px 14px rgba(15,27,45,.05);
+  --ds-bg:#f4f7fc;--ds-surface:#fff;--ds-ink:#0f1b2d;--ds-text:#1e293b;--ds-muted:#64748b;
+  --ds-line:#dce5f3;--ds-line2:#c6d4e8;--ds-brand:#0a51cc;--ds-brand-d:#073da9;--ds-brand-t:#e7f0ff;
+  --ds-side:#07143a;--ds-side-hi:#10275f;--ds-ok:#0f9d6b;--ds-warn:#c77d0a;--ds-bad:#d6364a;
+  --ds-r:12px;--ds-icon:#0a51cc;--ds-side2:#0b2056;--ds-s2:#f8fafc;--ds-hov:#f3f6fb;--ds-row2:#eef1f6;--ds-gbg:#e3f6ee;--ds-gfg:#0a7a54;--ds-rbg:#fde8eb;--ds-rfg:#b72a3c;--ds-abg:#fdf1dc;--ds-afg:#9a5f05;--ds-pbg:#efeafd;--ds-cbg:#e0f4f8;color-scheme:light;--ds-r-lg:16px;--ds-sh:0 1px 2px rgba(15,27,45,.05),0 4px 14px rgba(15,27,45,.05);
   --ds-ease:cubic-bezier(.22,.8,.24,1);
   --accent:var(--ds-brand);--border:var(--ds-line);--border2:var(--ds-line2);--text:var(--ds-text);--muted:var(--ds-muted);--bg2:var(--ds-surface);--row:#f8fafc;
   background:var(--ds-bg)!important;color:var(--ds-text)!important;font-size:14px;
@@ -25,11 +25,11 @@ html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item,html body.ams-pane
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item svg{width:18px;height:18px;stroke:currentColor!important;opacity:.85;flex-shrink:0}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item:hover,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .sub-item:hover{background:rgba(255,255,255,.06)!important;color:#fff!important}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item.active,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .sub-item.active{background:var(--ds-side-hi)!important;color:#fff!important}
-html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item.active::before{content:"";position:absolute;left:-10px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#5b8cff}
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item.active::before{content:"";position:absolute;left:-10px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:#f1c654}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item .chev{margin-left:auto;width:14px;height:14px;transition:transform .25s var(--ds-ease)}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .nav-item.open .chev{transform:rotate(90deg)}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .sub-item .dot{width:5px;height:5px;border-radius:50%;background:#4d628f}
-html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .sub-item.active .dot{background:#5b8cff}
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .sub-item.active .dot{background:#f1c654}
 
 /* ---- Main shell / topbar ---- */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .main{min-width:0;transition:margin .32s var(--ds-ease)}
@@ -80,7 +80,7 @@ html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .table-foot,html body.ams-pa
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .tb-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 15px;border-radius:10px!important;
   border:1px solid var(--ds-brand)!important;background:var(--ds-brand)!important;color:#fff!important;font-weight:600;font-size:13.5px;cursor:pointer;
   box-shadow:0 1px 2px rgba(29,78,216,.25);transition:background .16s,transform .14s var(--ds-ease),box-shadow .16s}
-html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn:hover,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .tb-btn:hover{background:var(--ds-brand-d)!important;transform:translateY(-1px);box-shadow:0 4px 12px rgba(29,78,216,.28)}
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn:hover,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .tb-btn:hover{background:var(--ds-brand-d)!important;transform:translateY(-1px);box-shadow:0 4px 12px rgba(10,81,204,.28)}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn:active{transform:scale(.98)}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn-ghost,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn.ghost,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .icon-btn{background:var(--ds-surface)!important;color:var(--ds-ink)!important;border:1px solid var(--ds-line2)!important;box-shadow:none}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn-ghost:hover,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn.ghost:hover,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .icon-btn:hover{background:var(--ds-hov)!important;box-shadow:none}
@@ -92,7 +92,7 @@ html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .btn[disabled]{opacity:.5;po
 /* ---- Forms ---- */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) input:not([type=checkbox]):not([type=radio]),html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) select,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) textarea{background:var(--ds-surface)!important;color:var(--ds-ink)!important;
   border:1px solid var(--ds-line2)!important;border-radius:10px!important;padding:9px 12px;min-height:38px;font:inherit;transition:border-color .15s,box-shadow .15s}
-html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) input:focus,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) select:focus,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) textarea:focus{outline:none!important;border-color:var(--ds-brand)!important;box-shadow:0 0 0 3px rgba(29,78,216,.15)!important}
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) input:focus,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) select:focus,html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) textarea:focus{outline:none!important;border-color:var(--ds-brand)!important;box-shadow:0 0 0 3px rgba(10,81,204,.15)!important}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) ::placeholder{color:#94a3b8}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .form-group label{display:block;font-size:12.5px;font-weight:600;color:var(--ds-ink);margin-bottom:6px}
@@ -180,7 +180,7 @@ html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .ds-card-title{font-size:15p
 
 /* ================= DARK THEME ================= */
 html body.ams-dark.ams-panel.ams-ui{--ds-bg:#0a1120;--ds-surface:#111a2d;--ds-ink:#eaf0fc;--ds-text:#c7d2e6;--ds-muted:#8c9cb8;--ds-line:#1d2a42;--ds-line2:#2a3a57;
- --ds-brand:#2f66f0;--ds-brand-d:#2556d6;--ds-brand-t:#16294f;--ds-icon:#8fb0ff;--ds-side:#08101f;--ds-side2:#0b1528;--ds-side-hi:#15264a;
+ --ds-brand:#0a51cc;--ds-brand-d:#073da9;--ds-brand-t:#10275f;--ds-icon:#32caed;--ds-side:#07143a;--ds-side2:#0b2056;--ds-side-hi:#10275f;
  --ds-s2:#152138;--ds-hov:#182640;--ds-row2:#1a2740;--ds-gbg:#0f3a2c;--ds-gfg:#5ee0a9;--ds-rbg:#45202a;--ds-rfg:#ff8fa0;--ds-abg:#43320f;--ds-afg:#f5c46a;
  --ds-pbg:#2a2150;--ds-cbg:#0e3340;--row:#152138;--ds-sh:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25);color-scheme:dark}
 html body.ams-dark.ams-panel.ams-ui .ams-theme-btn svg{stroke:#f5b83d!important}
@@ -223,15 +223,15 @@ html.ds-lite body.ams-ui :is(.nav-item,.sub-item):hover{transform:none}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .page>:is(.toolbar,.table-wrap,.card,.grid2)::before{display:none!important}
 
 /* ================= MOTION PACK 2 (all disabled automatically in LITE mode) ================= */
-/* 1) Signal line: a slow RGB sweep under the topbar (same cyan->indigo->pink family as the login page) */
+/* 1) Signal line: a slow SOFAJ blue/cyan/gold sweep under the topbar */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .topbar{position:sticky}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none;
-  background:linear-gradient(90deg,#22d3ee,#6366f1,#ec4899,#6366f1,#22d3ee) 0 0/640px 2px repeat-x;opacity:.85;animation:ds-sweep 9s linear infinite}
+  background:linear-gradient(90deg,#32caed,#0a51cc,#f1c654,#0a51cc,#32caed) 0 0/640px 2px repeat-x;opacity:.85;animation:ds-sweep 9s linear infinite}
 @keyframes ds-sweep{to{background-position-x:640px}}
 /* 2) Sidebar ambient glow that drifts slowly (transform only) */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.sidebar,.rail,.appbar){overflow:hidden}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.sidebar,.rail,.appbar)::after{content:"";position:absolute;left:-30%;bottom:-18%;width:160%;height:46%;pointer-events:none;z-index:0;will-change:transform;
-  background:radial-gradient(closest-side,rgba(59,130,246,.26),rgba(99,102,241,.10) 60%,transparent);animation:ds-drift 16s ease-in-out infinite alternate}
+  background:radial-gradient(closest-side,rgba(10,81,204,.26),rgba(50,202,237,.10) 60%,transparent);animation:ds-drift 16s ease-in-out infinite alternate}
 /* the glow must sit above the rail background but below the nav */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.rail,.appbar){position:relative;z-index:0}
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.rail-nav,.rail-brand,.appbar-top,.appbar-nav,.navtabs,.navtab){position:relative;z-index:1}
@@ -245,7 +245,7 @@ html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.stats-grid,.dash-metric
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .stat-card:hover::after{transform:translate3d(120%,0,0)}
 /* 4) Page title underline grows in on every page open */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .page-head{position:relative}
-html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .page-head::after{content:"";position:absolute;left:0;bottom:-1px;width:84px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ds-brand),#22d3ee);transform-origin:left;animation:ds-grow .6s var(--ds-ease) backwards}
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .page-head::after{content:"";position:absolute;left:0;bottom:-1px;width:84px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ds-brand),#32caed);transform-origin:left;animation:ds-grow .6s var(--ds-ease) backwards}
 @keyframes ds-grow{from{transform:scaleX(0)}}
 /* 5) First rows of every table glide in (max 12 rows, so big tables stay fast) */
 html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) tbody tr:nth-child(-n+12){animation:ds-row .24s ease backwards}

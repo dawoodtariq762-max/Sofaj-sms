@@ -286,7 +286,7 @@ module.exports = function branding(app, ctx) {
     /* The selector is deliberately more specific than assets/sofaj.css:337
        (`body.ams-light :is(...){background:#fff!important}` = 0,2,1); this is
        0,2,3, so the transparent background wins the cascade. */
-    out.push('html body:is(.ams-light,.ams-dark,.ams-login,.ams-portal-login) :is(img[data-brand-logo],.m-brand img,.logo img,img.ams-sms-logo-img,.login-hero-logo),');
+    out.push('html body:is(.ams-light,.ams-dark,.ams-login,.ams-portal-login) :is(img[data-brand-logo],.m-brand img,.logo img,img.sofaj-logo-img,.login-hero-logo),');
     out.push('html body img[data-brand-logo]');
     /* One centrally managed logo must keep ITS OWN shape. The panels pin the
        <img> to width/height:100% of a square box (admin.html:268), which
@@ -363,7 +363,7 @@ module.exports = function branding(app, ctx) {
 var C=${JSON.stringify(cfg)};
 /* expose the resolved branding to page scripts that build documents/headers
    (e.g. the printable Provider Integration Guide window) */
-try{ window.AMS_BRAND=C; window.SOFAJ_BRAND=C; }catch(e){}
+try{ window.AMS_BRAND=C; }catch(e){}
 var r=document.documentElement;
 if(C.animations==='on'){r.classList.add('ams-brand-anim-on');r.classList.remove('ams-brand-anim-off');}
 else if(C.animations==='off'){r.classList.add('ams-brand-anim-off');r.classList.remove('ams-brand-anim-on');}
@@ -430,7 +430,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 function applyLogo(){
   var dark=document.body.classList.contains('ams-dark');
   var src=(dark&&C.logoDark)?C.logoDark:C.logo;
-  var imgs=document.querySelectorAll('img[data-brand-logo],.m-brand img,.logo img,.login-hero-logo,.rail>.logo img,img.ams-sms-logo-img');
+  var imgs=document.querySelectorAll('img[data-brand-logo],.m-brand img,.logo img,.login-hero-logo,.rail>.logo img,img.sofaj-logo-img');
   for(var i=0;i<imgs.length;i++){ var im=imgs[i];
     if(im.getAttribute('src')!==src) im.setAttribute('src',src);
     if(im.hasAttribute('data-brand-logo')) im.setAttribute('alt',C.panelName); }

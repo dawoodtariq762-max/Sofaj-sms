@@ -48,9 +48,9 @@ const TOKENS = [
    * 1. General Branding                                              *
    * ---------------------------------------------------------------- */
   { k: 'general.bg',            g: 'General Branding', l: 'Application background',
-    w: 'The page canvas behind every role panel, dashboard and report.', hint: '#f4f6fa' },
+    w: 'The page canvas behind every role panel, dashboard and report.', hint: '#f4f7fc' },
   { k: 'general.contentBg',     g: 'General Branding', l: 'Main content background',
-    w: 'The area to the right of the sidebar where page content sits.', hint: '#f4f6fa' },
+    w: 'The area to the right of the sidebar where page content sits.', hint: '#f4f7fc' },
   { k: 'general.heading',       g: 'General Branding', l: 'Headings',
     w: 'Page titles and section headings (h1 - h4) across the panels.', hint: '#0f172a' },
   { k: 'general.text',          g: 'General Branding', l: 'Body text',
@@ -60,7 +60,7 @@ const TOKENS = [
   { k: 'general.textMuted',     g: 'General Branding', l: 'Muted text',
     w: 'Hints, timestamps and other low-emphasis text.', hint: '#64748b' },
   { k: 'general.footerBg',      g: 'General Branding', l: 'Footer background',
-    w: 'The footer strip at the bottom of the page, if the page has one.', hint: '#0c1730' },
+    w: 'The footer strip at the bottom of the page, if the page has one.', hint: '#07143a' },
   { k: 'general.footerText',    g: 'General Branding', l: 'Footer text',
     w: 'Text inside the footer, including the support and copyright lines.', hint: '#94a3b8' },
 
@@ -68,11 +68,11 @@ const TOKENS = [
    * 2. Login Page                                                    *
    * ---------------------------------------------------------------- */
   { k: 'login.bg',            g: 'Login Page', l: 'Background',
-    w: 'The full-page background of all five login screens.', hint: '#071f34' },
+    w: 'The full-page background of all five login screens.', hint: '#06143a' },
   { k: 'login.bg2',           g: 'Login Page', l: 'Secondary background',
-    w: 'The animated particle / orb layer that sits over the background.', hint: '#0b2a44' },
+    w: 'The animated particle / orb layer that sits over the background.', hint: '#0d2b68' },
   { k: 'login.particle',      g: 'Login Page', l: 'Animation and particles',
-    w: 'The colour of the drifting orbs, trails and particles.', hint: '#38bdf8' },
+    w: 'The colour of the drifting orbs, trails and particles.', hint: '#32caed' },
   { k: 'login.cardBg',        g: 'Login Page', l: 'Card background',
     w: 'The panel holding the username, password and CAPTCHA fields.', hint: '#ffffff' },
   { k: 'login.cardBorder',    g: 'Login Page', l: 'Card border',
@@ -92,17 +92,17 @@ const TOKENS = [
   { k: 'login.placeholder',   g: 'Login Page', l: 'Placeholder text',
     w: 'The greyed prompt shown while a field is empty.', hint: '#94a3b8' },
   { k: 'login.inputFocus',    g: 'Login Page', l: 'Input focus ring',
-    w: 'The border and glow shown on the field currently being typed in.', hint: '#1d4ed8' },
+    w: 'The border and glow shown on the field currently being typed in.', hint: '#0a51cc' },
   { k: 'login.btnBg',         g: 'Login Page', l: 'Sign-in button',
-    w: 'The background of the button that submits the login form.', hint: '#1d4ed8' },
+    w: 'The background of the button that submits the login form.', hint: '#0a51cc' },
   { k: 'login.btnText',       g: 'Login Page', l: 'Sign-in button text',
     w: 'The label on the sign-in button.', hint: '#ffffff' },
   { k: 'login.btnHover',      g: 'Login Page', l: 'Sign-in button hover',
-    w: 'The button background while the pointer is over it.', hint: '#1e40af' },
+    w: 'The button background while the pointer is over it.', hint: '#073da9' },
   { k: 'login.btnActive',     g: 'Login Page', l: 'Sign-in button active',
-    w: 'The button background for the instant it is being clicked.', hint: '#1e3a8a' },
+    w: 'The button background for the instant it is being clicked.', hint: '#062b75' },
   { k: 'login.link',          g: 'Login Page', l: 'Links',
-    w: 'Any hyperlink on the login page, such as password help.', hint: '#1d4ed8' },
+    w: 'Any hyperlink on the login page, such as password help.', hint: '#0a51cc' },
   { k: 'login.error',         g: 'Login Page', l: 'Error message',
     w: 'Text shown when a sign-in attempt is rejected.', hint: '#dc2626' },
   { k: 'login.success',       g: 'Login Page', l: 'Success message',
@@ -120,13 +120,13 @@ const TOKENS = [
    * 4. Sidebar                                                       *
    * ---------------------------------------------------------------- */
   { k: 'sidebar.bg',         g: 'Sidebar', l: 'Sidebar background',
-    w: 'The left navigation column on Admin, Manager, Agent and Client.', hint: '#0c1730' },
+    w: 'The left navigation column on Admin, Manager, Agent and Client.', hint: '#07143a' },
   { k: 'sidebar.text',       g: 'Sidebar', l: 'Sidebar text and icons',
-    w: 'The menu item labels and their icons.', hint: '#cbd5e1' },
+    w: 'The menu item labels and their icons.', hint: '#e6eeff' },
   { k: 'sidebar.hoverBg',    g: 'Sidebar', l: 'Hover background',
-    w: 'A menu item while the pointer is over it.', hint: '#16264a' },
+    w: 'A menu item while the pointer is over it.', hint: '#10275f' },
   { k: 'sidebar.activeBg',   g: 'Sidebar', l: 'Active item background',
-    w: 'The menu item for the page you are currently on.', hint: '#1d4ed8' },
+    w: 'The menu item for the page you are currently on.', hint: '#0a51cc' },
   { k: 'sidebar.activeText', g: 'Sidebar', l: 'Active item text',
     w: 'The label of the page you are currently on.', hint: '#ffffff' },
 
@@ -136,7 +136,7 @@ const TOKENS = [
   { k: 'card.bg',     g: 'Dashboard Cards', l: 'Card background',
     w: 'Stat tiles, panels, table containers and toolbar strips.', hint: '#ffffff' },
   { k: 'card.border', g: 'Dashboard Cards', l: 'Card border',
-    w: 'The outline around each card and panel.', hint: '#e3e8f0' },
+    w: 'The outline around each card and panel.', hint: '#dce5f3' },
   { k: 'card.shadow', g: 'Dashboard Cards', l: 'Card shadow',
     w: 'The soft shadow beneath each card.', hint: '#0f1b2d' },
 
@@ -156,7 +156,7 @@ const TOKENS = [
   { k: 'table.rowSelectedBg', g: 'Tables and Reports', l: 'Selected row background',
     w: 'Rows ticked with the row checkbox, before any bulk action.', hint: '#eaf1ff' },
   { k: 'table.border',        g: 'Tables and Reports', l: 'Grid lines',
-    w: 'The lines between cells and around the table.', hint: '#e3e8f0' },
+    w: 'The lines between cells and around the table.', hint: '#dce5f3' },
   { k: 'table.text',          g: 'Tables and Reports', l: 'Cell text',
     w: 'The data shown inside table cells.', hint: '#1e293b' },
 
@@ -174,19 +174,19 @@ const TOKENS = [
   { k: 'form.placeholder', g: 'Forms and Inputs', l: 'Placeholder text',
     w: 'The greyed prompt shown while a field is empty.', hint: '#94a3b8' },
   { k: 'form.focus',       g: 'Forms and Inputs', l: 'Focus border and glow',
-    w: 'The highlight on the field currently being edited.', hint: '#1d4ed8' },
+    w: 'The highlight on the field currently being edited.', hint: '#0a51cc' },
   { k: 'form.checkbox',    g: 'Forms and Inputs', l: 'Checkbox and radio accent',
-    w: 'The tick colour of checkboxes and radio buttons.', hint: '#1d4ed8' },
+    w: 'The tick colour of checkboxes and radio buttons.', hint: '#0a51cc' },
 
   /* ---------------------------------------------------------------- *
    * 8. Buttons                                                       *
    * ---------------------------------------------------------------- */
   { k: 'btn.primaryBg',     g: 'Buttons', l: 'Primary background',
-    w: 'The main action button, for example Save or Send.', hint: '#1d4ed8' },
+    w: 'The main action button, for example Save or Send.', hint: '#0a51cc' },
   { k: 'btn.primaryText',   g: 'Buttons', l: 'Primary text',
     w: 'The label on the primary button.', hint: '#ffffff' },
   { k: 'btn.primaryHover',  g: 'Buttons', l: 'Primary hover',
-    w: 'The primary button while the pointer is over it.', hint: '#1e40af' },
+    w: 'The primary button while the pointer is over it.', hint: '#073da9' },
   { k: 'btn.secondaryBg',   g: 'Buttons', l: 'Secondary background',
     w: 'Softer actions such as Cancel, Back or Clear.', hint: '#e2e8f0' },
   { k: 'btn.secondaryText', g: 'Buttons', l: 'Secondary text',
@@ -236,7 +236,7 @@ const TOKENS = [
   { k: 'status.infoBg',      g: 'Alerts and Status Indicators', l: 'Info badge',
     w: 'Neutral informational badges such as Draft or New.', hint: '#eaf1ff' },
   { k: 'status.infoText',    g: 'Alerts and Status Indicators', l: 'Info badge text',
-    w: 'The wording inside an info badge.', hint: '#1d4ed8' },
+    w: 'The wording inside an info badge.', hint: '#0a51cc' },
 
   /* ---------------------------------------------------------------- *
    * 11. Light Theme / 12. Dark Theme                                  *
@@ -244,16 +244,16 @@ const TOKENS = [
    * set never writes to the other.                                    *
    * ---------------------------------------------------------------- */
   { k: 'theme.accent',    g: 'Light Theme', l: 'Accent colour', scope: 'light',
-    w: 'Highlights, focus rings and small accent details while Light is active.', hint: '#1d4ed8' },
+    w: 'Highlights, focus rings and small accent details while Light is active.', hint: '#0a51cc' },
   { k: 'theme.primary',   g: 'Light Theme', l: 'Primary brand colour', scope: 'light',
-    w: 'The main brand colour behind buttons and links while Light is active.', hint: '#1d4ed8' },
+    w: 'The main brand colour behind buttons and links while Light is active.', hint: '#0a51cc' },
   { k: 'theme.secondary', g: 'Light Theme', l: 'Secondary brand colour', scope: 'light',
-    w: 'Supporting brand colour used for gradients and charts while Light is active.', hint: '#38bdf8' },
+    w: 'Supporting brand colour used for gradients and charts while Light is active.', hint: '#32caed' },
 
   { k: 'theme.accent',    g: 'Dark Theme', l: 'Accent colour', scope: 'dark',
-    w: 'Highlights, focus rings and small accent details while Dark is active.', hint: '#38bdf8' },
+    w: 'Highlights, focus rings and small accent details while Dark is active.', hint: '#32caed' },
   { k: 'theme.primary',   g: 'Dark Theme', l: 'Primary brand colour', scope: 'dark',
-    w: 'The main brand colour behind buttons and links while Dark is active.', hint: '#2563eb' },
+    w: 'The main brand colour behind buttons and links while Dark is active.', hint: '#0a51cc' },
   { k: 'theme.secondary', g: 'Dark Theme', l: 'Secondary brand colour', scope: 'dark',
     w: 'Supporting brand colour used for gradients and charts while Dark is active.', hint: '#818cf8' },
 ];

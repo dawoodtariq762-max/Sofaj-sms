@@ -93,7 +93,7 @@ body:is(.ams-light,.ams-dark){font-family:Arial,'Segoe UI',sans-serif!important;
 body:is(.ams-light,.ams-dark) :is(.sidebar,.rail,.side,.navshell,.appbar){border-right-width:1px!important;border-right-style:solid!important}
 body:is(.ams-light,.ams-dark) :is(.sb-brand,.rail > .brand,.side > .brand,.sidebar > .brand,.appbar-top > .brand){display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:22px 12px!important;text-align:center;min-height:160px}
 body:is(.ams-light,.ams-dark) :is(.sb-logo,.brand .logo,.rail > .brand > .logo,.sb-brand .logo){width:150px!important;height:92px!important;border-width:0!important;border-radius:0!important}
-body:is(.ams-light,.ams-dark) :is(.ams-sms-logo-img,.logo img,.brand > img){object-fit:contain!important;border-width:0!important;border-radius:0!important}
+body:is(.ams-light,.ams-dark) :is(.sofaj-logo-img,.logo img,.brand > img){object-fit:contain!important;border-width:0!important;border-radius:0!important}
 body:is(.ams-light,.ams-dark) .brand > img{width:150px!important;height:92px!important}
 body:is(.ams-light,.ams-dark) :is(.sb-brand h1,.brand h1,.brand-text h1,.side .brand b){display:none!important}
 body:is(.ams-light,.ams-dark) :is(.brand small,.sb-brand small,.brand-text small,.side .brand .muted){letter-spacing:.03em!important;font-size:12px!important;text-transform:none!important}

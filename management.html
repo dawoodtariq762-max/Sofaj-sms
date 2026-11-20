@@ -125,7 +125,7 @@ to{opacity:1;transform:translateY(0);}}
 .si-purple svg{stroke:#a78bfa;}
 .si-green svg{stroke:#4ade80;}
 .si-amber svg{stroke:#fbbf24;}
-.si-cyan svg{stroke:#22d3ee;}
+.si-cyan svg{stroke:#32caed;}
 .si-red svg{stroke:#f87c8a;}
 .stat-info h3{font-size:25px;font-weight:700;line-height:1;}
 .stat-info p{font-size:12.5px;margin-top:6px;}
@@ -284,7 +284,7 @@ body{font-family:Inter,Roboto,"Segoe UI",Arial,sans-serif!important;letter-spaci
 .main{margin-left:260px!important;}
 .content{padding:26px 22px!important;}
 .nav-item,.sub-item,.tab,.ritem,.rsubitem,.navtab{font-size:13.25px!important;letter-spacing:0!important;line-height:1.35!important;gap:12px!important;}
-.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:nowrap!important;word-break:normal!important;}
+.nav-item span,.sub-item span,.tab span,.ritem .lbl,.rsubitem .lbl,.navtab .lbl{white-space:normal!important;word-break:normal!important;}
 .sb-brand h1,.sb-brand small{letter-spacing:0!important;}
 .sb-section,.sb-sec{letter-spacing:.07em!important;font-size:10.5px!important;}
 .topbar,.tb1{height:56px!important;padding-left:22px!important;padding-right:20px!important;}
@@ -313,7 +313,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 .content{padding:20px 14px!important;}}
 .sb-logo svg,.brand .logo svg,.rail .logo svg,.sb-brand .logo svg,.brand-logo .logo svg{stroke:#fff!important;}
 .sb-brand h1,.brand h1,.brand-text h1,.brand-logo h1{font-weight:700!important;letter-spacing:-.01em!important;}
-.ams-sms-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
+.sofaj-logo-img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;border-radius:inherit!important;}
 .sb-logo,.brand .logo,.rail .logo,.sb-brand .logo,.brand-logo .logo{padding:0!important;overflow:hidden!important;border:1px solid #ddd!important;}
 .brand-logo .logo{width:92px!important;height:92px!important;border-radius:22px!important;margin-bottom:16px!important;}
 .sb-logo{width:44px!important;height:44px!important;border-radius:13px!important;}
@@ -350,15 +350,13 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 <script src="/assets/sofaj-ds.js?v=sofaj-20261026-fullrebrand-final" defer></script>
 <link rel="stylesheet" href="/assets/sofaj-sidebar-unify.css?v=sofaj-20261026-fullrebrand-final"/>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard.js?v=sf-20261111b" defer></script>
-<link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
-</head>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261110-ui-polish2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script></head>
 <body class="ams-light ams-panel ams-ui">
 <div class="layout">
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar" id="sidebar">
     <div class="sb-brand">
-      <div class="sb-logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
+      <div class="sb-logo"><img class="sofaj-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sofaj-20261009" alt="SOFAJ SMS" /></div>
       <div><h1 data-brand="name">SOFAJ SMS</h1><small>Management Panel</small></div>
     </div>
     <nav class="sb-nav">
@@ -557,7 +555,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
 
       <section class="page" id="page-cliSearch">
         <div class="page-head"><div><h2>CLI Search</h2><div class="breadcrumb"><b>Reports</b> › CLI Search & Analytics</div></div></div>
-    <!-- AMS-style CLI Search — ranges running this CLI in the last 24 hours -->
+    <!-- SOFAJ-style CLI Search — ranges running this CLI in the last 24 hours -->
     <p class="muted" style="margin:2px 0 14px">See which ranges a sender has been running on in the last 24 hours. Type the sender in full, exactly as it appears. Capital letters do not matter.</p>
     <div class="toolbar"><div class="ams-panel-cli-fields">
       <div class="ams-panel-field"><label for="amsCliSender">Sender (CLI)</label><input type="text" id="amsCliSender" placeholder="The full sender, e.g. facebook" autocomplete="off" onkeydown="if(event.key==='Enter')searchAmsCli()"/></div>
@@ -598,7 +596,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
 
       <!-- ========== PAYMENTS ========== -->
 
-      <section class="page" id="page-carrierIntegration">
+      <section class="page ams-connection-page" id="page-carrierIntegration">
         <div class="page-head"><div><h2>HTTP Integration</h2><div class="breadcrumb"><b>System Master</b> › HTTP Integration</div></div></div>
         <div class="card" id="carrierLockCard" style="margin-bottom:16px;display:none;border:1px solid rgba(212,175,55,.35)">
           <div class="card-head"><div><h3>HTTP Integration Locked</h3><div class="sub">Enter security password to view or change carrier settings.</div></div></div>
@@ -609,7 +607,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
           <div class="hint">Password can be changed from Admin Profile after entering the admin security code.</div>
         </div>
         <div id="carrierProtected">
-        <div class="stats-grid">
+        <div class="stats-grid ams-connection-stats">
           <div class="stat-card dash-metric d-blue"><div class="stat-info"><p>Last SMS Received</p><h3 id="ciLastSms">—</h3><span>Last successful carrier SMS</span></div><div class="dash-go">✓</div></div>
           <div class="stat-card dash-metric d-green"><div class="stat-info"><p>Last Carrier IP</p><h3 id="ciLastIp">—</h3><span>Last request source IP</span></div><div class="dash-go">IP</div></div>
           <div class="stat-card dash-metric d-pink"><div class="stat-info"><p>Last Request Status</p><h3 id="ciLastStatus">—</h3><span id="ciLastError">Carrier request status</span></div><div class="dash-go">!</div></div>
@@ -622,7 +620,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
             <div class="form-group"><label>Allowed Carrier IP List</label><input id="ciIp" placeholder="51.77.64.61, 51.77.64.62, 127.0.0.1" /><div class="hint">Comma, space or new-line separated IP addresses.</div><div class="hint" id="ciEffectiveIps" style="margin-top:6px"></div></div>
             <div class="form-group"><label>Webhook Log Retention</label><select id="ciRetention"><option value="7">7 Days</option><option value="30">30 Days</option><option value="90">90 Days</option><option value="180">180 Days</option></select></div>
           </div>
-          <div class="form-group"><label>HTTP Callback URL</label><div style="display:flex;gap:8px;align-items:center"><input id="ciCallback" placeholder="https://yourdomain.com/api/incoming-sms"/><button class="btn btn-blue btn-sm"  onclick="copyCarrierUrl()" type="button">Copy</button><button class="btn btn-green"  onclick="testCarrierConnection()" type="button">Test Connection</button></div><div class="hint">Send this URL to the carrier. The URL must end with <b>/api/incoming-sms</b>.</div></div>
+          <div class="form-group"><label>HTTP Callback URL</label><div class="ams-connection-url-row"><input id="ciCallback" placeholder="https://yourdomain.com/api/incoming-sms"/><button class="btn btn-blue btn-sm"  onclick="copyCarrierUrl()" type="button">Copy</button><button class="btn btn-green"  onclick="testCarrierConnection()" type="button">Test Connection</button></div><div class="hint">Send this URL to the carrier. The URL must end with <b>/api/incoming-sms</b>.</div></div>
           <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:14px">
             <div class="form-group"><label>Future API Key</label><input id="ciApiKey" placeholder="Optional / future" /></div>
             <div class="form-group"><label>Future Auth Token</label><input id="ciToken" placeholder="Optional / future" /></div>
@@ -639,7 +637,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
 
         <div class="card" style="margin-bottom:16px">
           <div class="card-head"><div><h3>HTTP Webhook Logs</h3><div class="sub">Incoming carrier requests and system responses for debugging.</div></div><div class="head-actions"><button class="btn btn-blue"  onclick="loadCarrierWebhookLogs()">Refresh Logs</button><button class="btn btn-red"  onclick="clearCarrierWebhookLogs()">Clear Logs</button><button class="btn btn-green" onclick="exportCarrierLogsCsv()">Export CSV / Excel</button></div></div>
-          <div class="table-wrap"><div class="tscroll"><table>
+          <div class="table-wrap ams-connection-table"><div class="tscroll"><table>
             <thead><tr><th>Timestamp</th><th>Source IP</th><th>Number</th><th>CLI/Sender</th><th>Message Preview</th><th>Status</th><th>Error Message</th></tr></thead>
             <tbody id="ciLogBody"></tbody>
           </table></div><div class="table-foot"><div class="info" id="ciLogInfo"></div></div></div>
@@ -842,11 +840,11 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
       </section>
 
       <!-- ========== SYSTEM MASTER: SMPP CONNECTIONS ========== -->
-      <section class="page" id="page-smppConnections">
+      <section class="page ams-connection-page" id="page-smppConnections">
         <div class="page-head"><div><h2>SMPP Connections</h2><div class="breadcrumb"><b>System Master</b> › SMPP Channel</div></div>
           <div class="head-actions"><button class="btn btn-blue"  onclick="loadSmpp()">Refresh</button><button class="btn btn-purple" onclick="openSmppModal(-1)">+ Add Connection</button></div>
         </div>
-        <div class="stats-grid">
+        <div class="stats-grid ams-connection-stats">
           <div class="stat-card dash-metric d-blue"><div class="stat-info"><p>SMPP Service</p><h3 id="smSvc">—</h3><span id="smSvcSub">Connection engine</span></div><div class="dash-go">⇄</div></div>
           <div class="stat-card dash-metric d-green"><div class="stat-info"><p>Connected</p><h3 id="smUp">0</h3><span>Bound / listening</span></div><div class="dash-go">✓</div></div>
           <div class="stat-card dash-metric d-orange"><div class="stat-info"><p>Total Connections</p><h3 id="smTotal">0</h3><span>Configured</span></div><div class="dash-go">#</div></div>
@@ -858,13 +856,13 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
           <b>Server mode</b> — <span data-brand-replace="name">SOFAJ SMS</span> listens on a port and your carrier connects in. You choose the system&nbsp;ID and password and give them to the carrier, plus this server's IP and the port.<br>
           Reconnection is automatic with backoff. Incoming messages are de-duplicated, so a redelivered message is never counted twice.</div>
         </div>
-        <div class="table-wrap"><div class="tscroll"><table>
+        <div class="table-wrap ams-connection-table ams-smpp-connections-table"><div class="tscroll"><table>
           <thead><tr><th>Name</th><th>Mode</th><th>Endpoint</th><th>System ID</th><th>Status</th><th>Received</th><th>Sent</th><th>Last Activity</th><th>Actions</th></tr></thead>
           <tbody id="smBody"></tbody>
         </table></div><div class="table-foot"><div class="info" id="smInfo"></div></div></div>
         <div class="card" style="margin-top:16px">
           <div class="card-head"><div><h3>Recent SMPP Activity</h3><div class="sub">Bind, unbind, reconnect, delivery and error events.</div></div><div class="head-actions"><button class="btn btn-blue"  onclick="loadSmppLogs()">Refresh Logs</button></div></div>
-          <div class="table-wrap"><div class="tscroll"><table>
+          <div class="table-wrap ams-connection-table ams-smpp-logs-table"><div class="tscroll"><table>
             <thead><tr><th>Time</th><th>Connection</th><th>Event</th><th>Level</th><th>Detail</th><th>Peer</th></tr></thead>
             <tbody id="smLogBody"></tbody>
           </table></div></div>
@@ -1168,7 +1166,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
 </div></div>
 
 
-<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
+<script src="/api.js?v=sofaj-20261110-mobile-nav1"></script>
 <script>
 /* auth guard — management uses admin credentials */
 if(window.API){ API.guard('admin'); }
@@ -1279,7 +1277,7 @@ function multiOptions(vals){return vals.map(v=>`<option value="${v}">${v}</optio
 
 
 /* fill selects */
-function fillSelect(id,arr,keepFirst=true){const s=document.getElementById(id);if(!s)return;const first=(keepFirst&&s.children[0])?s.children[0].outerHTML:'';s.innerHTML=first+arr.map(x=>`<option>${x}</option>`).join('');}
+function fillSelect(id,arr,keepFirst=true){const s=document.getElementById(id);if(!s)return;const first=keepFirst?s.children[0].outerHTML:'';s.innerHTML=first+arr.map(x=>`<option>${x}</option>`).join('');}
 fillSelect('allocRange',rangeNames); fillSelect('numRange',rangeNames); fillSelect('importRange',rangeNames); fillSelect('testRange',rangeNames); fillSelect('testNumRange',rangeNames);
 fillSelect('allocManager',managers.map(m=>m+' (Manager)'));
 /* numClient filter select — populated after users load in INIT */
@@ -1364,7 +1362,7 @@ async function downloadRangeImportSample(format){
     const blob=await res.blob();
     const a=document.createElement('a');
     a.href=URL.createObjectURL(blob);
-    a.download='sofaj-range-import-sample.'+(format==='xls'?'xlsx':format);
+    a.download='sofaj-sms-range-import-sample.'+(format==='xls'?'xlsx':format);
     document.body.appendChild(a); a.click();
     setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);
   }catch(e){ alert('❌ Sample download failed: '+e.message); }
@@ -2777,7 +2775,7 @@ async function downloadLatestBackup(){
     const res=await fetch('/api/backups/latest/download',{headers:{Authorization:'Bearer '+token}});
     if(!res.ok) throw new Error((await res.json().catch(()=>({error:'Download failed'}))).error||'Download failed');
     const blob=await res.blob();
-    const name=(res.headers.get('content-disposition')||'').match(/filename="?([^";]+)"?/)?.[1]||'sofaj-latest-backup.sqlite';
+    const name=(res.headers.get('content-disposition')||'').match(/filename="?([^";]+)"?/)?.[1]||'sofaj-sms-latest-backup.sqlite';
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);
   }catch(e){alert('❌ '+e.message)}
 }
@@ -3121,7 +3119,7 @@ function downloadIntegrationGuide(){
   const blob=new Blob([igMarkdown||''],{type:'text/markdown;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='SOFAJ SMS-Provider-Integration-Guide.md';
+  a.download='SOFAJ-SMS-Provider-Integration-Guide.md';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
 }

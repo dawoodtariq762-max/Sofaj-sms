@@ -20,7 +20,7 @@
 const TABLE = 'sms_fts';
 
 function enabled() {
-  return String(process.env.SOFAJ_FTS || process.env.AMS_FTS || process.env.ALMADA_FTS || '') === '1';
+  return String(process.env.AMS_FTS || process.env.ALMADA_FTS || '') === '1';
 }
 
 let ready = false;

@@ -86,7 +86,7 @@ confirm receipt out of band.
 | Item | Value |
 |---|---|
 | Path | `/api/incoming-sms` |
-| Full URL | `https://<AMS-HOST>/api/incoming-sms` — the host is supplied by the SOFAJ SMS administrator |
+| Full URL | `https://<SOFAJ-HOST>/api/incoming-sms` — the host is supplied by the SOFAJ SMS administrator |
 | Methods | **POST** (required for production). **GET** is accepted for connectivity tests and for carriers that can only probe a URL with a query string. |
 | Accepted content types | `application/json`, `application/x-www-form-urlencoded`, `multipart/form-data` |
 | Authentication | **None implemented.** The endpoint has no token, key or signature check. Access is controlled by the source-IP allowlist and by the integration being enabled. |
@@ -210,7 +210,7 @@ SOFAJ SMS administrator.
 
 ```http
 POST /api/incoming-sms HTTP/1.1
-Host: sms.example.com                     <-- AMS-HOST placeholder
+Host: sms.example.com                     <-- SOFAJ-HOST placeholder
 Content-Type: application/json
 Accept: application/json
 

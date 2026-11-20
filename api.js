@@ -147,7 +147,7 @@
     st.textContent=`
       /* SOFAJ SMS runtime motion and widgets; palette in sofaj.css. */
       .page.active{animation:msPageFade .24s cubic-bezier(.22,.9,.3,1) both}.card,.table-wrap,.toolbar,.stat-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease}button,.btn,.tb-btn,.nav-item,.sub-item,.tab,.ritem,.rsubitem,.navtab,.dropitem{transition:transform .14s ease,box-shadow .14s ease,background-color .14s ease,color .14s ease,opacity .14s ease}button:active,.btn:active{transform:translateY(1px) scale(.99)}tbody tr{transition:background-color .14s ease}@keyframes msPageFade{from{opacity:.55;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-      .ms-progress{position:fixed;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#007acc,#6db9df,#0054b8);z-index:20000;transform-origin:left;animation:msProgress .7s ease both}.ms-working{box-shadow:0 0 0 4px rgba(0,122,204,.20)!important;filter:brightness(1.04)}@keyframes msProgress{0%{transform:scaleX(0)}70%{transform:scaleX(.82)}100%{transform:scaleX(1);opacity:0}}
+      .ms-progress{position:fixed;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#0a51cc,#32caed,#073da9);z-index:20000;transform-origin:left;animation:msProgress .7s ease both}.ms-working{box-shadow:0 0 0 4px rgba(10,81,204,.20)!important;filter:brightness(1.04)}@keyframes msProgress{0%{transform:scaleX(0)}70%{transform:scaleX(.82)}100%{transform:scaleX(1);opacity:0}}
       .ms-toast{position:fixed;right:22px;bottom:22px;background:linear-gradient(96deg,#eef8ff,#ffffff);border:1px solid rgba(0,122,204,.34);color:#333;border-radius:12px;padding:11px 14px;font-weight:700;font-size:13px;box-shadow:0 20px 50px rgba(0,70,110,.14);z-index:20001;opacity:0;transform:translateY(8px);animation:msToast .95s ease both}@keyframes msToast{15%,80%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(8px)}}
       [data-page]{position:relative}.ms-page-link-overlay{position:absolute;inset:0;z-index:3;background:transparent!important;color:inherit!important;text-decoration:none!important}.ms-page-link-overlay:focus{outline:2px solid rgba(232,21,26,.55);outline-offset:2px;border-radius:inherit}
     `
@@ -788,21 +788,32 @@
     apply: function(open){
       const p = this.find(); if (!p) return;
       const narrow = this.narrow();
+      if (!p.nav.id) p.nav.id = 'ams-panel-navigation';
+      if (!p.nav.hasAttribute('aria-label')) p.nav.setAttribute('aria-label', 'Primary navigation');
       document.body.classList.toggle('ams-ui-sb-open', !!open && narrow);
       document.body.classList.toggle('ams-ui-sb-collapsed', !open && !narrow);
+      /* Derive accessibility state from the final responsive visibility state.
+         On wide screens an expanded sidebar remains exposed; aria-hidden is only
+         true when CSS has actually collapsed it off-canvas. */
+      const navVisible = narrow
+        ? document.body.classList.contains('ams-ui-sb-open')
+        : !document.body.classList.contains('ams-ui-sb-collapsed');
+      p.nav.setAttribute('aria-hidden', navVisible ? 'false' : 'true');
+      p.overlay.setAttribute('aria-hidden', (navVisible && narrow) ? 'false' : 'true');
       /* keep each panel's own .show contract alive (their CSS transitions on it) */
-      p.nav.classList.toggle('show', !!open && narrow);
-      p.overlay.classList.toggle('show', !!open && narrow);
-      try{ document.body.style.overflow = (open && narrow) ? 'hidden' : ''; }catch(e){}
+      p.nav.classList.toggle('show', navVisible && narrow);
+      p.overlay.classList.toggle('show', navVisible && narrow);
+      try{ document.body.style.overflow = (navVisible && narrow) ? 'hidden' : ''; }catch(e){}
       p.buttons.forEach(function(b){
-        b.setAttribute('aria-expanded', open ? 'true' : 'false');
-        const label = (narrow ? 'Menu' : 'Sidebar') + (open ? ' (close)' : ' (open)');
+        b.setAttribute('aria-expanded', navVisible ? 'true' : 'false');
+        b.setAttribute('aria-controls', p.nav.id);
+        const label = (narrow ? 'Menu' : 'Sidebar') + (navVisible ? ' (close)' : ' (open)');
         b.setAttribute('aria-label', label);
         b.setAttribute('title', label);
         b.setAttribute('data-tip', label);
       });
-      this.placeButtons(p, !!open && narrow);
-      try{ document.dispatchEvent(new CustomEvent('ams:sidebar',{detail:{open:!!open,narrow:narrow}})); }catch(e){}
+      this.placeButtons(p, navVisible && narrow);
+      try{ document.dispatchEvent(new CustomEvent('ams:sidebar',{detail:{open:navVisible,narrow:narrow}})); }catch(e){}
     },
     open: function(){ this.apply(true); },
     close: function(){ this.apply(false); },

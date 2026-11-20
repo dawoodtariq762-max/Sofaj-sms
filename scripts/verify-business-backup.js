@@ -33,7 +33,7 @@ function arg(name, fallback = null) {
 
 const dir = arg('dir') || process.env.BACKUP_DIR
   || (process.env.DATA_DIR ? path.join(process.env.DATA_DIR, 'backups') : null)
-  || path.join(require('os').homedir(), 'sofaj-sms-backups');
+  || path.join(require('os').homedir(), 'ams-sms-backups');
 if (arg('dir')) process.env.BACKUP_DIR = String(arg('dir'));
 
 const dbFile = arg('db') || process.env.DB_FILE || path.join(process.cwd(), 'backend', 'data.sqlite');
@@ -42,7 +42,7 @@ let business;
 try { business = require('../backend/businessBackup'); }
 catch (e) {
   console.error('Cannot load backend/businessBackup.js — run this from the application directory:');
-  console.error('  cd /root/SOFAJ-SMS && node scripts/verify-business-backup.js');
+  console.error('  cd /path/to/SOFAJ-SMS && node scripts/verify-business-backup.js');
   process.exit(2);
 }
 

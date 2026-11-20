@@ -66,12 +66,11 @@ const Database = require('better-sqlite3');
  * ------------------------------------------------------------------ */
 const BACKUP_PREFIX = 'sofaj-sms-backup-';
 const LEGACY_BACKUP_PREFIXES = ['ams-sms-backup-', 'qtech-sms-backup-', 'nova-sms-backup-', 'almada-sms-backup-'];
-const BACKUP_NAME_RE = /^(?:ams|sofaj|qtech|almada|nova)-sms-backup-\d{4}-\d{2}-\d{2}T[\w-]+\.sqlite$/;
+const BACKUP_NAME_RE = /^(?:sofaj|ams|qtech|almada|nova)-sms-backup-\d{4}-\d{2}-\d{2}T[\w-]+\.sqlite$/;
 const PARTIAL_SUFFIX = '.partial';
-const STALE_TMP_RE = /^(?:\.)?(?:ams|sofaj|qtech|almada|nova)?-?sms-backup-[\w.-]+\.sqlite\.(?:partial|tmp)$|^\.ams-business-snapshot-[\w.-]+\.tmp$/;
+const STALE_TMP_RE = /^(?:\.)?(?:sofaj|ams|qtech|almada|nova)?-?sms-backup-[\w.-]+\.sqlite\.(?:partial|tmp)$|^\.(?:sofaj|ams)-business-snapshot-[\w.-]+\.tmp$/;
 
-const BACKUP_FORMAT = 'sofaj-sms-business-backup';
-const LEGACY_BACKUP_FORMATS = ['ams-sms-business-backup']; // pre-SOFAJ backups stay restorable
+const BACKUP_FORMAT = 'ams-sms-business-backup';
 const BACKUP_VERSION = 1;                 // bump when the included set changes
 const APPLICATION_ID = 0x414d5342;        // 'AMSB' — written into the file header
 const DEFAULT_RETENTION_MONTHS = 5;
@@ -193,7 +192,7 @@ function getBackupDir() {
   return process.env.BACKUP_DIR
     || (process.env.DATA_DIR ? path.join(process.env.DATA_DIR, 'backups') : null)
     // VPS-safe default: outside the application folder.
-    || path.join(os.homedir(), 'sofaj-sms-backups');
+    || path.join(os.homedir(), 'ams-sms-backups');
 }
 function ensureBackupDir() {
   const dir = getBackupDir();
@@ -275,9 +274,9 @@ function detectBackupKind(filePath) {
     else if (hasTable('backup_meta')) {
       let fmt = '';
       try { const row = handle.prepare("SELECT value FROM backup_meta WHERE key='backup_format' LIMIT 1").get(); fmt = row ? String(row.value) : ''; } catch (_) {}
-      kind = (fmt === BACKUP_FORMAT || LEGACY_BACKUP_FORMATS.includes(fmt)) ? 'business' : 'unknown';
+      kind = fmt === BACKUP_FORMAT ? 'business' : 'unknown';
     } else if (hasTable('users') && hasTable('sms_records')) {
-      /* complete application image (full backup, current or pre-AMS) */
+      /* complete application image (full backup, current or pre-rebrand) */
       kind = 'full';
     } else if (hasTable('sms_records')) {
       kind = 'partial-legacy';
@@ -480,7 +479,7 @@ function createBusinessBackup(db, reason = 'manual', opts = {}) {
   const file = `${BACKUP_PREFIX}${ts()}.sqlite`;
   const finalPath = path.join(dir, file);
   const partPath = finalPath + PARTIAL_SUFFIX;
-  const snapshotPath = path.join(dir, `.ams-business-snapshot-${process.pid}-${Date.now()}.tmp`);
+  const snapshotPath = path.join(dir, `.sofaj-business-snapshot-${process.pid}-${Date.now()}.tmp`);
   activeWrites.add(partPath);
   activeWrites.add(snapshotPath);
 
@@ -632,7 +631,7 @@ function validateBackupFile(filePath, { expectTables = null } = {}) {
     if (appId !== APPLICATION_ID) return { ok: false, error: 'missing business-backup application_id marker' };
     const metaRows = handle.prepare('SELECT key, value FROM backup_meta').all();
     const meta = Object.fromEntries(metaRows.map(r => [r.key, r.value]));
-    if (meta.backup_format !== BACKUP_FORMAT && !LEGACY_BACKUP_FORMATS.includes(meta.backup_format)) return { ok: false, error: 'missing backup_format marker' };
+    if (meta.backup_format !== BACKUP_FORMAT) return { ok: false, error: 'missing backup_format marker' };
     if (!meta.backup_version || !meta.created_at) return { ok: false, error: 'missing version/timestamp marker' };
     if (expectTables) {
       for (const t of expectTables) {
@@ -827,7 +826,7 @@ function verifyRestoreTest(dbOrFile, fileName, opts = {}) {
 
     const restoreOk = String(integrity) === 'ok'
       && appId === APPLICATION_ID
-      && (meta.backup_format === BACKUP_FORMAT || LEGACY_BACKUP_FORMATS.includes(meta.backup_format))
+      && meta.backup_format === BACKUP_FORMAT
       && forbiddenPresent.length === 0
       && leaks.length === 0;
 
