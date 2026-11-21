@@ -750,7 +750,7 @@
   function mount() {
     ['page-extapi', 'page-api', 'page-apiManagement'].forEach(function (id) {
       var root = el(id);
-      if (!root || root.dataset.apiMounted) return;
+      if (!root || root.dataset.apiMounted || !root.classList.contains('active')) return;
       root.dataset.apiMounted = '1';
       root.innerHTML = '';
       var role = sessionStorage.getItem('ams_role') || localStorage.getItem('ams_role') || '';
@@ -766,8 +766,6 @@
    * mount() is idempotent — it only fills a section the first time. */
   try {
     var mo = new MutationObserver(function () { mount(); });
-    mo.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
-    window.addEventListener('hashchange', mount);
-    document.addEventListener('click', function () { setTimeout(mount, 30); });
+    ['page-extapi','page-api','page-apiManagement'].forEach(function(id){var section=el(id);if(section)mo.observe(section,{attributes:true,attributeFilter:['class']});});
   } catch (e) { /* observers are a nicety, not a requirement */ }
 })();

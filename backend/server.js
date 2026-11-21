@@ -298,6 +298,7 @@ app.post('/api/exports', authRequired, requireRole('admin', 'manager', 'agent'),
     range: String(b.range || '').slice(0, 80) || '',
     /* provider filter (admin numbers page) — mirrors the range filter, no new export pathway */
     provider: String(b.provider || '').slice(0, 80) || '',
+    manager:req.user.role==='admin'?String(b.manager||''):'',agent:req.user.role==='admin'?String(b.agent||''):'',
     allocation: ['unallocated', 'allocated'].includes(b.allocation) ? b.allocation : '',
     from: /^\d{4}-\d{2}-\d{2}/.test(String(b.from || '')) ? String(b.from).slice(0, 10) + ' 00:00:00' : '',
     to: /^\d{4}-\d{2}-\d{2}/.test(String(b.to || '')) ? String(b.to).slice(0, 10) + ' 23:59:59' : '',
@@ -2714,6 +2715,10 @@ function buildNumberQuery(user, q) {
     need.ranges = true;
     if (provHit) { where.push('r.provider_id=?'); params.push(provHit.id); }
     else { where.push('1=0'); } /* unknown provider => no rows, never a text match */
+  }
+  if(user.role==='admin'){
+    if(q.manager){where.push('mu.username=?');params.push(q.manager);need.users=true;}
+    if(q.agent){where.push('au.username=?');params.push(q.agent);need.users=true;}
   }
   if (q.owner) {
     if (user.role === 'admin') {
@@ -6271,8 +6276,9 @@ app.get('/api/providers-info', authRequired, requireRole('admin'), (req,res)=>{
     let conns = { api: 0, smpp: 0, ips: [] };
     try {
       conns.api = db.get('SELECT COUNT(*) c FROM sync_providers WHERE name=?', [p.name])?.c || 0;
-      conns.smpp = db.get('SELECT COUNT(*) c FROM smpp_connections WHERE name=?', [p.name])?.c || 0;
-      conns.ips = db.all('SELECT provider_name, ip, enabled FROM activity_ips WHERE provider_name=?', [p.name]);
+      conns.smpp_links = db.all('SELECT id,name,mode,active FROM smpp_connections WHERE provider_id=? OR (provider_id IS NULL AND name=?) ORDER BY id', [p.id,p.name]);
+      conns.smpp = conns.smpp_links.length;
+      conns.ips = db.all('SELECT provider_name, ip, enabled FROM activity_ips WHERE provider_id=? OR (provider_id IS NULL AND provider_name=?)', [p.id,p.name]);
     } catch(e) {}
     let stats = { ranges: 0, numbers: 0 };
     let totals = { msgs: 0, payout_lifetime: '0', payout_week: '0', payout_prev_week: '0', payout_month: '0', payout_prev_month: '0', payout_prev_3m: '0', paid_total: '0', payout_unpaid: '0', over_limit_msgs_7d: 0 };
@@ -6298,7 +6304,7 @@ app.get('/api/providers-info', authRequired, requireRole('admin'), (req,res)=>{
         ) x JOIN numbers n ON n.id=x.nid WHERE CAST(n.sd_limit AS INTEGER)>0 AND x.c>=CAST(n.sd_limit AS INTEGER)`, [p.id])?.c || 0;
       last_payment = db.get('SELECT amount, currency, paid_at, period FROM provider_payments WHERE provider_name=? ORDER BY paid_at DESC, id DESC LIMIT 1', [p.name]) || null;
     } catch(e) { console.error('P7 GET totals error:', e.message); }
-    out.push({ id: p.id, name: p.name, conn_type: p.conn_type || '', payment_term: p.payment_term || '', currency: p.currency || 'USD', status: p.status || 'Active', notes: p.notes || '', connections: conns, stats, totals, last_payment });
+    out.push({ id: p.id, name: p.name, contact_email:p.contact_email,contact_ips:p.contact_ips, conn_type: p.conn_type || '', payment_term: p.payment_term || '', currency: p.currency || 'USD', status: p.status || 'Active', notes: p.notes || '', connections: conns, stats, totals, last_payment });
   }
   /* Section 7: ranges whose stored "Provider (reference)" text is NOT linked to a
      real provider. They are listed for the Admin to link deliberately — they are
@@ -6313,7 +6319,32 @@ app.get('/api/providers-info', authRequired, requireRole('admin'), (req,res)=>{
       WHERE COALESCE(provider,'') != '' AND COALESCE(deleted_at,'')='' AND provider_id IS NULL
       GROUP BY COALESCE(provider,'') ORDER BY ranges DESC LIMIT 10`);
   } catch(e) {}
-  res.json({ providers: out, unlinked, unlinked_meaning: 'ranges carrying a provider reference that is not linked to a real provider' });
+  res.json({ connection_counts:{smpp:db.get('SELECT COUNT(*) c FROM smpp_connections').c,http:new Set([...db.all('SELECT ip FROM activity_ips').map(r=>cleanIp(r.ip)),...String(db.get('SELECT carrier_ip FROM carrier_settings ORDER BY id LIMIT 1')?.carrier_ip||'').split(/[\s,;]+/).map(cleanIp)].filter(Boolean)).size}, providers: out, unlinked, unlinked_meaning: 'ranges carrying a provider reference that is not linked to a real provider' });
+});
+// New management workflow only. Existing standalone routes remain compatible.
+app.post('/api/provider-connections',authRequired,requireRole('admin'),(req,res)=>{
+  const b=req.body||{}, type=b.type, contact=b.provider||{}, ip=cleanIp(b.ip), isIP=require('node:net').isIP;
+  if(!['SMPP','HTTP'].includes(type))return res.status(400).json({error:'Choose a connection type'});
+  const cfg=type==='SMPP'?smppSanitize(b.connection||{},false):{};
+  if(cfg.error)return res.status(400).json({error:cfg.error});
+  if(type==='HTTP'&&!isIP(ip))return res.status(400).json({error:'Enter the IP address to authorize'});
+  const name=String(contact.name||'').trim()||(type==='HTTP'?'HTTP '+ip:cfg.fields.name);
+  const email=String(contact.email||'').trim(), ips=String(contact.ips||'').trim();
+  if(ips&&ips.split(/[\s,;]+/).filter(Boolean).some(x=>!isIP(x)))return res.status(400).json({error:'Invalid provider IP address'});
+  if(type==='SMPP'&&db.get('SELECT id FROM smpp_connections WHERE name=? COLLATE NOCASE',[cfg.fields.name]))return res.status(409).json({error:'Connection name is already in use'});
+  if(type==='HTTP'&&db.get('SELECT id FROM activity_ips WHERE ip=?',[ip]))return res.status(409).json({error:'This IP already has an authorization entry'});
+  let id;db.exec('SAVEPOINT provider_create');
+  try{
+    let provider=db.get('SELECT id,conn_type FROM ams_providers WHERE name=? COLLATE NOCASE',[name]);
+    if(!provider){provider={id:db.run('INSERT INTO ams_providers(name,conn_type,contact_email,contact_ips) VALUES(?,?,?,?)',[name,type,email,ips]).lastInsertRowid};}
+    else db.run("UPDATE ams_providers SET conn_type=?,contact_email=COALESCE(NULLIF(?,''),contact_email),contact_ips=COALESCE(NULLIF(?,''),contact_ips) WHERE id=?",[!provider.conn_type||provider.conn_type===type?type:'Multiple',email,ips,provider.id]);
+    if(type==='HTTP')id=db.run('INSERT INTO activity_ips(provider_id,provider_name,ip,enabled) VALUES(?,?,?,1)',[provider.id,name,ip]).lastInsertRowid;
+    else {const f={...cfg.fields,provider_id:provider.id},keys=Object.keys(f);id=db.run(`INSERT INTO smpp_connections (${keys.join(',')}) VALUES (${keys.map(()=>'?').join(',')})`,Object.values(f)).lastInsertRowid;}
+    db.exec('RELEASE provider_create');
+  }catch(e){db.exec('ROLLBACK TO provider_create; RELEASE provider_create');return res.status(400).json({error:'Connection was not saved'});}
+  logAction(req,'provider_connection_create',type,{id,name});
+  if(type==='SMPP'&&cfg.fields.active){try{smppService.startConnection(id)}catch(e){console.warn('SMPP start:',e.message)}}
+  res.json({ok:true,id});
 });
 app.post('/api/providers-info', authRequired, requireRole('admin'), (req,res)=>{
   const b = req.body || {};
@@ -6352,6 +6383,8 @@ app.delete('/api/providers-info/:id', authRequired, requireRole('admin'), (req,r
      silently disappear from the summary until the next restart cleaned them up.
      Numbers, ranges, history and the informational reference text are untouched. */
   const unlinked = db.run('UPDATE ranges SET provider_id=NULL WHERE provider_id=?', [+req.params.id]).changes || 0;
+  db.run('UPDATE activity_ips SET provider_id=NULL WHERE provider_id=?',[+req.params.id]);
+  db.run('UPDATE smpp_connections SET provider_id=NULL WHERE provider_id=?',[+req.params.id]);
   db.run('DELETE FROM ams_providers WHERE id=?', [+req.params.id]);
   if (row) logAction(req, 'provider_delete', 'ams_providers', { id: +req.params.id, name: row.name, unlinked_ranges: unlinked });
   res.json({ ok: true, unlinked_ranges: unlinked });
@@ -6780,7 +6813,9 @@ function handleCarrierIncoming(req, res, payload) {
     addFailedSms(payload, '', '', '', 'Carrier integration is disabled', clientIp);
     return res.status(403).json({ error: 'Carrier integration is disabled' });
   }
-  if (!settings.carrier_ip || !carrierIpAllowed(settings, clientIp)) {
+  // The explicit provider authorization list is part of carrierIpAllowed.
+  // An empty legacy text field must not veto a specifically authorized source.
+  if (!carrierIpAllowed(settings, clientIp)) {
     console.warn('[INCOMING_SMS] rejected: IP not allowed', { clientIp, allowed: settings.carrier_ip || '' });
     logWebhook('failed', payload || {}, '', '', '', '', `IP not allowed: ${clientIp}`, clientIp);
     addFailedSms(payload, '', '', '', `IP not allowed: ${clientIp}`, clientIp);

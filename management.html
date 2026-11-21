@@ -756,7 +756,8 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
       <!-- ========== SYSTEM MASTER: API PROVIDERS ========== -->
       <section class="page" id="page-providers">
         <div class="page-head"><div><h2>Providers</h2><div class="breadcrumb"><b>System Master</b> › Provider Management</div></div>
-          <div class="head-actions"><button class="btn btn-purple" onclick='openProvModal(null)'>+ Add Provider</button></div></div>
+          <div class="head-actions"><button class="btn btn-purple" onclick="openSmppModal(-1)">+ Add Provider</button></div></div>
+        <div class="toolbar"><span id="connectionTotals"></span> <button class="btn" onclick="showPageByName('smppConnections')">Manage SMPP</button> <button class="btn" onclick="showPageByName('carrierIntegration')">Manage HTTP Incoming</button></div>
         <div class="hint" id="provUnlinked" style="display:none;margin-bottom:10px"></div>
         <div class="table-wrap"><div class="tscroll"><table>
           <thead><tr><th>Provider</th><th>Connection</th><th>Payment Term</th><th>Currency</th><th>Numbers</th><th>Messages</th><th>Unpaid Payout</th><th>Last Payment</th><th>Status</th><th>Actions</th></tr></thead>
@@ -989,7 +990,8 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
 <div class="modal-overlay" id="smppModal"><div class="modal" style="max-width:720px">
   <div class="modal-head"><h3 id="smModalTitle">Add SMPP Connection</h3><button class="modal-close" onclick="closeModal('smppModal')">×</button></div>
   <div class="modal-body">
-    <div class="form-grid">
+    <section id="unifiedDetails"><h4>1. Provider details (optional)</h4><div class="form-grid"><label>Provider Name<input id="ucName"></label><label>Provider Email Address<input type="email" id="ucEmail"></label><label>Provider IP Addresses<input id="ucIps" placeholder="Comma-separated addresses"></label></div><h4>2. Connection type</h4><select id="ucType" onchange="ucToggle()"><option value="SMPP">SMPP</option><option value="HTTP">HTTP Incoming</option></select><h4>3. Connection configuration</h4></section>
+    <section id="ucHttp" hidden><label>IP address to authorize<input id="ucAuthIp"></label></section><section id="ucSmpp"><div class="form-grid">
       <div class="form-group"><label>Connection Name <span class="req">*</span></label><input type="text" id="smName" placeholder="e.g. Provider-A" /></div>
         <div class="form-group"><label>Provider Record <span class="hint-inline">(Providers page link)</span></label><input type="text" id="smProv" placeholder="same name = auto-link" list="provNames2"/><datalist id="provNames2"></datalist></div>
       <div class="form-group"><label>Status</label><select id="smActive"><option value="1">Enabled</option><option value="0">Disabled</option></select></div>
@@ -1044,7 +1046,7 @@ Nigeria"></textarea><div class="hint">Default rates will be NA. You can edit pay
       <div class="form-group"><label>Default Source Address</label><input type="text" id="smSourceAddr" placeholder="optional, used when sending" /></div>
     </div>
     <div class="form-group"><label>Notes</label><input type="text" id="smNotes" placeholder="optional" /></div>
-    <div class="hint" id="smTestResult" style="margin-top:6px"></div>
+    <div class="hint" id="smTestResult" style="margin-top:6px"></div></section>
   </div>
   <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('smppModal')">Cancel</button><button class="btn btn-green"  onclick="testSmpp()">Test Connection</button><button class="btn btn-purple" onclick="saveSmpp()">Save Connection</button></div>
 </div></div>
@@ -2423,7 +2425,7 @@ async function fillProvDatalists(){
     const resp=await API.get('/providers-info');
     const rows=(resp&&resp.providers)||[];
     const names=rows.map(p=>p.name).filter(Boolean);
-    const dl=document.getElementById('provNames'); if(dl) dl.innerHTML=names.map(n=>'<option value="'+n+'">').join('');
+    const dl=document.getElementById('provNames'); if(dl) dl.innerHTML=names.map(n=>'<option value="'+smEsc(n)+'">').join('');
     return rows;
   }catch(e){ return []; }
 }
@@ -2497,9 +2499,9 @@ let editProvId=null, provsCache=[], payProv=null, histProv=null;
 async function loadProviders(){
   try{
     const resp=await API.get('/providers-info');
-    provsCache=(resp&&resp.providers)||[];
+    provsCache=(resp&&resp.providers)||[]; const counts=resp.connection_counts;if(counts)document.getElementById('connectionTotals').textContent=`Total SMPP Connections: ${counts.smpp} · Total HTTP Incoming Connections: ${counts.http}`;
     const names=provsCache.map(p=>p.name).filter(Boolean);
-    const dl=document.getElementById('provNames'); if(dl) dl.innerHTML=names.map(n=>'<option value="'+n+'">').join('');
+    const dl=document.getElementById('provNames'); if(dl) dl.innerHTML=names.map(n=>'<option value="'+smEsc(n)+'">').join('');
     const ul=document.getElementById('provUnlinked');
     if(ul){
       const un=(resp&&resp.unlinked)||[];
@@ -2520,7 +2522,7 @@ async function loadProviders(){
       const lp=p.last_payment?`$ ${pay3(p.last_payment.amount)}<div class="muted" style="font-size:11px">${String(p.last_payment.paid_at||'').slice(0,10)}</div>`:'\u2014';
       const ic=k=>window.AMSCore&&AMSCore.svg?AMSCore.svg(k):'\u2022';
       return `<tr>
-        <td data-label="Provider"><b>${p.name}</b></td>
+        <td data-label="Provider"><b>${smEsc(p.name)}</b></td>
         <td data-label="Connection">${connTxt||'<span class="tag tag-gray">\u2014</span>'}</td>
         <td data-label="Payment Term">${p.payment_term?(window.AMSCore&&AMSCore.payterm?AMSCore.payterm(p.payment_term):p.payment_term):'\u2014'}</td>
         <td data-label="Currency">${p.currency||'USD'}</td>
@@ -2533,7 +2535,7 @@ async function loadProviders(){
           <button type="button" class="ams-btn" onclick="provView(${p.id})" data-tip="View details" title="View details" aria-label="View details">${ic('eye')}</button>
           <button type="button" class="ams-btn ams-blue" onclick='openProvModal(provsCache.find(x=>x.id===${p.id}))' data-tip="Edit" title="Edit" aria-label="Edit">${ic('edit')}</button>
           <button type="button" class="ams-btn ams-green" onclick="provPayOpen(${p.id})" data-tip="Record payment" title="Record payment" aria-label="Record payment">${ic('dollar')}</button>
-          <button type="button" class="ams-btn danger" onclick="delProvider(${p.id},'${p.name.replace(/'/g,"")}')" data-tip="Delete" title="Delete" aria-label="Delete">${ic('trash')}</button>
+          <button type="button" class="ams-btn danger" onclick="delProvider(${p.id},provsCache.find(x=>x.id===${p.id}).name)" data-tip="Delete" title="Delete" aria-label="Delete">${ic('trash')}</button>
         </td></tr>`;
     }).join('')||'<tr><td colspan="10" class="muted" style="text-align:center;padding:18px">No providers yet \u2014 + Add Provider se manually shuru karein</td></tr>';
     const info=document.getElementById('provInfo'); if(info) info.textContent=`${(provsCache||[]).length} provider(s)`;
@@ -2585,7 +2587,7 @@ function provView(id){
     `<span class="tag">${(p.stats.ranges||0)} range(s)</span>`,
     Number(p.totals.over_limit_msgs_7d||0)>0?`<span class="tag tag-amber">Over-limit msgs (7d): ${p.totals.over_limit_msgs_7d}</span>`:''
   ].filter(Boolean).join(' ');
-  document.getElementById('provViewConns').innerHTML=badges||'<span class="muted">No connections linked by name.</span>';
+  document.getElementById('provViewConns').innerHTML=[smEsc(p.contact_email),smEsc(p.contact_ips),...(p.connections.smpp_links||[]).map(r=>'SMPP: '+smEsc(r.name)+' · '+smEsc(r.mode)+' · '+(r.active?'Enabled':'Disabled')),...(p.connections.ips||[]).map(r=>'HTTP Incoming: '+smEsc(r.ip)),badges].filter(Boolean).join('<br>')||'<span class="muted">No connections linked by name.</span>';
   document.getElementById('provViewHistBtn').onclick=()=>provHistory(p.id,p.name);
   document.getElementById('provViewPayBtn').onclick=()=>provPayOpen(p.id);
   document.getElementById('provViewModal').classList.add('show');
@@ -2635,7 +2637,7 @@ async function provHistory(id,name){
 async function fillImportProviders(){
   try{
     const rows=await fillProvDatalists();
-    const opts='<option value="">\u2014 No Provider \u2014</option>'+((rows||[]).map(p=>`<option>${p.name}</option>`).join(''));
+    const opts='<option value="">\u2014 No Provider \u2014</option>'+((rows||[]).map(p=>`<option>${smEsc(p.name)}</option>`).join(''));
     ['importProvider','bulkImportProvider'].forEach(id=>{ const el=document.getElementById(id); if(el&&!el.dataset.filled){ el.innerHTML=opts; el.dataset.filled='1'; } });
   }catch(e){}
 }
@@ -2645,11 +2647,11 @@ async function fillRangeProviderDropdown(){
     const sel=document.getElementById('rProvider');
     if(!sel) return;
     const cur=sel.value;
-    sel.innerHTML='<option value="">\u2014 Select Provider \u2014</option>'+((rows||[]).map(p=>`<option value="${p.name}">${p.name}</option>`).join(''));
+    sel.innerHTML='<option value="">\u2014 Select Provider \u2014</option>'+((rows||[]).map(p=>`<option value="${smEsc(p.name)}">${smEsc(p.name)}</option>`).join(''));
     if(cur) sel.value=cur;
     const bulkSel=document.getElementById('bulkRangeProvider');
     if(bulkSel && !bulkSel.dataset.filled){
-      bulkSel.innerHTML='<option value="">\u2014 Select Provider \u2014</option>'+((rows||[]).map(p=>`<option value="${p.name}">${p.name}</option>`).join(''));
+      bulkSel.innerHTML='<option value="">\u2014 Select Provider \u2014</option>'+((rows||[]).map(p=>`<option value="${smEsc(p.name)}">${smEsc(p.name)}</option>`).join(''));
       bulkSel.dataset.filled='1';
     }
   }catch(e){}
@@ -3289,12 +3291,13 @@ function smModeChange(){
     : _bn + ' connects out to the provider. Enter the host, port, System ID and Password they gave you.';
 }
 
+function ucToggle(){const http=document.getElementById('ucType').value==='HTTP';document.getElementById('ucHttp').hidden=!http;document.getElementById('ucSmpp').hidden=http;}
 function openSmppModal(id){
   smEditId=id;
   const isNew=(id<0);
   const c=isNew?null:smppData.find(x=>x.id===id);
   const g=i=>document.getElementById(i);
-  g('smModalTitle').textContent=isNew?'Add SMPP Connection':'Edit SMPP Connection';
+  g('smModalTitle').textContent=isNew?'Add Connection':'Edit SMPP Connection';g('unifiedDetails').hidden=!isNew;g('ucType').value='SMPP';for(const k of ['ucName','ucEmail','ucIps','ucAuthIp'])g(k).value='';ucToggle();g('smProv').closest('.form-group').hidden=isNew;document.querySelector('#smppModal [onclick="testSmpp()"]').hidden=isNew;
   g('smName').value=c?c.name:'';
   const spEl=g('smProv'); if(spEl) spEl.value=c?c.name:'';
   g('smActive').value=c?(c.active?'1':'0'):'1';
@@ -3350,14 +3353,16 @@ function smBuildPayload(){
 }
 
 async function saveSmpp(){
-  const p=smBuildPayload(); if(!p) return;
+  const g=id=>document.getElementById(id), creating=smEditId<0,type=creating?g('ucType').value:'SMPP';
+  if(creating&&!g('ucEmail').reportValidity())return;
+  const p=type==='SMPP'?smBuildPayload():null;if(type==='SMPP'&&!p)return;
   try{
-    if(smEditId<0) await API.post('/smpp/connections',p);
+    if(creating) await API.post('/provider-connections',{type,connection:p,ip:g('ucAuthIp').value,provider:{name:g('ucName').value,email:g('ucEmail').value,ips:g('ucIps').value}});
     else await API.put('/smpp/connections/'+smEditId,p);
     closeModal('smppModal');
     const pv=(document.getElementById('smProv')?.value||'').trim();
-    if(pv){ API.post('/providers-info',{name:pv}).catch(()=>{}); }
-    setTimeout(loadSmpp,600);
+    if(!creating&&pv){ API.post('/providers-info',{name:pv}).catch(()=>{}); }
+    loadProviders();setTimeout(loadSmpp,600);
   }catch(e){ alert('❌ '+(e.message||e)); }
 }
 
@@ -3640,7 +3645,7 @@ async function saveApiProvider(){
     else { await API.put('/sync/providers/'+apiProvidersData[apEditIndex].id,body); }
     closeModal('apiProviderModal');
     const pv=(document.getElementById('apProv')?.value||'').trim();
-    if(pv){ API.post('/providers-info',{name:pv}).catch(()=>{}); } /* name-link ensure; exists -> ignore */
+    if(!creating&&pv){ API.post('/providers-info',{name:pv}).catch(()=>{}); } /* name-link ensure; exists -> ignore */
     alert('✅ Provider saved. The sync service will use the new settings on its next cycle.');
     loadApiProviders();
   }catch(e){ alert('❌ '+(e.message||'Save failed')); }

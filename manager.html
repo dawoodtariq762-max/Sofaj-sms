@@ -341,10 +341,11 @@ body .content{padding:20px 14px!important;}
 <script src="/assets/sofaj-ds.js?v=sofaj-20261026-fullrebrand-final" defer></script>
 <script src="/assets/dashboard-ui.js?v=sofaj-20261026-fullrebrand-final"></script>
 
-<script src="/assets/number-copy.js?v=sofaj-20261026-fullrebrand-final"></script>
+<script src="/assets/number-copy.js?v=dashboard-perf-1"></script>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard.js?v=sf-20261111b" defer></script>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261026-fullrebrand-final"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard-admin.js?v=dashboard-perf-1" defer></script>
 <link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
+<link rel="stylesheet" href="/assets/sofaj-glass.css?v=dashboard-perf-1"/>
 </head>
 <body class="ams-light ams-panel ams-ui">
 <button class="mgr-mobile-menu" type="button" onclick="toggleManagerSidebar()">☰</button><div class="mgr-mobile-overlay" id="mgrMobileOverlay" onclick="closeManagerSidebar()"></div>
@@ -352,8 +353,8 @@ body .content{padding:20px 14px!important;}
 <!-- ================= APP BAR ================= -->
 <header class="appbar">
   <div class="appbar-top">
-    <div class="brand">
-      <div class="logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
+    <div class="brand sb-brand">
+      <div class="logo sb-logo"><img class="ams-sms-logo-img" data-brand-logo src="/assets/sofaj-logo-trim.png?v=sf-logo-20261111" alt="SOFAJ SMS" /></div>
       <div><h1 data-brand="name">SOFAJ SMS</h1><small>SMS Panel</small></div>
     </div>
     <div class="spacer"></div>
@@ -400,10 +401,10 @@ body .content{padding:20px 14px!important;}
     <div class="navtab nav-item" data-page="test"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18v-6a3 3 0 0 1 6 0v6"/><rect x="4" y="18" width="16" height="3"/><path d="M12 3v3"/></svg><span class="lbl">Test Panel</span></div>
     <div class="navtab nav-item" data-page="credit"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg><span class="lbl">Agent Payments</span></div>
   <div class="navtab nav-item" data-page="creditNotes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg><span class="lbl">Credit Notes</span></div>
-</nav>
+</nav><div class="sb-user"><div class="sb-av" id="sbAv">M</div><div class="sb-uinfo"><b id="sbName">Manager</b><small>Manager Panel</small></div><button type="button" class="sb-out" title="Logout" aria-label="Logout" onclick="logout()"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div>
 </header>
 
-<header class="mgr-topbar">
+<header class="mgr-topbar topbar">
   <button class="mgr-topbar-menu" type="button" onclick="toggleManagerSidebar()" aria-label="Menu">☰</button>
   <span class="clock" id="mgrTopClock">Tue, 2026-07-07 10:33:07</span>
   <div class="tb-right">
@@ -484,11 +485,9 @@ body .content{padding:20px 14px!important;}
       <thead><tr>
         <th><input type="checkbox" onclick="toggleAll(this)"/></th>
         <th class="sortable" onclick="sortNum('range')">Range <span class="sort">⇅</span></th>
-        <th class="sortable" onclick="sortNum('number')">Number <span class="sort" id="nSortHint">⇅</span></th>
-        <th>Country</th>
-        <th class="sortable" onclick="sortNum('rate')">My Rate <span class="sort">⇅</span></th>
+        <th>Prefix</th><th class="sortable" onclick="sortNum('number')">Number <span class="sort" id="nSortHint">⇅</span></th>
         <th class="sortable" onclick="cycleAgentFilter()">Agent <span class="sort" id="aSortHint">⇅</span></th>
-        <th>Limits</th></tr></thead>
+        <th class="sortable" onclick="sortNum('rate')">Manager Rate <span class="sort">⇅</span></th><th>Agent Rate</th><th>Limit</th></tr></thead>
       <tbody id="numBody"></tbody></table></div>
       <div class="table-foot"><div class="info" id="numInfo"></div><div class="pagination"><button>‹</button><button class="active">1</button><button>2</button><button>›</button></div></div></div>
   </section>
@@ -640,7 +639,7 @@ body .content{padding:20px 14px!important;}
   <div class="modal-foot"><button class="btn btn-ghost" onclick="closeModal('agentModal')">Cancel</button><button class="btn btn-teal" onclick="saveAgent()">Save</button></div>
 </div></div>
 
-<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
+<script src="/api.js?v=dashboard-perf-1"></script>
 <script>
 if(window.API){ API.guard('manager'); }
 /* ===== NAV ===== */
@@ -668,8 +667,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('.dropwrap'))closeAll
 function closeModal(id){document.getElementById(id).classList.remove('show');}
 function toggleFull(){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen&&document.exitFullscreen();}}
 function logout(){ if(confirm('Do you want to logout?')){ if(window.API&&API.logout){API.logout();}else{try{sessionStorage.clear();['ams_token','ams_role','ams_user','ams_name'].forEach(k=>localStorage.removeItem(k));}catch(e){} window.location.href='/panel-login';} } }
-function tick(){const d=new Date();const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const p=n=>String(n).padStart(2,'0');
-  const txt=days[d.getDay()]+', '+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); document.querySelectorAll('.clock').forEach(el=>el.textContent=txt);}
+function tick(){if(document.hidden)return;const d=new Date();const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const p=n=>String(n).padStart(2,'0');
+  const txt=days[d.getDay()]+', '+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); document.querySelectorAll('.clock').forEach(el=>{if(el.firstChild?.nodeType===3)el.firstChild.data=txt;else el.textContent=txt});}
 /* P14: UK report-day roll watcher */
 if(window.API&&API.onUkDayChange){ API.onUkDayChange(()=>{ try{ const p=document.querySelector('.page.active'); if(!p) return; const id=(p.id||'').replace('page-','');
   if(id==='smsDetail'&&document.getElementById('sdBody')) renderSmsDetail();
@@ -936,25 +935,8 @@ function buildSmsDetail(){
 .ams-gb-lab{font-weight:600;align-self:center;margin-right:2px;}
 tfoot.ams-tot td{position:sticky;bottom:0;border-top:2px solid #ddd;font-weight:700;}</style>
   <div class="page-head"><div><h2>SMS Detailed Report</h2><div class="breadcrumb"><b>CDR Stats</b> › Detailed</div></div></div>
-  <div class="toolbar">
-    <div class="filter-row"><label><input type="checkbox" id="sdUseDate" checked style="width:auto" onchange="renderSmsDetail()"> Date</label><input type="date" id="sdDateFrom" title="From date" onchange="renderSmsDetail()" /> <span class="muted" style="align-self:center">to</span> <input type="date" id="sdDateTo" title="To date" onchange="renderSmsDetail()" />
-    
-    <label>Number</label><input type="text" id="sdNumSearch" placeholder="Search number…" style="min-width:150px" oninput="clearTimeout(window.__sdNT);window.__sdNT=setTimeout(renderSmsDetail,450)"/>
-    <label>CLI</label><input type="text" id="sdCliSearch" placeholder="Search CLI…" style="min-width:120px" oninput="clearTimeout(window.__sdCT);window.__sdCT=setTimeout(renderSmsDetail,450)"/>
-    <button class="btn btn-teal" onclick="renderSmsDetail()">Apply Filter</button><button type="button" class="ams-btn"  onclick="sdReset()" data-tip="Reset" title="Reset" aria-label="Reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button></div>
-    <!-- P20 CDR REBUILD: filters + Group by (reference design). Provider/Manager
-         admin-only hain (backend bhi enforce karta hai — silently ignored). -->
-    <div class="filter-row" style="margin-top:6px">
-      <label style="min-width:34px">Filters</label>
-      <div id="sdSelRangeContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelAgentContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelClientContainer" style="display:inline-block;min-width:150px"></div>
-    </div>
-    <div class="filter-row" style="margin-top:6px;flex-wrap:wrap">
-      <span class="ams-gb-lab">Group by</span>
-      <label style="width:auto"><input type="checkbox" id="sdGb_hour" style="width:auto" onchange="renderSmsDetail()"> Hour</label><label style="width:auto"><input type="checkbox" id="sdGb_day" style="width:auto" onchange="renderSmsDetail()"> Day</label><label style="width:auto"><input type="checkbox" id="sdGb_month" style="width:auto" onchange="renderSmsDetail()"> Month</label><label style="width:auto"><input type="checkbox" id="sdGb_range" style="width:auto" onchange="renderSmsDetail()"> Range</label><label style="width:auto"><input type="checkbox" id="sdGb_number" style="width:auto" onchange="renderSmsDetail()"> Number</label><label style="width:auto"><input type="checkbox" id="sdGb_cli" style="width:auto" onchange="renderSmsDetail()"> CLI</label><label style="width:auto"><input type="checkbox" id="sdGb_client" style="width:auto" onchange="renderSmsDetail()"> Client</label><label style="width:auto"><input type="checkbox" id="sdGb_agent" style="width:auto" onchange="renderSmsDetail()"> Agent</label><label style="width:auto"><input type="checkbox" id="sdGb_currency" style="width:auto" onchange="renderSmsDetail()"> Currency</label>
-    </div>
-    <div id="sdChips" style="display:flex;flex-wrap:wrap;align-items:center"></div>
+  <div class="toolbar"><div class="filter-row sf-report-filters"><label><input type="checkbox" id="sdUseDate" checked> Date</label><input type="date" aria-label="From date" id="sdDateFrom"><input type="date" aria-label="To date" id="sdDateTo"><select aria-label="Select Agent" id="sdSelAgent"><option value="">Select Agent</option></select><select aria-label="Select Range" id="sdSelRange"><option value="">Select Range</option></select><details><summary>Group By</summary><div class="sf-groups">${Object.entries(sdDims()).map(([key,label])=>`<label><input type="checkbox" id="sdGb_${key}"> ${label}</label>`).join('')}</div></details><button type="button" class="btn" onclick="sdApply()">Apply Filter</button><button type="button" class="btn" onclick="sdReset();sdApply()">Reset</button></div>
+<div class="filter-row"><input aria-label="Search number" id="sdNumSearch" placeholder="Search number…"><input aria-label="Search CLI" id="sdCliSearch" placeholder="Search CLI…"></div><div id="sdChips" style="display:flex;flex-wrap:wrap;align-items:center"></div>
   </div>
   <div class="table-wrap" style="padding:15px 17px;margin-top:0"><div class="table-controls">
     <div class="tc-left"><label>Show Records:</label><select id="sdLen" onchange="renderSmsDetail()"><option>10</option><option selected>25</option><option>50</option><option>100</option><option>500</option><option>1000</option><option>10000</option><option value="All">All</option></select>${eb()}</div>
@@ -962,6 +944,7 @@ tfoot.ams-tot td{position:sticky;bottom:0;border-top:2px solid #ddd;font-weight:
   <div class="table-wrap"><div class="tscroll"><table><thead id="sdHead"></thead><tbody id="sdBody"></tbody><tfoot id="sdFoot" class="ams-tot"></tfoot></table></div>
     <div class="table-foot"><div class="info" id="sdInfo"></div><div class="info" id="sdPayoutInfo"></div><div class="pagination"></div></div></div>`;var _f3=document.getElementById('sdDateFrom'),_t3=document.getElementById('sdDateTo');if(_f3)_f3.value='';if(_t3)_t3.value='';renderSmsDetail();fillSdFilterSelects();}
 /* ---- P20 report state/helpers (manager) ---- */
+function sdApply(){const get=id=>document.getElementById(id);const sel=window.__sdSel=sdSelAll();for(const d of Object.keys(sel)){const el=get('sdSel'+d[0].toUpperCase()+d.slice(1));if(el)sel[d]=el.value;}sel.number=get('sdNumSearch').value.trim();sel.cli=get('sdCliSearch').value.trim();window.sdApplied={from:get('sdUseDate').checked?get('sdDateFrom').value:'1970-01-01',to:get('sdUseDate').checked?get('sdDateTo').value:'2099-12-31',groups:sdGbActive()};renderSmsDetail();}
 function sdDims(){ return {hour:'Hour',day:'Day',month:'Month',range:'Range',number:'Number',cli:'CLI',client:'Client',agent:'Agent',currency:'Currency'}; }
 function sdSelAll(){ return {cli:'',number:'',range:'',agent:'',client:''}; }
 function sdSelPick(dim,val){
@@ -992,6 +975,7 @@ function sdSyncFilterSelects(){
 }
 function sdGbActive(){ const out=[]; for(const d of Object.keys(sdDims())){ const el=document.getElementById('sdGb_'+d); if(el&&el.checked) out.push(d); } return out; }
 function sdReset(){
+  document.querySelectorAll(".sf-report-filters select").forEach(el=>el.value="");
   window.__sdSort={k:'',d:''}; window.__sdSel=sdSelAll();
   amsResetSortHeads('sdSort_');
   for(const d of Object.keys(sdDims())){ const el=document.getElementById('sdGb_'+d); if(el) el.checked=false; }
@@ -1141,17 +1125,25 @@ function money(v){return '$ '+cleanDec(v);}
 function todayStr(){return (window.API&&API.ukToday)?API.ukToday():new Date().toISOString().slice(0,10);}function ukDateOf(v){return (window.API&&API.ukDate)?API.ukDate(v):String(v||'').slice(0,10);}
 function uniqueVals(arr){return [...new Set((arr||[]).filter(Boolean))];}
 async function loadProfile(){try{const me=await API.get('/me');MGR=me.name||me.username||MGR;document.querySelectorAll('.nm').forEach(e=>e.textContent=MGR);document.querySelectorAll('.av').forEach(e=>e.textContent=(MGR[0]||'M').toUpperCase());document.querySelectorAll('.breadcrumb b').forEach(e=>{if(e.textContent.startsWith('Manager:'))e.textContent='Manager: '+MGR;});}catch(e){}}
-async function loadDashboard(){
-  const d=await API.get('/dashboard').catch(e=>{window.AMSDashboardCore && AMSDashboardCore.error();throw e;});
+let dashboardPending;
+function loadDashboard(){
+  if(!dashboardPending) dashboardPending=refreshDashboard().finally(()=>{dashboardPending=null;});
+  return dashboardPending;
+}
+async function refreshDashboard(){
+  const [d, dailyData, _es]=await Promise.all([
+    API.get('/dashboard').catch(e=>{window.AMSDashboardCore && AMSDashboardCore.error();throw e;}),
+    API.get('/dashboard/daily?days=15').catch(e=>{console.warn('dashboard/daily',e);return null;}),
+    API.get('/earnings-summary').catch(e=>{console.warn('earnings-summary',e);return null;})
+  ]);
   const spark=(d.daily7||[]).map(x=>x.count||0);
   /* AMS dashboard top (2026-10-24): SMS Today/Week from /dashboard,
      Earnings Today/Month from /earnings-summary (payment_ledger, manager
      hierarchy scope). The existing Payouts group below still shows the
      /dashboard payout_* sums unchanged. */
-  let _es=null; try{ _es=await API.get('/earnings-summary'); }catch(e){ console.warn('earnings-summary(cards)',e); }
   if(window.AMSDashboard && AMSDashboard.amsKpis){
     AMSDashboard.amsKpis('amsKpis','amsDashMeta',d,_es,[((d.agents||0).toLocaleString())+' Agents',((d.clients||0).toLocaleString())+' Clients',((d.numbers||0).toLocaleString())+' Numbers']);
-let _daily=null; try{ _daily=await API.get('/dashboard/daily?days=15'); }catch(e){ console.warn('dashboard/daily',e); }
+const _daily=dailyData;
     const _rows=(_daily&&_daily.rows)||null;
     AMSDashboard.amsVolume('amsVolume', _rows||d.daily7, _rows||((_es&&_es.daily7)||[]), _rows?_daily.sms_total:d.sms_7d, _rows?_daily.earning_total:(_es&&_es.earning_7d));
     AMSDashboard.amsRail('amsRail',[
@@ -1176,7 +1168,7 @@ let _daily=null; try{ _daily=await API.get('/dashboard/daily?days=15'); }catch(e
   ]);
   window.AMSDashboardCore.refreshExtras('manager');
   sofajRenderDashboard(d, (typeof _es!=='undefined'?_es:null), (typeof _daily!=='undefined'?_daily:null));
-  loadEarningCards('manager');
+  loadEarningCards('manager', _es);
 }
 /* SOFAJ SMS hero (presentation only): repaints the reference layout from the SAME
    responses this panel's loadDashboard() already holds. No request here. */
@@ -1184,26 +1176,18 @@ function sofajRenderDashboard(d, es, daily){
   if(!window.SofajDashboard) return;
   var cfg={ root:'sofajDash', role:'manager', dashboard:d||{}, earnings:es||{}, dailyRows:(daily&&daily.rows)||null,
     name:sessionStorage.getItem('ams_name') || localStorage.getItem('ams_name') || 'Manager', balanceLabel:'Earnings', periodLabel:'This Month', totalLabel:'Total SMS' };
-  try{ window.SofajDashboard.render(cfg); }catch(e){ console.warn('sofaj dashboard',e); }
-  var root=document.getElementById('sofajDash'); if(!root||root.getAttribute('data-nx-monthly')==='1') return;
-  root.setAttribute('data-nx-monthly','1');
-  API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
-    cfg.monthly=(r&&r.rows)||[];
-    cfg.monthly.sort(function(a,b){ return String(a.dims.month||'')<String(b.dims.month||'')?-1:1; });
-    window.SofajDashboard.render(cfg);
-    if(!cfg.monthly.length) root.removeAttribute('data-nx-monthly');
-  }).catch(function(e){ console.warn('sofaj monthly',e); });
+  window.SofajDashboard.update(cfg);
 }
 
 /* Earning cards + graph: existing payment_ledger totals for this manager's hierarchy. */
-async function loadEarningCards(role){
+async function loadEarningCards(role, summary){
   /* FINAL POLISH 4A: the Earnings summary-card section (heading + Earning Today /
      This Week / This Month / Real Earning) is removed from the Manager dashboard.
      The approved "Earning Last 7 Days" graph and the Payouts section stay, and the
      /earnings-summary endpoint and its ledger calculations are untouched. */
   const g=document.getElementById('amsEarnings'); if(g) g.innerHTML='';
   try{
-    const es=await API.get('/earnings-summary');
+    const es=summary || await API.get('/earnings-summary');
     window.AMSDashboard.areaChart('amsEarnChart',{title:'Earning Last 7 Days',series:'Earning',color:'#f59e0b',rows:es.daily7,valueKey:'amount',money:true,ariaLabel:'Recorded earning per day for the last seven UK reporting days'});
   }catch(e){
     console.warn(e);
@@ -1404,6 +1388,9 @@ async function mgrLoadClientsPage(){
 async function loadManagerPageData(page){
   if(page==='cliSearch'){ try{ renderCliRanges(); }catch(e){ console.warn(e); } return; }
   try{
+    if(['clientStats','agentStats','rangeStats','numberStats'].includes(page)){
+      await Promise.allSettled([loadAgents(), loadClients(),loadRateCard()]);
+    }
     if(page==='dashboard') return loadDashboard();
     if(page==='rateCard') return loadRateCard();
     if(page==='numbers'){ loadNumbers(); return Promise.allSettled([loadRateCard(), loadAgents()]).then(refreshManagerNumbersFilters); }
@@ -1435,20 +1422,18 @@ function srvFoot(info,state,fn){const p=info?.closest('.table-foot')?.querySelec
 function mgrPager(key){window.__mgrPager=window.__mgrPager||{};if(!window.__mgrPager[key])window.__mgrPager[key]={page:1,totalPages:1,signature:''};return window.__mgrPager[key];}
 async function renderSmsDetail(){if(!document.getElementById('sdBody'))return;
   const chips=document.getElementById('sdChips'); if(chips) chips.innerHTML=sdChipsHtml();
-  const _sdF=(document.getElementById('sdDateFrom')?.value)||'',_sdT=(document.getElementById('sdDateTo')?.value)||'';let dateFrom=_sdF,dateTo=_sdT;if(!dateFrom&&!dateTo){dateFrom=todayStr();dateTo=todayStr();}else if(dateFrom&&!dateTo){dateTo='2099-12-31';}else if(!dateFrom&&dateTo){dateFrom='1970-01-01';}if(dateFrom>dateTo){const _s=dateFrom;dateFrom=dateTo;dateTo=_s;}
+  const _sdF=window.sdApplied?.from||'',_sdT=window.sdApplied?.to||'';let dateFrom=_sdF,dateTo=_sdT;if(!dateFrom&&!dateTo){dateFrom=todayStr();dateTo=todayStr();}else if(dateFrom&&!dateTo){dateTo='2099-12-31';}else if(!dateFrom&&dateTo){dateFrom='1970-01-01';}if(dateFrom>dateTo){const _s=dateFrom;dateFrom=dateTo;dateTo=_s;}
   const search=(sdSearch?.value||'').trim(),len=sdLen?.value||'25';
   /* P20 FIX: text searches ko pick-state me sync (warna typed value kabhi query me nahi jata) */
   const sel=window.__sdSel=window.__sdSel||sdSelAll();
-  const _nsI=document.getElementById('sdNumSearch'), _csI=document.getElementById('sdCliSearch');
-  if(_nsI) sel.number=_nsI.value.trim(); if(_csI) sel.cli=_csI.value.trim();
-  sdSyncFilterSelects();
+
   /* P20: text searches => contains params; dropdown picks => exact */
   const base=new URLSearchParams({from:dateFrom,to:dateTo});
   if(search)base.set('search',search);
   if(sel.number)base.set('number_like',sel.number);
   if(sel.cli)base.set('cli_like',sel.cli);
   for(const k of ['range','agent','client']) if(sel[k]) base.set(k,sel[k]);
-  const groups=sdGbActive();
+  const groups=window.sdApplied?.groups||[];
   const state=mgrPager('mgrSmsDetailServer');
   if(groups.length){
     /* ---- GROUPED MODE: /api/sms/report (role-scoped dims backend se) ---- */
@@ -1506,8 +1491,8 @@ async function renderNumbers(){
   try{data=await API.get('/numbers?'+params.toString());}catch(e){console.warn(e)}
   if(seq!==mgrNumSeq) return;
   state.page=data.page||1; state.totalPages=data.totalPages||1;
-  numData=(data.rows||[]).map(r=>({id:r.id,range_id:r.range_id,range:r.range_name||'',number:r.number,rate:r.effective_rate||r.rate||'',agent:r.agent_name||'',agent_id:r.agent_id,sd:r.sd_limit||0,sw:r.sw_limit||0}));
-  body.innerHTML=numData.map(r=>`<tr><td data-label="Selected"><input type="checkbox" class="rc" data-id="${r.id}" onchange="updSel()"/></td><td data-label="Range">${r.range}</td><td data-label="Number" class="ams-num"><b>${r.number}</b></td><td data-label="Country" class="muted">${(window.AMSCore&&(AMSCore.countryOf(r.number)||{}).name)||'—'}</td><td data-label="My Rate" class="cell-money">${r.rate}</td><td data-label="Agent">${r.agent?`<span class="tag tag-agt">${r.agent}</span>`:'<span class="tag tag-gray">—</span>'}</td><td data-label="Limits" class="muted">SD : ${r.sd} | SW : ${r.sw}</td></tr>`).join('')||`<tr><td colspan="7" class="muted" style="text-align:center;padding:24px">No numbers found</td></tr>`;
+  numData=(data.rows||[]).map(r=>({id:r.id,range_id:r.range_id,range:r.range_name||'',number:r.number,prefix:r.prefix||'—',rate:r.effective_rate||'—',out:r.agent_rate||'—',agent:r.agent_name||'',agent_id:r.agent_id,sd:r.sd_limit||0,sw:r.sw_limit||0}));
+  body.innerHTML=numData.map(r=>`<tr><td data-label="Selected"><input type="checkbox" class="rc" data-id="${r.id}" onchange="updSel()"/></td><td data-label="Range">${r.range}</td><td data-label="Prefix">${r.prefix}</td><td data-label="Number" class="ams-num"><b>${r.number}</b></td><td data-label="Agent">${r.agent?`<span class="tag tag-agt">${r.agent}</span>`:'<span class="tag tag-gray">—</span>'}</td><td data-label="Manager Rate" class="cell-money">${r.rate}</td><td data-label="Agent Rate" class="cell-money">${r.out}</td><td data-label="Limit" class="muted">SD : ${r.sd} | SW : ${r.sw}</td></tr>`).join('')||`<tr><td colspan="8" class="muted" style="text-align:center;padding:24px">No numbers found</td></tr>`;
   const currentNumbers = (numData || []).map(r => String(r.number || '').trim()).filter(Boolean);
   const countEl = document.getElementById('numPageCount');
   if(countEl) countEl.textContent = currentNumbers.length.toLocaleString();
@@ -1629,14 +1614,13 @@ async function renderDrill(kind){
 
 /* ===== FAST PRIORITY INIT ===== */
 loadProfile();loadDashboard();
-buildSmsDetail();
-setTimeout(async()=>{try{await Promise.allSettled([loadRateCard(),loadAgents(),loadClients()]);await Promise.allSettled([renderNumbers()]);}catch(e){console.warn('manager critical preload failed',e)}},50);
 
 function toggleManagerSidebar(){document.querySelector('.appbar')?.classList.toggle('show');document.getElementById('mgrMobileOverlay')?.classList.toggle('show');}
 function closeManagerSidebar(){document.querySelector('.appbar')?.classList.remove('show');document.getElementById('mgrMobileOverlay')?.classList.remove('show');}
 document.addEventListener('click',function(e){if(e.target.closest('[data-page]') && window.innerWidth<=900) setTimeout(closeManagerSidebar,80);},true);
 </script>
 
-<script src="/assets/extapi-ui.js?v=sofaj-20261026-fullrebrand-final"></script>
+<script src="/assets/extapi-ui.js?v=dashboard-perf-1"></script>
+<script>const sidebarName=sessionStorage.getItem('ms_name')||localStorage.getItem('ms_name');if(sidebarName){document.getElementById('sbName').textContent=sidebarName;document.getElementById('sbAv').textContent=sidebarName.slice(0,2).toUpperCase();}</script>
 </body>
 </html>

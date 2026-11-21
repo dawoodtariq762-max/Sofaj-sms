@@ -647,8 +647,10 @@
     if(!m) return null;
     return new Date(Date.UTC(+m[1], +m[2]-1, +m[3], +(m[4]||0), +(m[5]||0), +(m[6]||0)));
   }
+  const ukFormatters=new Map();
   function ukPartsFromDate(d, withSeconds=true){
-    return new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:withSeconds?'2-digit':undefined}).formatToParts(d).reduce((a,p)=>(a[p.type]=p.value,a),{});
+    if(!ukFormatters.has(withSeconds))ukFormatters.set(withSeconds,new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:withSeconds?'2-digit':undefined}));
+    return ukFormatters.get(withSeconds).formatToParts(d).reduce((a,p)=>(a[p.type]=p.value,a),{});
   }
   function ukDateString(value=new Date()){
     const d=value instanceof Date ? value : dbDateToUtcDate(value);
@@ -663,41 +665,34 @@
     const p=ukPartsFromDate(d,true);
     return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}`;
   }
-  function localizeTimes(root=document){
-    const els=[...root.querySelectorAll?.('td,.t2,.ps,.last-sms,.ms-time')||[]];
-    els.forEach(el=>{
-      if(el.children.length) return;
-      const raw=el.dataset.msUtc || el.textContent.trim();
-      if(!/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?$/.test(raw)) return;
-      const local=formatLocalFromDb(raw);
-      if(local){ el.dataset.msUtc=raw; el.textContent=local; el.title='UK time: '+local+' | Stored UTC: '+raw; }
-    });
-  }
-  /* Rows are appended in a burst of DOM updates (table body + footer + pager), and
-     the pending-nodes list used to be REPLACED on every new mutation batch: only the
-     last batch before the quiet period was ever localised, so report tables that
-     rendered slightly earlier kept showing the raw stored UTC value. During BST that
-     is exactly one hour behind the intended Europe/London reporting time, and it also
-     made freshly received messages look out of order next to their real arrival time.
-     Nodes are now ACCUMULATED and the whole queue is flushed, followed by a document
-     re-scan so a cell whose text was refreshed in place is still corrected.
-     Storage and sorting are untouched: received_at stays UTC in the database and in
-     every query/order clause - only the displayed value is converted. */
-  let tzPending=[];
-  function tzFlush(){
-    const nodes=tzPending; tzPending=[];
-    for(const n of nodes){ try{ localizeTimes(n); }catch(e){} }
-    try{ localizeTimes(document); }catch(e){}
-  }
-  function tzSchedule(node){
-    if(node && node.nodeType===1) tzPending.push(node);
-    clearTimeout(window.__msTzTimer);
-    window.__msTzTimer=setTimeout(tzFlush,120);
+  const stampSelector='td,.t2,.ps,.last-sms,.ms-time';
+  function localizeCell(el){
+    if(el.children.length)return;
+    const text=el.textContent.trim();
+    if(el.dataset.msLocal===text)return;
+    if(!/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?$/.test(text))return;
+    const local=formatLocalFromDb(text);
+    if(local){el.dataset.msUtc=text;el.dataset.msLocal=local;
+      if(local!==text)el.textContent=local;
+      el.title='UK time: '+local+' | Stored UTC: '+text;}
   }
   function initTimeLocalization(){
-    localizeTimes(document);
-    const mo=new MutationObserver(muts=>{ muts.forEach(m=>m.addedNodes.forEach(n=>tzSchedule(n))); });
-    mo.observe(document.body,{childList:true,subtree:true});
+    document.querySelectorAll(stampSelector).forEach(localizeCell);
+    const pending=new Set();let timer;
+    const mo=new MutationObserver(records=>{
+      for(const m of records){
+        if(m.target.matches?.(stampSelector))pending.add(m.target);
+        for(const n of m.addedNodes)if(n.nodeType===1)pending.add(n);
+      }
+      if(!pending.size||timer)return;
+      timer=setTimeout(()=>{timer=null;
+        for(const el of pending){if(!el.isConnected)continue;
+          let parent=el.parentElement;while(parent&&!pending.has(parent))parent=parent.parentElement;
+          if(parent)continue;
+          if(el.matches(stampSelector))localizeCell(el);
+          el.querySelectorAll(stampSelector).forEach(localizeCell);
+        }pending.clear();},120);
+    });mo.observe(document.body,{childList:true,subtree:true});
   }
 
   /* =========================================================================

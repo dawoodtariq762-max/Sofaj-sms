@@ -953,6 +953,10 @@ db.run(`CREATE TABLE IF NOT EXISTS payment_notifications_v2 (
      approximate matching, no provider records created, no text renamed, no
      numbers reassigned. Idempotent — safe on every boot and on production.
      ======================================================================== */
+  ensureColumn('ams_providers','contact_email',"TEXT DEFAULT ''");
+  ensureColumn('ams_providers','contact_ips',"TEXT DEFAULT ''");
+  ensureColumn('activity_ips','provider_id','INTEGER');
+  ensureColumn('smpp_connections','provider_id','INTEGER');
   ensureColumn('ranges', 'provider_id', 'INTEGER');
   db.run(`CREATE INDEX IF NOT EXISTS idx_ranges_provider_id ON ranges(provider_id)`);
   try {

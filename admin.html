@@ -304,11 +304,12 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 <script src="/assets/sofaj-ds.js?v=sofaj-20261026-fullrebrand-final" defer></script>
 <script src="/assets/dashboard-ui.js?v=sofaj-20261101-admin-report-fixes1"></script>
 
-<script src="/assets/number-copy.js?v=sofaj-20261026-fullrebrand-final"></script>
+<script src="/assets/number-copy.js?v=dashboard-perf-1"></script>
 <link rel="stylesheet" href="/assets/sofaj-motion.css?v=sofaj-20261026-fullrebrand-final"/><script src="/assets/sofaj-motion.js?v=sofaj-20261026-fullrebrand-final" defer></script>
-<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261101-admin-report-fixes1"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard-admin.js?v=gx-20261112" defer></script><script src="/assets/sofaj-requests.js?v=sf-20261111b" defer></script>
-<link rel="stylesheet" href="/assets/sofaj-glass.css?v=gx-20261112"/>
+<link rel="stylesheet" href="/branding/runtime.css"/><script src="/branding/runtime.js" defer></script><link rel="stylesheet" href="/assets/sofaj-panel.css?v=sofaj-20261101-admin-report-fixes1"/><link rel="stylesheet" href="/assets/sofaj-unify.css?v=sofaj-20261026-unify2"/><script src="/assets/sofaj-cli-search.js?v=sofaj-20261026-fullrebrand-final" defer></script><link rel="stylesheet" href="/assets/sofaj-theme.css?v=sf-20261111b"/><script src="/assets/sofaj-dashboard-admin.js?v=dashboard-perf-1" defer></script><script src="/assets/sofaj-requests.js?v=sf-20261111b" defer></script>
+
 <link rel="manifest" href="/manifest.webmanifest" /><meta name="theme-color" content="#071A3D" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="SOFAJ SMS" /><link rel="apple-touch-icon" href="/assets/pwa/apple-touch-icon.png" /><script src="/assets/pwa-install.js?v=sf-pwa-20261111" defer></script>
+<link rel="stylesheet" href="/assets/sofaj-glass.css?v=dashboard-perf-1"/>
 </head>
 <body class="ams-light ams-panel ams-ui">
 <div class="layout">
@@ -469,7 +470,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
             <div id="numRangeContainer" style="display:inline-block;min-width:180px"><select class="sel-lg" id="numRange"><option value="">Select Range</option></select></div>
             <!-- Provider filter (admin only): shows ALL eligible numbers of the provider across all its ranges -->
             <div id="numProviderContainer" style="display:inline-block;min-width:180px"><select class="sel-lg" id="numProvider"><option value="">Select Provider</option></select></div>
-            <button type="button" class="ams-btn ams-blue"  onclick="applyNumFilter()" data-tip="Filters" title="Filters" aria-label="Filters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+            <select aria-label="Select Manager" id="numManager"><option value="">Select Manager</option></select><select aria-label="Select Agent" id="numAgent"><option value="">Select Agent</option></select><button type="button" class="ams-btn ams-blue"  onclick="applyNumFilter()" data-tip="Filters" title="Filters" aria-label="Filters">Filter</button>
             <button type="button" class="ams-btn"  onclick="clearNumFilter()" data-tip="Reset" title="Reset" aria-label="Reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
           </div>
           <div class="filter-row" id="adminRangeDeleteTools">
@@ -486,7 +487,7 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
             <div class="tc-right"><label>Search:</label><input type="text" id="numSearch" oninput="renderNumbers()" placeholder="Search..." /></div>
           </div>
           <div class="bulk-bar">
-            <span class="info" id="selInfo">0 selected</span>
+            <button type="button" onclick="cycleClientFilter()">Allocation <span id="clientSortHint">⇅</span></button><span class="info" id="selInfo">0 selected</span>
           </div>
         </div>
         <div class="table-wrap">
@@ -500,13 +501,8 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
               <th class="sortable" onclick="sortNumbers('number')">Number <span class="sort" id="numSortHint">⇅</span></th>
               <th class="sortable" onclick="sortNumbers('manager')">Manager <span class="sort">⇅</span></th>
               <th class="sortable" onclick="sortNumbers('agent')">Agent <span class="sort">⇅</span></th>
-              <th class="sortable" onclick="cycleClientFilter()">Client <span class="sort" id="clientSortHint">⇅</span></th>
-              <th class="sortable" onclick="sortNumbers('myVal')">My Rate <span class="sort">⇅</span></th>
-              <th class="sortable" onclick="sortNumbers('payVal')">Payout <span class="sort">⇅</span></th>
-              <th>Provider Rate</th>
-              <th>Limits</th>
-            </tr></thead>
-            <tbody id="numbersBody"></tbody>
+              <th>Provider Rate</th><th>Downstream Rate</th><th>Limit</th></tr></thead>
+<tbody id="numbersBody"></tbody>
           </table></div>
           <div class="table-foot"><div class="info" id="numbersInfo"></div><div class="pagination"><button>‹</button><button class="active">1</button><button>2</button><button>3</button><button>›</button></div></div>
         </div>
@@ -769,38 +765,8 @@ thead th{font-size:11.5px!important;letter-spacing:.25px!important;}
 </div></div>
 
 
-<!-- Mobile-only bottom bar: Dashboard / Numbers / CDR Stats / Chat (hidden above 900px by sofaj-glass.css) -->
-<nav class="gx-bnav" id="gxBnav" aria-label="Quick navigation">
-  <button type="button" data-gx-page="dashboard" data-gx-key="dashboard" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Dashboard</span></button>
-  <button type="button" data-gx-page="numbers" data-gx-key="numbers"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span>Numbers</span></button>
-  <button type="button" data-gx-page="smsDetail" data-gx-key="cdr"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 20v-7M12 20V6M17 20v-10"/></svg><span>CDR Stats</span></button>
-  <a href="/chat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Chat</span></a>
-</nav>
-<script>
-(function(){
-  var nav=document.getElementById('gxBnav'); if(!nav) return;
-  nav.addEventListener('click',function(e){
-    var b=e.target.closest('[data-gx-page]'); if(!b) return;
-    if(typeof showPageByName==='function') showPageByName(b.getAttribute('data-gx-page'));
-    window.scrollTo(0,0);
-  });
-  var CDR={smsDetail:1,cliSearch:1,clientStats:1,agentStats:1,managerStats:1,rangeStats:1,numberStats:1,providerSummary:1};
-  function sync(){
-    var p=document.querySelector('.page.active'), id=p?p.id.replace(/^page-/,''):'dashboard';
-    var key=id==='dashboard'?'dashboard':id==='numbers'?'numbers':CDR[id]?'cdr':'';
-    nav.querySelectorAll('[data-gx-page]').forEach(function(b){ b.classList.toggle('on',b.getAttribute('data-gx-key')===key); });
-  }
-  new MutationObserver(sync).observe(document.querySelector('.content')||document.body,{subtree:true,attributes:true,attributeFilter:['class']});
-  sync();
-  try{
-    var n=sessionStorage.getItem('ams_name')||localStorage.getItem('ams_name')||'Administrator';
-    var nm=document.getElementById('sbName'), av=document.getElementById('sbAv');
-    if(nm) nm.textContent=n;
-    if(av) av.textContent=n.trim().split(/\s+/).slice(0,2).map(function(w){return w.charAt(0)}).join('').toUpperCase()||'AD';
-  }catch(e){}
-})();
-</script>
-<script src="/api.js?v=sofaj-20261027-three-fixes1"></script>
+
+<script src="/api.js?v=dashboard-perf-1"></script>
 <script>
 /* auth guard — admin only */
 if(window.API){ API.guard('admin'); }
@@ -853,8 +819,8 @@ function closeSidebar(){ document.getElementById('sidebar').classList.remove('sh
 function toggleFull(){ if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen&&document.exitFullscreen();} }
 function closeModal(id){const el=document.getElementById(id);if(el)el.classList.remove('show');}
 function logout(){ if(confirm('Do you want to logout?')){ if(window.API&&API.logout){API.logout();}else{try{sessionStorage.clear();['ams_token','ams_role','ams_user','ams_name'].forEach(k=>localStorage.removeItem(k));}catch(e){} window.location.href='/panel-login';} } }
-function tick(){const d=new Date();const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const p=n=>String(n).padStart(2,'0');
-  document.getElementById('clock').textContent=days[d.getDay()]+', '+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());}
+function tick(){if(document.hidden)return;const d=new Date();const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];const p=n=>String(n).padStart(2,'0');
+  document.getElementById('clock').firstChild.data=days[d.getDay()]+', '+d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());}
 setInterval(tick,1000);tick();
 
 /* charts */
@@ -885,6 +851,7 @@ function ownerNamesForAdmin(){
   return unique([...(usersData.manager||[]).map(x=>x.username), ...(usersData.agent||[]).map(x=>x.username)]);
 }
 function fillAdminOwnerSelects(){
+  for(const role of ['Manager','Agent']){const el=document.getElementById('num'+role);if(el){const old=el.value;el.replaceChildren(new Option('Select '+role,''),...(usersData[role.toLowerCase()]||[]).map(u=>new Option(u.username,u.username)));el.value=old;}}
   const owners=ownerNamesForAdmin();
   if (window.renderSearchSelect && document.getElementById('numClientContainer')) {
     const items = owners.map(o => ({ value: o, label: o }));
@@ -917,10 +884,7 @@ function renderAdminNumbersRangeFilter(){
       style: 'min-width:180px',
       items: items,
       value: numRangeFilter || '',
-      onChange: (val) => {
-        numRangeFilter = val;
-        renderNumbers();
-      }
+      onChange: () => {}
     });
   } else {
     fillSelect('numRange', liveRanges);
@@ -966,10 +930,10 @@ async function renderAdminNumbersProviderFilter(){
   if(window.renderSearchSelect){
     window.renderSearchSelect('numProviderContainer',{ id:'numProvider', placeholder:'Select Provider', searchPlaceholder:'Search provider...',
       style:'min-width:180px', items:adminProviderNames.map(p=>({value:p,label:p})), value:numProviderFilter||'',
-      onChange:(val)=>{ numProviderFilter=val||''; renderNumbers(); } });
+      onChange:()=>{} });
   } else {
     const sel=document.getElementById('numProvider');
-    if(sel){ sel.innerHTML='<option value="">Select Provider</option>'+adminProviderNames.map(p=>`<option>${p}</option>`).join(''); sel.value=numProviderFilter||''; sel.onchange=()=>{ numProviderFilter=sel.value; renderNumbers(); }; }
+    if(sel){ sel.innerHTML='<option value="">Select Provider</option>'+adminProviderNames.map(p=>`<option>${p}</option>`).join(''); sel.value=numProviderFilter||'';  }
   }
 }
 function agentsOf(m){
@@ -1115,6 +1079,7 @@ function doAllocate(){
 }
 
 /* =============== SMS NUMBERS (API-backed) =============== */
+let numManagerId='',numAgentId='';
 let numSort={key:null,dir:1}, clientFilterMode=0, numRangeFilter='', numClientFilter='', numProviderFilter='';
 async function loadTestNumbers(){
   try{ const data=await API.get('/test-numbers?paged=1&page=1&limit=100'); const rows=data.rows||data; testNumbers=(rows||[]).map(t=>({range:t.range_name,prefix:t.prefix||'',num:t.number,payout:t.payout||'Ask',created_at:t.created_at||''})); }
@@ -1128,12 +1093,14 @@ function sortNumbers(key){if(numSort.key===key)numSort.dir*=-1;else{numSort.key=
 function cycleClientFilter(){clientFilterMode=(clientFilterMode+1)%3;
   document.getElementById('clientSortHint').textContent=clientFilterMode===0?'⇅':(clientFilterMode===1?'Unallocated ▾':'Allocated ▾');renderNumbers();}
 function applyNumFilter(){
+  numManagerId=document.getElementById('numManager').value;numAgentId=document.getElementById('numAgent').value;
   const nr=document.getElementById('numRange'); if(nr) numRangeFilter=nr.value;
   const nc=document.getElementById('numClient'); if(nc) numClientFilter=nc.value;
   const np=document.getElementById('numProvider'); if(np) numProviderFilter=np.value;
   renderNumbers();
 }
 function clearNumFilter(){
+  numManagerId=numAgentId=document.getElementById('numManager').value=document.getElementById('numAgent').value='';
   numRangeFilter='';
   numClientFilter='';
   numProviderFilter='';
@@ -1335,7 +1302,7 @@ async function runSmartDivide(){
 async function exportNumbersCsv(){
   try{
     const q=(document.getElementById('numSearch').value||'').trim();
-    const body={type:'numbers'};
+    const body={type:'numbers',manager:numManagerId,agent:numAgentId};
     if(q) body.search=q;
     if(typeof numRangeFilter!=='undefined'&&numRangeFilter) body.range=numRangeFilter;
     /* provider filter is exported too, so the CSV matches what the table shows */
@@ -1525,29 +1492,8 @@ function buildSmsDetail(){
 .ams-gb-lab{font-weight:600;align-self:center;margin-right:2px;}
 tfoot.ams-tot td{position:sticky;bottom:0;border-top:2px solid #ddd;font-weight:700;}</style>
   <div class="page-head"><div><h2>SMS Detailed Report</h2><div class="breadcrumb"><b>CDR Stats</b> › Detailed Report</div></div></div>
-  <div class="toolbar">
-    <div class="filter-row">
-      <label><input type="checkbox" id="sdUseDate" checked style="width:auto" onchange="renderSmsDetail()"> Date</label>
-      <input type="date" id="sdDateFrom" title="From date" onchange="renderSmsDetail()" /> <span class="muted" style="align-self:center">to</span> <input type="date" id="sdDateTo" title="To date" onchange="renderSmsDetail()" />
-      
-      <label>Number</label><input type="text" id="sdNumSearch" placeholder="Search number…" style="min-width:150px" oninput="clearTimeout(window.__sdNT);window.__sdNT=setTimeout(renderSmsDetail,450)"/>
-      <label>CLI</label><input type="text" id="sdCliSearch" placeholder="Search CLI…" style="min-width:120px" oninput="clearTimeout(window.__sdCT);window.__sdCT=setTimeout(renderSmsDetail,450)"/>
-    </div>
-    <div class="filter-row" style="margin-top:6px">
-      <label style="min-width:34px">Filters</label>
-      <div id="sdSelRangeContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelManagerContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelAgentContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelClientContainer" style="display:inline-block;min-width:150px"></div>
-      <div id="sdSelProviderContainer" style="display:inline-block;min-width:150px"></div>
-      <button class="btn btn-red" onclick="renderSmsDetail()">Apply Filter</button>
-      <button type="button" class="ams-btn"  onclick="sdReset()" data-tip="Reset" title="Reset" aria-label="Reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></button>
-    </div>
-    <div class="filter-row" style="margin-top:6px;flex-wrap:wrap">
-      <span class="ams-gb-lab">Group by</span>
-      ${[['hour','Hour'],['day','Day'],['month','Month'],['range','Range'],['number','Number'],['cli','CLI'],['client','Client'],['agent','Agent'],['manager','Manager'],['currency','Currency'],['provider','Provider']].map(x=>`<label style="width:auto"><input type="checkbox" id="sdGb_${x[0]}" style="width:auto" onchange="renderSmsDetail()"> ${x[1]}</label>`).join('')}
-    </div>
-    <div id="sdChips" style="display:flex;flex-wrap:wrap;align-items:center"></div>
+  <div class="toolbar"><div class="filter-row sf-report-filters"><label><input type="checkbox" id="sdUseDate" checked> Date</label><input type="date" aria-label="From date" id="sdDateFrom"><input type="date" aria-label="To date" id="sdDateTo"><select aria-label="Select Provider" id="sdSelProvider"><option value="">Select Provider</option></select><select aria-label="Select Manager" id="sdSelManager"><option value="">Select Manager</option></select><select aria-label="Select Agent" id="sdSelAgent"><option value="">Select Agent</option></select><select aria-label="Select Range" id="sdSelRange"><option value="">Select Range</option></select><details><summary>Group By</summary><div class="sf-groups">${Object.entries(sdDims()).map(([key,label])=>`<label><input type="checkbox" id="sdGb_${key}"> ${label}</label>`).join('')}</div></details><button type="button" class="btn" onclick="sdApply()">Apply Filter</button><button type="button" class="btn" onclick="sdReset();sdApply()">Reset</button></div>
+<div class="filter-row"><input aria-label="Search number" id="sdNumSearch" placeholder="Search number…"><input aria-label="Search CLI" id="sdCliSearch" placeholder="Search CLI…"></div><div id="sdChips" style="display:flex;flex-wrap:wrap;align-items:center"></div>
   </div>
   <div class="table-wrap" style="padding:16px 18px;margin-top:0"><div class="table-controls"><div class="tc-left"><label>Show Records:</label>
     <select id="sdLen" onchange="renderSmsDetail()"><option>10</option><option selected>25</option><option>50</option><option>100</option><option>500</option><option>1000</option><option>10000</option><option value="All">All</option></select>${expBtns()}</div>
@@ -1559,6 +1505,7 @@ tfoot.ams-tot td{position:sticky;bottom:0;border-top:2px solid #ddd;font-weight:
   renderSmsDetail();
 }
 /* ---- P20 report state/helpers (sab roles same pattern) ---- */
+function sdApply(){const get=id=>document.getElementById(id);const sel=window.__sdSel=sdSelAll();for(const d of Object.keys(sel)){const el=get('sdSel'+d[0].toUpperCase()+d.slice(1));if(el)sel[d]=el.value;}sel.number=get('sdNumSearch').value.trim();sel.cli=get('sdCliSearch').value.trim();window.sdApplied={from:get('sdUseDate').checked?get('sdDateFrom').value:'1970-01-01',to:get('sdUseDate').checked?get('sdDateTo').value:'2099-12-31',groups:sdGbActive()};renderSmsDetail();}
 function sdDims(){ return {hour:'Hour',day:'Day',month:'Month',range:'Range',number:'Number',cli:'CLI',client:'Client',agent:'Agent',manager:'Manager',currency:'Currency',provider:'Provider'}; }
 function sdSelAll(){ return {cli:'',number:'',range:'',manager:'',agent:'',client:'',provider:''}; }
 function sdSelPick(dim,val){
@@ -1594,6 +1541,7 @@ function sdSyncFilterSelects(){
 }
 function sdGbActive(){ const out=[]; for(const d of Object.keys(sdDims())){ const el=document.getElementById('sdGb_'+d); if(el&&el.checked) out.push(d); } return out; }
 function sdReset(){
+  document.querySelectorAll(".sf-report-filters select").forEach(el=>el.value="");
   window.__sdSort={k:'',d:''}; window.__sdSel=sdSelAll();
   amsResetSortHeads('sdSort_');
   for(const d of Object.keys(sdDims())){ const el=document.getElementById('sdGb_'+d); if(el) el.checked=false; }
@@ -1638,8 +1586,8 @@ async function renderSmsDetail(){
   if(!document.getElementById('sdBody')) return;
   const chips=document.getElementById('sdChips'); if(chips) chips.innerHTML=sdChipsHtml();
   /* Date semantics (P14 bugfix barkarar): dono khaali => aaj; ek khaali => open-ended */
-  const _sdF=(document.getElementById('sdDateFrom')?.value)||'';
-  const _sdT=(document.getElementById('sdDateTo')?.value)||'';
+  const _sdF=window.sdApplied?.from||'';
+  const _sdT=window.sdApplied?.to||'';
   let dateFrom=_sdF, dateTo=_sdT;
   if(!dateFrom && !dateTo){ dateFrom=todayStr(); dateTo=todayStr(); }
   else if(dateFrom && !dateTo){ dateTo='2099-12-31'; }
@@ -1649,16 +1597,14 @@ async function renderSmsDetail(){
   const len=document.getElementById('sdLen')?.value||'25';
   /* P20 FIX: text searches ko pick-state me sync (warna typed value kabhi query me nahi jata) */
   const sel=window.__sdSel=window.__sdSel||sdSelAll();
-  const _nsI=document.getElementById('sdNumSearch'), _csI=document.getElementById('sdCliSearch');
-  if(_nsI) sel.number=_nsI.value.trim(); if(_csI) sel.cli=_csI.value.trim();
-  sdSyncFilterSelects();
+
   /* text searches => contains params (number_like/cli_like); dropdown picks => exact */
   const base=new URLSearchParams({from:dateFrom,to:dateTo});
   if(search)base.set('search',search);
   if(sel.number)base.set('number_like',sel.number);
   if(sel.cli)base.set('cli_like',sel.cli);
   for(const k of ['range','manager','agent','client','provider']) if(sel[k]) base.set(k,sel[k]);
-  const groups=sdGbActive();
+  const groups=window.sdApplied?.groups||[];
   const state=pagerState('adminSmsDetailServer');
   if(groups.length){
     /* ---- GROUPED MODE: /api/sms/report (server-side aggregation + totals) ---- */
@@ -2136,16 +2082,24 @@ async function saveManualCliLimit(){
 
 /* =============== LIVE API OVERRIDES (no dummy data) =============== */
 function money(v){return '$ '+cleanDec(v);}
-async function loadDashboard(){
-  const d=await API.get('/dashboard').catch(e=>{window.AMSDashboardCore && AMSDashboardCore.error();throw e;});
+let dashboardPending;
+function loadDashboard(){
+  if(!dashboardPending) dashboardPending=refreshDashboard().finally(()=>{dashboardPending=null;});
+  return dashboardPending;
+}
+async function refreshDashboard(){
+  const [d, dailyData, _es]=await Promise.all([
+    API.get('/dashboard').catch(e=>{window.AMSDashboardCore && AMSDashboardCore.error();throw e;}),
+    API.get('/dashboard/daily?days=15').catch(e=>{console.warn('dashboard/daily',e);return null;}),
+    API.get('/earnings-summary').catch(e=>{console.warn('earnings-summary',e);return null;})
+  ]);
   const spark=(d.daily7||[]).map(x=>x.count||0);
   /* AMS dashboard top (2026-10-24): same 4-card row as Agent/Manager.
      Admin Earnings = /earnings-summary platform SMS payout snapshots
      (sms_records.payout_amount); Manager/Agent remain payment_ledger. */
-  let _es=null; try{ _es=await API.get('/earnings-summary'); }catch(e){ console.warn('earnings-summary(cards)',e); }
   if(window.AMSDashboard && AMSDashboard.amsKpis){
     AMSDashboard.amsKpis('amsKpis','amsDashMeta',d,_es,[((d.managers||0).toLocaleString())+' Managers',((d.agents||0).toLocaleString())+' Agents',((d.clients||0).toLocaleString())+' Clients',((d.numbers||0).toLocaleString())+' Numbers']);
-    let _daily=null; try{ _daily=await API.get('/dashboard/daily?days=15'); }catch(e){ console.warn('dashboard/daily',e); }
+    const _daily=dailyData;
     const _rows=(_daily&&_daily.rows)||null;
     AMSDashboard.amsVolume('amsVolume', _rows||d.daily7, _rows||((_es&&_es.daily7)||[]), _rows?_daily.sms_total:d.sms_7d, _rows?_daily.earning_total:(_es&&_es.earning_7d));
     AMSDashboard.amsRail('amsRail',[
@@ -2182,7 +2136,7 @@ async function loadDashboard(){
     ]);
   }else{const pv=document.getElementById('amsProvider');if(pv)pv.innerHTML='';}
   window.AMSDashboardCore.refreshExtras('admin');
-  loadEarningCards('admin');
+  loadEarningCards('admin', _es);
   sofajRenderDashboard(d, (typeof _es!=='undefined'?_es:null), (typeof _daily!=='undefined'?_daily:null));
 }
 
@@ -2193,28 +2147,19 @@ function sofajRenderDashboard(d, es, daily){
   var cfg={ root:'sofajDash', role:(sessionStorage.getItem('ams_role')||localStorage.getItem('ams_role')||'admin'),
     dashboard:d||{}, earnings:es||{}, dailyRows:(daily&&daily.rows)||null,
     name:(document.querySelector('.topbar .nm')||{}).textContent || sessionStorage.getItem('ams_name') || localStorage.getItem('ams_name') || 'Administrator' };
-  try{ window.SofajDashboard.render(cfg); }catch(e){ console.warn('sofaj dashboard',e); }
-  var root=document.getElementById('sofajDash'); if(!root) return;
-  if(root.getAttribute('data-nx-monthly')==='1') return;
-  root.setAttribute('data-nx-monthly','1');
-  API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
-    cfg.monthly=(r&&r.rows)||[];
-    cfg.monthly.sort(function(a,b){ return String(a.dims.month||'')<String(b.dims.month||'')?-1:1; });
-    window.SofajDashboard.render(cfg);
-    if(cfg.monthly.length) root.setAttribute('data-nx-monthly','1'); else root.removeAttribute('data-nx-monthly');
-  }).catch(function(e){ console.warn('sofaj monthly',e); });
+  window.SofajDashboard.update(cfg);
 }
 
 /* Earning cards + graph: role-scoped /earnings-summary totals (Admin =
    sms_records payout snapshots; Manager/Agent = payment_ledger). */
-async function loadEarningCards(role){
+async function loadEarningCards(role, summary){
   /* FINAL POLISH 3A: the Earnings summary-card section (heading + Earning Today /
      This Week / This Month / Real Earning) is removed from the dashboard.
      The approved "Earning Last 7 Days" graph stays, and the /earnings-summary
      endpoint plus every calculation behind it are untouched (other pages use them). */
   const g=document.getElementById('amsEarnings'); if(g) g.innerHTML='';
   try{
-    const es=await API.get('/earnings-summary');
+    const es=summary || await API.get('/earnings-summary');
     window.AMSDashboard.areaChart('amsEarnChart',{title:'Earning Last 7 Days',series:'Earning',color:'#f59e0b',rows:es.daily7,valueKey:'amount',money:true,ariaLabel:'Recorded earning per day for the last seven UK reporting days'});
   }catch(e){
     console.warn(e);
@@ -2675,10 +2620,11 @@ async function deleteCurrentFilteredNumbers(){
   const body={};
   if(q) body.search=q;
   if(numRangeFilter) body.range=numRangeFilter;
+  if(numManagerId)body.manager=numManagerId;if(numAgentId)body.agent=numAgentId;if(numProviderFilter)body.provider=numProviderFilter;
   if(numClientFilter) body.owner=numClientFilter;
   if(clientFilterMode===1) body.allocation='unallocated';
   if(clientFilterMode===2) body.allocation='allocated';
-  if(!body.search&&!body.range&&!body.owner&&!body.allocation){alert('Apply Search / Range / Manager / Allocated filter first, or use Delete ALL Numbers.');return;}
+  if(!body.manager&&!body.agent&&!body.provider&&!body.search&&!body.range&&!body.owner&&!body.allocation){alert('Apply Search / Range / Manager / Allocated filter first, or use Delete ALL Numbers.');return;}
   const params=new URLSearchParams({paged:'1',page:'1',limit:'1'});
   Object.keys(body).forEach(k=>params.set(k,body[k]));
   const d=await API.get('/numbers?'+params.toString()).catch(()=>({total:0}));
@@ -2731,6 +2677,7 @@ function numberFilterParams(){
   if(numRangeFilter) params.set('range',numRangeFilter);
   /* provider filter is server-side (admin only); combines with range + owner + search + allocation */
   if(numProviderFilter) params.set('provider',numProviderFilter);
+  if(numManagerId)params.set('manager',numManagerId);if(numAgentId)params.set('agent',numAgentId);
   if(numClientFilter) params.set('owner',numClientFilter);
   if(clientFilterMode===1) params.set('allocation','unallocated');
   if(clientFilterMode===2) params.set('allocation','allocated');
@@ -2752,7 +2699,7 @@ async function renderNumbers(){
   const state=pagerState('adminNumbersServer');
   const len=document.getElementById('numLen').value;
   const q=(document.getElementById('numSearch').value||'').trim();
-  const signature=JSON.stringify({len,q,range:numRangeFilter,owner:numClientFilter,provider:numProviderFilter,allocation:clientFilterMode,sort:numSort.key||'',dir:numSort.dir});
+  const signature=JSON.stringify({len,q,range:numRangeFilter,owner:numClientFilter,manager:numManagerId,agent:numAgentId,provider:numProviderFilter,allocation:clientFilterMode,sort:numSort.key||'',dir:numSort.dir});
   if(state.signature && state.signature!==signature) state.page=1;
   state.signature=signature;
   /* FINAL POLISH 3D: rows on screen change here, so any checkbox state from the
@@ -2780,11 +2727,8 @@ async function renderNumbers(){
     <td data-label="Range">${r.range}</td>${numProviderCell(r)}<td data-label="Prefix" class="muted">${r.prefix||'—'}</td>
     <td data-label="Country" class="muted">${r.country||'—'}</td><td data-label="Number" class="ams-num"><b>${r.number}</b></td>
     <td data-label="Manager" class="muted">${r.manager}</td><td data-label="Agent" class="muted">${r.agent}</td>
-    <td data-label="Client">${r.client?`<span class="tag ${r.ownerType==='agent'?'tag-agt':'tag-mgr'}">${r.client}${window.AMS_PANEL_MODE==='admin_light'?'':` <span class="x" onclick="unassignOne(${r._id})">✕</span>`}</span>`:`<span class="tag tag-gray">—</span>`}</td>
-    <td data-label="My Rate">${r.myPay}<br><span class="cell-sub cell-money">${r.myVal}</span></td>
-    <td data-label="Payout">${r.payType}<br><span class="cell-sub">${r.payVal}</span></td>
-    <td data-label="Provider Rate" class="muted"${r.provider?` title="Provider: ${r.provider}"`:''}>${r.provRate?`$ ${r.provRate}`:'—'}</td>
-    <td data-label="Limits" class="muted">SD : ${r.sd} | SW : ${r.sw}</td></tr>`).join('')||`<tr><td colspan="${window.AMS_PANEL_MODE==='admin_light'?12:13}" class="muted" style="text-align:center;padding:24px">No numbers found</td></tr>`;
+    <td data-label="Provider Rate" class="muted">${r.provRate?`$ ${r.provRate}`:'—'}</td><td data-label="Downstream Rate">${r.myVal||'—'}</td>
+    <td data-label="Limit" class="muted">SD : ${r.sd} | SW : ${r.sw}${r.client&&window.AMS_PANEL_MODE!=='admin_light'?` <button type="button" title="Unassign number" onclick="unassignOne(${r._id})">✕</button>`:''}</td></tr>`).join('')||`<tr><td colspan="${window.AMS_PANEL_MODE==='admin_light'?10:11}" class="muted" style="text-align:center;padding:24px">No numbers found</td></tr>`;
   const currentNumbers = (numbersData || []).map(r => String(r.number || '').trim()).filter(Boolean);
   const countEl = document.getElementById('numPageCount');
   if(countEl) countEl.textContent = currentNumbers.length.toLocaleString();
@@ -3561,6 +3505,6 @@ loadDashboard();
 setTimeout(()=>{Promise.allSettled([ensureAdminManagers()]);},250);
 </script>
 <script>document.addEventListener("keydown",function(e){if(e.key==="Escape"&&typeof closeSidebar==="function")closeSidebar();});</script>
-<script src="/assets/extapi-ui.js?v=sofaj-20261026-fullrebrand-final"></script>
+<script src="/assets/extapi-ui.js?v=dashboard-perf-1"></script>
 </body>
 </html>

@@ -121,7 +121,7 @@
     return { word: 'day', pts: rows.map(function(r){ return { l: dm(r.date), v: r.sms, t: dm(r.date) + ': ' + r.sms + ' SMS' }; }) };
   }
 
-  function render(cfg){
+  function render(cfg, graphOnly){
     cfg = cfg || {}; LAST = cfg;
     var root = document.getElementById(cfg.root || 'sofajDash'); if (!root) return;
     var d = cfg.dashboard || {}, es = cfg.earnings || {}, rows = series(cfg), monthly = Array.isArray(cfg.monthly) ? cfg.monthly : null;
@@ -164,8 +164,9 @@
     }
     var subWk = dWk || { c: 'eq', t: 'Rolling 7 days' };
     var subMo = thisM == null ? { c: 'eq', t: 'Month to date' } : dMon;
-    var gQuick = [['test','SMS Test','send','g'],['smsDetail','Reports','bars','p'],['apiManagement','API','code','o'],['chat','Chat','chat','k']].map(function(q){
+    var gQuick = [['test','SMS Test Panel','send','g'],[cfg.role==='client'?'stats':'smsDetail','Reports','bars','p'],['numbers','Numbers','cal','b'],['chat','Chat','chat','k']].map(function(q){
       var inner = gico(q[2], q[3]) + '<span>' + q[1] + '</span>';
+      if(cfg.role==='client' && q[0]==='chat') return '<button type="button" class="gx-q" disabled title="Not available for Client accounts" aria-label="'+q[1]+': not available for Client accounts">'+inner+'</button>';
       return q[0] === 'chat' ? '<a class="gx-q" href="/chat" target="_blank" rel="noopener">' + inner + '</a>'
                              : '<button type="button" class="gx-q" data-gx-go="' + q[0] + '">' + inner + '</button>';
     }).join('');
@@ -178,9 +179,6 @@
         tri('g', 'cal', 'This Month', cnt(thisM), subMo, spark(monthRows.map(function(r){ return r.sms; }))) +
         tri('p', 'coin', '7-Day Payout', money(pay7), { c: 'eq', t: 'Last 7 days' }, spark(last7.map(function(r){ return r.amt; }))) +
       '</div>' +
-      '<section class="gx-bal"><span class="gx-wallet">' + WALLET + '</span><div class="gx-bal-txt"><small>Month Payout</small><b>' + esc(money(payMonth)) + '</b>' +
-        '<span class="gx-pill-g">' + (has(payToday) ? '\u2191 + ' + esc(money(payToday)) + ' today' : 'Today \u2014') + '</span></div>' +
-        '<button type="button" class="gx-add" data-gx-go="payMgmt"><i>+</i>Payments<em>\u203A</em></button></section>' +
       '<div class="gx-quick">' + gQuick + '</div>';
 
     var gp = graphPoints(rows, monthly), tot = 0, bestV = 0, best = '\u2014';
@@ -190,6 +188,10 @@
       '<div class="nx-stats"><div><small>Today</small><b>' + cnt(smsToday) + '</b></div><div><small>Total</small><b>' + cnt(tot) + '</b></div><div><small>Best ' + gp.word + '</small><b>' + esc(best) + '</b></div></div>' +
       (state.mode === 'monthly' && !monthly ? '<div class="nx-empty">Monthly data is loading\u2026</div>' : chart(gp.pts)) + '</section>';
 
+    if(graphOnly && root.querySelector('.nx-graph')) {
+      root.querySelector('.nx-graph').outerHTML=graph;
+      return;
+    }
     var maxW = Math.max.apply(null, [1].concat(last7.map(function(r){ return r.sms; })));
     var days = last7.slice().reverse().map(function(r, i){
       return '<li><span>' + (i === 0 ? 'Today' : esc(dwdm(r.date))) + '</span><div class="nx-bar"><i style="width:' + Math.round(r.sms / maxW * 100) + '%"></i></div><em>' + cnt(r.sms) + '</em></li>';
@@ -209,17 +211,29 @@
       '<span class="nx-chip ' + dMon.c + '">' + esc(dMon.t) + '</span></div>' +
       '<div><div class="nx-head" style="justify-content:flex-end;margin-bottom:6px"><span class="nx-pill">Last 6 months</span></div><table class="nx-mt"><thead><tr><th>Month</th><th>Payout</th><th>OTPs</th></tr></thead><tbody>' + trs + '</tbody></table></div></section>';
 
-    root.innerHTML = '<div class="nx-hero">' + kpis + '<div class="nx-grid">' + graph + week + '</div>' + mon + '</div>';
+    var html = '<div class="nx-hero">' + kpis + '<div class="nx-grid">' + graph + week + '</div>' + mon + '</div>';
 
+    if(root._nxHtml!==html){root.innerHTML=html;root._nxHtml=html;}
     if (!root._nxBound) {
       root._nxBound = true;
       root.addEventListener('click', function(e){
         var g = e.target.closest && e.target.closest('[data-gx-go]');
-        if (g) { if (typeof window.showPageByName === 'function') window.showPageByName(g.getAttribute('data-gx-go')); return; }
+        if (g) { var page=g.getAttribute('data-gx-go'), item=document.querySelector('[data-page="'+page+'"]'); if(item) item.click(); else if(typeof window.showPageByName==='function') window.showPageByName(page); return; }
         var b = e.target.closest && e.target.closest('[data-nx-mode]'); if (!b) return;
-        state.mode = b.getAttribute('data-nx-mode'); if (LAST) render(LAST);
+        var next=b.getAttribute('data-nx-mode'); if(next===state.mode)return; state.mode=next;root._nxHtml=null;if(LAST) render(LAST,true);
       });
     }
   }
-  window.SofajDashboard = { render: render };
+  var latest, months, monthlyPending, expires=0;
+  function update(cfg){
+    latest=cfg;
+    if(months)cfg.monthly=months;
+    render(cfg);
+    if(monthlyPending || Date.now()<expires)return;
+    monthlyPending=API.get('/sms/report?group=month&limit=12&sort=sms&dir=desc').then(function(r){
+      months=((r&&r.rows)||[]).slice().sort(function(a,b){return String(a.dims.month).localeCompare(String(b.dims.month));});
+      expires=Date.now()+60000; latest.monthly=months;render(latest);
+    }).catch(function(e){console.warn('sofaj monthly',e);}).finally(function(){monthlyPending=null;});
+  }
+  window.SofajDashboard = { render: render, update: update };
 })();

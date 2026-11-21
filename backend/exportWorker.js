@@ -38,7 +38,9 @@ try {
   let sql, header;
   if (payload.type === 'numbers') {
     if (f.range) { where.push(`r.name = ?`); params.push(String(f.range)); }
-    if (f.provider) { where.push(`r.provider = ?`); params.push(String(f.provider)); }   /* P19k #8 */
+    if(f.manager){where.push('mu.username=?');params.push(f.manager)}
+    if(f.agent){where.push('au.username=?');params.push(f.agent)}
+    if (f.provider) { where.push(`r.provider_id = (SELECT id FROM ams_providers WHERE name=? COLLATE NOCASE)`); params.push(String(f.provider)); }   /* P19k #8 */
     const ownerCol = scopeCol === 'manager_id' ? 'agent_id' : (scopeCol === 'agent_id' ? 'client_id' : null);
     if (f.allocation === 'unallocated') {
       where.push(ownerCol ? `${ownerCol} IS NULL` : 'manager_id IS NULL AND agent_id IS NULL AND client_id IS NULL');

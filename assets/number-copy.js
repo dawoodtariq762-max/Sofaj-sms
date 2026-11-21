@@ -118,7 +118,10 @@
       setTimeout(function () { scheduled = false; try { decorate(); } catch (e) {} }, 120);
     }
     if (window.MutationObserver) {
-      new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+      TABLES.forEach(function(id){
+        var body=document.getElementById(id);
+        if(body)new MutationObserver(schedule).observe(body,{childList:true});
+      });
     }
     decorate();
     liveRegion();

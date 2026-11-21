@@ -2,10 +2,10 @@
    sofaj-glass.css — glass / lavender look (reference image)
    Load AFTER sofaj-theme.css. Presentation only: no ids, handlers, endpoints
    or calculations are touched.
-   (html body.ams-panel.ams-ui.ams-light #sidebar below = html body.ams-panel.ams-ui.ams-light #sidebar, expanded at build)
+   (html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) below = html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail), expanded at build)
    ========================================================================== */
 
-html body.ams-panel.ams-ui.ams-light {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) {
   --nx-sbw: 288px;
   --gx-ink: #15235e;
   --gx-mute: #6b78a8;
@@ -14,10 +14,10 @@ html body.ams-panel.ams-ui.ams-light {
     radial-gradient(800px 640px at 100% 42%, rgba(208,156,255,.45), transparent 62%),
     linear-gradient(160deg, #dbe6ff 0%, #e9e5ff 55%, #f3e6ff 100%) fixed !important;
 }
-html body.ams-panel.ams-ui.ams-light .main::before { display: none !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .main::before { display: none !important; }
 
 /* ---------------------------------------------------------------- sidebar */
-html body.ams-panel.ams-ui.ams-light #sidebar {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) {
   display: flex !important; flex-direction: column !important;
   top: 12px !important; left: 12px !important; bottom: 12px !important;
   width: 264px !important; min-width: 264px !important; max-width: 264px !important;
@@ -28,70 +28,70 @@ html body.ams-panel.ams-ui.ams-light #sidebar {
   -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px);
   overflow: hidden !important; color: var(--gx-ink) !important;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar::before, html body.ams-panel.ams-ui.ams-light #sidebar::after { content: none !important; display: none !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail)::before, html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail)::after { content: none !important; display: none !important; }
 
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-brand { padding: 22px 16px 14px !important; gap: 6px !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-brand::after { display: none !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-logo, html body.ams-panel.ams-ui.ams-light #sidebar .sb-logo img { width: 128px !important; height: 74px !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-brand h1 {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-brand { padding: 22px 16px 14px !important; gap: 6px !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-brand::after { display: none !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-logo, html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-logo img { width: 128px !important; height: 74px !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-brand h1 {
   font-size: 18px !important; font-weight: 800 !important; letter-spacing: .06em !important;
   background: linear-gradient(90deg, #1b3fc9, #7c3aed); -webkit-background-clip: text; background-clip: text;
   color: transparent !important; -webkit-text-fill-color: transparent;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-brand small {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-brand small {
   margin-top: 0 !important; font-size: 16px !important; font-weight: 500 !important;
   letter-spacing: 0 !important; text-transform: none !important; color: var(--gx-mute) !important;
 }
 
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-nav { flex: 1 1 auto !important; min-height: 0; overflow-y: auto !important; padding: 10px 12px 10px !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-section { display: none !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-nav { flex: 1 1 auto !important; min-height: 0; overflow-y: auto !important; padding: 10px 12px 10px !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-section { display: none !important; }
 
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item {
   min-height: 52px !important; padding: 0 10px !important; gap: 14px !important; margin: 3px 0 !important;
   border-radius: 999px !important; background: transparent !important; box-shadow: none !important;
   color: var(--gx-ink) !important; font-size: 15.5px !important; font-weight: 500 !important;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item > svg:first-child {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item > svg:first-child {
   width: 38px !important; height: 38px !important; padding: 9px; box-sizing: border-box; flex: none;
   border-radius: 50%; background: linear-gradient(145deg, #eef2ff, #d9e2fb);
   stroke: #2146c7 !important; color: #2146c7 !important;
   box-shadow: inset 0 1px 0 #fff, 0 3px 8px rgba(70,90,200,.14);
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item .chev { margin-left: auto; width: 17px !important; height: 17px !important; stroke: #4b5a90 !important; opacity: 1; }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item:hover { background: rgba(255,255,255,.75) !important; color: var(--gx-ink) !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item.active {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item .chev { margin-left: auto; width: 17px !important; height: 17px !important; stroke: #4b5a90 !important; opacity: 1; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item:hover { background: rgba(255,255,255,.75) !important; color: var(--gx-ink) !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item.active {
   background: linear-gradient(90deg, #2f7bff 0%, #6f55ff 60%, #b44cf2 100%) !important;
   color: #fff !important; font-weight: 600 !important;
   box-shadow: 0 10px 24px rgba(110,80,255,.38), inset 0 1px 0 rgba(255,255,255,.4) !important;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item.active > svg:first-child {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item.active > svg:first-child {
   background: linear-gradient(145deg, #2a5cff, #0a2fb8); stroke: #fff !important; color: #fff !important;
   box-shadow: 0 4px 10px rgba(10,40,180,.4);
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .nav-item.active .chev { stroke: #fff !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .nav-item.active .chev { stroke: #fff !important; }
 
-html body.ams-panel.ams-ui.ams-light #sidebar .submenu {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .submenu {
   margin: 2px 0 6px 30px !important; padding: 0 0 0 8px !important; background: transparent !important;
   border: 0 !important; border-left: 1.5px solid rgba(110,100,220,.25) !important; border-radius: 0 !important; box-shadow: none !important;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .sub-item {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sub-item {
   min-height: 40px !important; margin: 2px 0 !important; padding: 0 12px !important; border-radius: 999px !important;
   color: #3b4a86 !important; font-size: 14px !important; background: transparent !important;
 }
-html body.ams-panel.ams-ui.ams-light #sidebar .sub-item:hover { background: rgba(255,255,255,.75) !important; color: var(--gx-ink) !important; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sub-item.active { background: rgba(124,77,255,.14) !important; color: #4a2fd0 !important; font-weight: 600 !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sub-item:hover { background: rgba(255,255,255,.75) !important; color: var(--gx-ink) !important; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sub-item.active { background: rgba(124,77,255,.14) !important; color: #4a2fd0 !important; font-weight: 600 !important; }
 
 /* user footer */
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-user { flex: none; display: flex; align-items: center; gap: 12px; margin: 4px 16px 16px; padding-top: 12px; border-top: 1px solid rgba(90,100,190,.18); }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-av { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #2f7bff, #6d28d9); color: #fff; font-weight: 700; font-size: 16px; box-shadow: 0 6px 16px rgba(60,60,220,.35); }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-uinfo { min-width: 0; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-uinfo b { display: block; color: var(--gx-ink); font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-uinfo small { display: block; color: var(--gx-mute); font-size: 13px; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-out { margin-left: auto; flex: none; width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: #ffd9ec; color: #e11d74; }
-html body.ams-panel.ams-ui.ams-light #sidebar .sb-out svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-user { flex: none; display: flex; align-items: center; gap: 12px; margin: 4px 16px 16px; padding-top: 12px; border-top: 1px solid rgba(90,100,190,.18); }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-av { flex: none; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #2f7bff, #6d28d9); color: #fff; font-weight: 700; font-size: 16px; box-shadow: 0 6px 16px rgba(60,60,220,.35); }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-uinfo { min-width: 0; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-uinfo b { display: block; color: var(--gx-ink); font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-uinfo small { display: block; color: var(--gx-mute); font-size: 13px; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-out { margin-left: auto; flex: none; width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: #ffd9ec; color: #e11d74; }
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) .sb-out svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------------------------------------------------------------- top bar */
-html body.ams-panel.ams-ui.ams-light .topbar {
+html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .topbar {
   margin: 12px 16px 0 !important; border-radius: 30px !important;
   background: rgba(255,255,255,.62) !important; border: 1px solid rgba(255,255,255,.95) !important;
   box-shadow: 0 14px 34px rgba(88,80,220,.14) !important;
@@ -195,29 +195,37 @@ html body.ams-panel.ams-ui.ams-light .topbar {
 /* ---------------------------------------------------------------- mobile only: sidebar slide + bottom nav */
 .gx-bnav { display: none; }
 @media (max-width: 900px) {
-  html body.ams-panel.ams-ui.ams-light #sidebar { transform: translateX(calc(-100% - 30px)) !important; }
-  html body.ams-panel.ams-ui.ams-light #sidebar.show, html.ams-ui-sb-open html body.ams-panel.ams-ui.ams-light #sidebar { transform: translateX(0) !important; }
-  html body.ams-panel.ams-ui.ams-light .topbar { margin: 10px 10px 0 !important; }
-  html body.ams-panel.ams-ui.ams-light .content { padding-bottom: 118px !important; }
-
-  .gx-bnav {
-    display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch;
-    position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 40;
-    padding: 10px 4px 14px; border-radius: 34px;
-    background: rgba(255,255,255,.84); border: 1px solid rgba(255,255,255,.95);
-    -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
-    box-shadow: 0 18px 40px rgba(88,80,220,.24), inset 0 1px 0 #fff;
-  }
-  .gx-bnav > * {
-    appearance: none; background: none; border: 0; text-decoration: none; cursor: pointer; position: relative;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 4px 2px 6px;
-    font: 600 14px 'Inter',system-ui,sans-serif; color: var(--gx-ink, #15235e); -webkit-tap-highlight-color: transparent;
-  }
-  .gx-bnav > * + * { border-left: 1.5px solid rgba(90,100,190,.22); }
-  .gx-bnav svg { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-  .gx-bnav .on { color: #3a2fe0; }
-  .gx-bnav .on::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: -6px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #2f7bff, #7c4dff); }
+  html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) { transform: translateX(calc(-100% - 30px)) !important; }
+  html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail).show, html body.ams-ui-sb-open.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(#sidebar,.appbar,.rail) { transform: translateX(0) !important; }
+  html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) .topbar { margin: 10px 10px 0 !important; }
 }
-@media (max-width: 380px) { .gx-bnav > * { font-size: 12.5px; } .gx-bnav svg { width: 28px; height: 28px; } }
 
-@media (prefers-reduced-motion: reduce) { .gx-total, .gx-card, .gx-bal { animation: none; } }
+.gx-total{min-height:0;padding:16px 22px}.gx-total .gx-big{font-size:clamp(36px,5vw,54px)}.gx-total .gx-art{max-height:150px}.gx-quick{grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none}.gx-q{min-width:0;font-size:clamp(12px,2vw,16px)}
+html body.ams-panel.ams-ui.ams-dark{background:#202d41!important;--gx-ink:#e8effb;--gx-mute:#b6c8e1}.ams-dark :is(.gx-card,.gx-quick,.nx-card){background:#2d3e55;color:#eff5ff;border-color:#4a5e79;box-shadow:none}.ams-dark .gx-card :is(small,b){color:#eff5ff}
+@media(min-width:901px){html body.ams-panel.ams-ui.ams-ui-sb-collapsed{--nx-sbw:0px}html body.ams-panel.ams-ui.ams-ui-sb-collapsed :is(.main,.appbar~.content,.mgr-topbar){margin-left:0!important;width:100%!important}}
+#page-numbers .table-controls,#page-numbers .tc-right,#page-numbers .tc-left{display:flex;align-items:center;gap:8px;margin-block:0}#page-numbers .table-controls{justify-content:space-between;flex-wrap:wrap}#page-numbers tbody td{padding-block:5px}
+.sf-report-filters{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.sf-report-filters details{position:relative}.sf-report-filters summary{cursor:pointer}.sf-groups{position:absolute;z-index:5;background:Canvas;color:CanvasText;box-shadow:0 3px 12px #0003;padding:10px;width:max-content}.sf-groups label{display:block}#page-smsDetail .table-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+
+html body.ams-panel.ams-ui.ams-dark :is(#sidebar,.rail,.appbar,.topbar,.mgr-topbar){background:#29394f!important;border-color:#4a5c74!important;color:#e1e9f8!important;box-shadow:0 8px 30px #16243745!important}
+html body.ams-panel.ams-ui.ams-dark :is(#sidebar,.rail,.appbar) :is(.sub-item,.sb-uinfo b,.sb-brand small){color:#dbe5f3!important}html body.ams-panel.ams-ui.ams-dark .gx-q{color:#e8effb}html body.ams-panel.ams-ui.ams-dark .gx-q:hover{background:#344861}html body.ams-panel.ams-ui.ams-dark .nx-card{background:#28394e!important;color:#eef3fd!important}
+@media(max-width:900px){html body.ams-panel.ams-ui:is(.ams-light,.ams-dark) :is(.main,.appbar~.content,.mgr-topbar){margin-left:0!important;width:100%!important}}
+@media(min-width:901px){html body.ams-panel.ams-ui:not(.ams-ui-sb-collapsed) :is(.main,.appbar~.content,.mgr-topbar){margin-left:288px!important;width:calc(100% - 288px)!important;max-width:calc(100% - 288px)!important}html body.ams-panel.ams-ui.ams-ui-sb-collapsed .appbar~.content{max-width:100%!important}}
+.gx-total-top{font-size:19px;gap:9px}.gx-total .gx-ico{width:36px;height:36px}.gx-total .gx-live{position:absolute;left:135px;bottom:0;margin:0;font-size:12px;padding:4px 10px}.gx-total .gx-up{font-size:14px}.gx-total .gx-big{font-size:42px}.gx-total .gx-live i{width:9px;height:9px;border-width:1px}
+#page-numbers .filter-row:has(#numManager){display:flex;align-items:center;gap:8px;flex-wrap:wrap}#page-numbers .filter-row:has(#numManager)>:is(select,div){flex:1 1 140px;min-width:0!important}#page-numbers .filter-row:has(#numManager) .searchable-dropdown{min-width:0!important}#page-numbers button[onclick="applyNumFilter()"]{width:auto!important;padding-inline:12px!important}#page-numbers .toolbar:has(#adminRangeDeleteTools){display:block}#adminRangeDeleteTools{margin-block:8px}
+@media(max-width:900px){html body.ams-panel.ams-ui .ams-ui-sb-float{left:min(284px,calc(100vw - 48px))!important;z-index:1100!important}}
+/* Keep the two form controls on the same grid row even when export tools wrap. */
+:is(#page-numbers,#page-smsDetail) .table-controls:has(:is(#numLen,#sdLen)){display:grid!important;grid-template-columns:max-content max-content minmax(0,1fr) max-content minmax(85px,180px);align-items:center;column-gap:8px;row-gap:4px}
+:is(#page-numbers,#page-smsDetail) .table-controls :is(.tc-left,.tc-right){display:contents!important}
+:is(#page-numbers,#page-smsDetail) .table-controls .tc-left label{grid-area:1/1}
+:is(#numLen,#sdLen){grid-area:1/2}
+:is(#page-numbers,#page-smsDetail) .table-controls .exp-btns{grid-area:1/3;min-width:0;flex-wrap:wrap}
+:is(#page-numbers,#page-smsDetail) .table-controls .tc-right label{grid-area:1/4}
+:is(#numSearch,#sdSearch){grid-area:1/5;width:100%!important;min-width:0!important}
+:is(#page-numbers,#page-smsDetail) :is(#numLen,#sdLen,#numSearch,#sdSearch){height:34px!important;margin:0!important;align-self:center}
+@media(max-width:640px){:is(#page-numbers,#page-smsDetail) .table-controls:has(:is(#numLen,#sdLen)){grid-template-columns:auto auto 0 auto minmax(45px,1fr);column-gap:4px}:is(#page-numbers,#page-smsDetail) .table-controls .exp-btns{grid-area:2/1/3/-1}}
+html body.ams-panel :is(#page-numbers,#page-smsDetail) :is(#numLen,#sdLen,#numSearch,#sdSearch){box-sizing:border-box!important;height:36px!important;min-height:36px!important;max-height:36px!important;align-self:center!important}
+
+.gx-q:disabled{opacity:.58;cursor:default}
+
+/* Resize the dashboard once per toggle; the drawer itself still slides via transform. */
+@media(min-width:901px){html body.ams-panel.ams-ui:has(#page-dashboard.active) :is(.main,.content,.mgr-topbar){transition-property:background-color,color!important}}
